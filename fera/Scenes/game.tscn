@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=4 uid="uid://gxrued2pk22y"]
+
+[ext_resource type="Texture2D" uid="uid://xp8ptqibry6u" path="res://Art/PlayerIdlePLACEHOLDER-Sheet.png" id="1_qxrlw"]
+[ext_resource type="Script" uid="uid://b42030qkgrvfc" path="res://Scripts/player.gd" id="1_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://gruyy67og738" path="res://Art/PlayerPLACEHOLDER-Sheet.png" id="2_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://p5d5wja4scjb" path="res://Art/TilesetPLACEHOLDER.png" id="4_3dryh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dryh"]
+atlas = ExtResource("1_qxrlw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wowpa"]
+atlas = ExtResource("1_qxrlw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6g32"]
+atlas = ExtResource("1_qxrlw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l0tm"]
+atlas = ExtResource("2_wrm1d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v158k"]
+atlas = ExtResource("2_wrm1d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h4fw4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dryh")
+}],
+"loop": true,
+"name": &"idleDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wowpa")
+}],
+"loop": true,
+"name": &"idleSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6g32")
+}],
+"loop": true,
+"name": &"idleUp",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walkDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1l0tm")
+}],
+"loop": true,
+"name": &"walkLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v158k")
+}],
+"loop": true,
+"name": &"walkUp",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
+size = Vector2(14, 14)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wowpa"]
+texture = ExtResource("4_3dryh")
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_i6g32"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_wowpa")
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Player" type="Area2D" parent="."]
+z_index = 1
+collision_layer = 5
+collision_mask = 7
+priority = 1
+script = ExtResource("1_wrm1d")
+
+[node name="art" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_h4fw4")
+animation = &"idleDown"
+autoplay = "idleDown"
+
+[node name="collider" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_qxrlw")
+debug_color = Color(1, 0.95, 0, 0.419608)
+
+[node name="rayChecker" type="RayCast2D" parent="Player"]
+target_position = Vector2(0, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-8, 8)
+tile_map_data = PackedByteArray("AAD6//v/AAACAAAAAAD6//z/AAACAAAAAAD6//3/AAACAAAAAAD6//7/AAACAAAAAAD6////AAACAAAAAAD6/wAAAAACAAAAAAD6/wEAAAACAAAAAAD6/wIAAAACAAAAAAD6/wMAAAACAAAAAAD6/wQAAAACAAAAAAD6/wUAAAACAAAAAAD7//v/AAACAAAAAAD7//z/AAACAAAAAAD7//3/AAACAAAAAAD7//7/AAACAAAAAAD7////AAACAAAAAAD7/wAAAAACAAAAAAD7/wEAAAACAAAAAAD7/wIAAAACAAAAAAD7/wMAAAACAAAAAAD7/wQAAAACAAAAAAD7/wUAAAACAAAAAAD8//v/AAACAAAAAAD8//z/AAACAAAAAAD8//3/AAACAAAAAAD8//7/AAACAAAAAAD8////AAACAAAAAAD8/wAAAAACAAAAAAD8/wEAAAACAAAAAAD8/wIAAAACAAAAAAD8/wMAAAACAAAAAAD8/wQAAAACAAAAAAD8/wUAAAACAAAAAAD9//v/AAACAAAAAAD9//z/AAACAAAAAAD9//3/AAACAAAAAAD9//7/AAACAAAAAAD9////AAACAAAAAAD9/wAAAAACAAAAAAD9/wEAAAACAAAAAAD9/wIAAAACAAAAAAD9/wMAAAAAAAAAAAD9/wQAAAACAAAAAAD9/wUAAAACAAAAAAD+//v/AAACAAAAAAD+//z/AAACAAAAAAD+//3/AAACAAAAAAD+//7/AAACAAAAAAD+////AAACAAAAAAD+/wAAAAACAAAAAAD+/wEAAAACAAAAAAD+/wIAAAACAAAAAAD+/wMAAAACAAAAAAD+/wQAAAACAAAAAAD+/wUAAAACAAAAAAD///v/AAACAAAAAAD///z/AAACAAAAAAD///3/AAACAAAAAAD///7/AAACAAAAAAD/////AAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAD//wMAAAACAAAAAAD//wQAAAACAAAAAAD//wUAAAACAAAAAAAAAPv/AAACAAAAAAAAAPz/AAACAAAAAAAAAP7/AAACAAAAAAAAAP//AAACAAAAAAAAAAAAAAACAAAAAAAAAAEAAAACAAAAAAAAAAIAAAACAAAAAAAAAAMAAAACAAAAAAAAAAQAAAACAAAAAAAAAAUAAAACAAAAAAABAPv/AAACAAAAAAABAPz/AAACAAAAAAABAP7/AAACAAAAAAABAP//AAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAABAAMAAAACAAAAAAABAAQAAAACAAAAAAABAAUAAAACAAAAAAACAPv/AAACAAAAAAACAPz/AAACAAAAAAACAP3/AAACAAAAAAACAP7/AAACAAAAAAACAP//AAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAACAAMAAAACAAAAAAACAAQAAAACAAAAAAACAAUAAAACAAAAAAADAPv/AAACAAAAAAADAPz/AAACAAAAAAADAP3/AAACAAAAAAADAP7/AAACAAAAAAADAP//AAACAAAAAAADAAAAAAACAAAAAAADAAEAAAACAAAAAAADAAIAAAACAAAAAAADAAMAAAACAAAAAAADAAQAAAACAAAAAAADAAUAAAACAAAAAAAEAPv/AAABAAAAAAAEAPz/AAABAAAAAAAEAP3/AAABAAAAAAAEAP7/AAABAAAAAAAEAP//AAABAAAAAAAEAAAAAAACAAAAAAAEAAEAAAACAAAAAAAEAAIAAAACAAAAAAAEAAMAAAACAAAAAAAEAAQAAAACAAAAAAAEAAUAAAACAAAAAAAFAPv/AAABAAAAAAAFAPz/AAABAAAAAAAFAP3/AAABAAAAAAAFAP7/AAABAAAAAAAFAP//AAABAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAACAAAAAAAFAAQAAAACAAAAAAAFAAUAAAACAAAAAAD6//r/AAACAAAAAAD7//r/AAACAAAAAAD8//r/AAACAAAAAAD9//r/AAACAAAAAAD+//r/AAACAAAAAAD///r/AAACAAAAAAAAAPr/AAACAAAAAAABAPr/AAACAAAAAAACAPr/AAACAAAAAAADAPr/AAACAAAAAAAEAPr/AAACAAAAAAAFAPr/AAACAAAAAAAGAPv/AAABAAAAAAAGAPz/AAABAAAAAAAGAP3/AAABAAAAAAAGAP7/AAABAAAAAAAGAP//AAABAAAAAAAHAPv/AAABAAAAAAAHAPz/AAABAAAAAAAHAP3/AAABAAAAAAAHAP7/AAABAAAAAAAHAP//AAABAAAAAAAIAPv/AAABAAAAAAAIAPz/AAABAAAAAAAIAP3/AAABAAAAAAAIAP7/AAABAAAAAAAIAP//AAABAAAAAAAAAP3/AAACAAAAAAABAP3/AAACAAAAAAA=")
+tile_set = SubResource("TileSet_i6g32")
