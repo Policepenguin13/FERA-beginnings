@@ -238,10 +238,6 @@ collision_mask = 6
 script = ExtResource("8_v158k")
 Default = Array[String](["It's an object, related to Fera.", "Who would've thought?", "Or maybe you expected this?"])
 
-[node name="DisplayTxtTimer" type="Timer" parent="InteractableObject"]
-wait_time = 0.05
-one_shot = true
-
 [node name="sight" type="CollisionShape2D" parent="InteractableObject"]
 shape = SubResource("RectangleShape2D_i6g32")
 debug_color = Color(1, 1, 1, 0.42)
