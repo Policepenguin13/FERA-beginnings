@@ -1,29 +1,32 @@
-extends Area2D
-
-@export var Default: Array[String] = []
-@export var PartOne: Array[String] = []
+extends PanelContainer
 
 var count = 0
 var busyDisplayingSentence = false
 var skip
 
-# @onready var TalkingBox = $"../Player/Cam/UI/DialogueBox"
-# @onready var saying = $"../Player/Cam/UI/DialogueBox/saying"
-
-func _ready():
-	$Label.text = "hi"
-
-func SayNext():
-	var words
-	words = Default
+func Say(words: Array[String]):
+	var betterWords: Array[String] = []
 	# print(words)
+	for thing in words:
+		var newThing
+		if thing.contains("{player}") and thing.contains("{teto}"):
+			newThing = thing.format({"player":Globals.PlayerName, "teto":Globals.FeraName})
+			betterWords.append(newThing)
+		elif thing.contains("{teto}"):
+			newThing = thing.format({"teto":Globals.FeraName})
+			betterWords.append(newThing)
+		elif thing.contains("{player}"):
+			newThing = thing.format({"player":Globals.PlayerName})
+			betterWords.append(newThing)
+		else:
+			betterWords.append(thing)
+	# print(betterWords)
+	words = betterWords
 	# print("count: " + str(count))
-	# check player's story-progress to decide which lines to use
 	
-	%DialogueBox.show()
-	%saying.show()
-	$Label.text = "spitefully"
-	%saying.text = ""
+	self.show()
+	$saying.show()
+	$saying.text = ""
 	
 	if busyDisplayingSentence:
 		skip = true
@@ -36,10 +39,11 @@ func SayNext():
 	else:
 		# print("count ("+str(count)+") less than len(words) ("+str(len(words))+") !")
 		# print(words[count])
+		
 		busyDisplayingSentence = true
 		await DisplaySentence(words[count])
 		busyDisplayingSentence = false
-		%saying.text = words[count]
+		$saying.text = words[count]
 		# for ch in words[count]:
 		# 	%saying.text += ch
 			# print("ch = " + str(ch))
@@ -49,21 +53,21 @@ func SayNext():
 
 func EndDialogue():
 	# print("Dialogue is ending!")
-	%DialogueBox.hide()
-	# self.hide()
+	self.hide()
 	Globals.talking = false
 	count = 0
 
 func DisplaySentence(sentence):
-	%saying.text = ""
+	$saying.text = ""
+	# sentence.replacen("PLAYERNAME", str(Globals.PlayerName))
 	for ch in sentence:
 		if skip:
 			# print("skip")
-			%saying.text = sentence
+			$saying.text = sentence
 			skip = false
 			return
 		else:
-			%saying.text += ch
+			$saying.text += ch
 			# print("ch = " + str(ch))
 			$DisplayTxtTimer.start()
 			await $DisplayTxtTimer.timeout

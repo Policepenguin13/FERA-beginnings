@@ -11,7 +11,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("INTERACT"):
 		if interactable != null:
 			Globals.talking = true
-			interactable.SayNext()
+			interactable.Interact()
 	
 func InteractFound(FoundInteractable):
 	print("found: " + str(FoundInteractable))
