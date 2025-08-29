@@ -1,5 +1,6 @@
 extends Area2D
-# COMPLEX INTERACTABLE:
+# COMPLEX INTERACTABLE: says lots of different stuff depending on
+# several variables
 
 @export var Default: Array[String] = [] # if all else fails
 # export other stuff.

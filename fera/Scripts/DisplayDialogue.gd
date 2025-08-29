@@ -4,6 +4,8 @@ var count = 0
 var busyDisplayingSentence = false
 var skip
 
+var choice = false
+
 func Say(words: Array[String]):
 	var betterWords: Array[String] = []
 	# print(words)
@@ -53,8 +55,12 @@ func Say(words: Array[String]):
 
 func EndDialogue():
 	# print("Dialogue is ending!")
-	self.hide()
-	Globals.talking = false
+	if choice == false:
+		self.hide()
+		Globals.talking = false
+	else:
+		$"../Yes".show()
+		$"../No".show()
 	count = 0
 
 func DisplaySentence(sentence):

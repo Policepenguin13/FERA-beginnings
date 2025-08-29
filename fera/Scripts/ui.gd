@@ -3,6 +3,8 @@ extends Control
 func _ready():
 	self.show()
 	$DialogueBox.hide()
+	$Yes.hide()
+	$No.hide()
 	$DialogueBox/saying.visible_characters = -1
 	$DialogueBox/saying.text = "nobody should be reading this"
 
@@ -10,3 +12,4 @@ func _ready():
 	
 func _process(_delta):
 	%saying.visible_characters = -1
+	
