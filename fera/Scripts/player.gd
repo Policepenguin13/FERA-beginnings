@@ -6,6 +6,7 @@ var inputs = {"RIGHT": Vector2.RIGHT, "LEFT": Vector2.LEFT, "UP": Vector2.UP, "D
 # @onready var Eyes = $interactCheck
 var AnimeSpeed = 2
 var moving = false
+var CanMove = true
 var DIRECTION = "DOWN"
 
 
@@ -17,7 +18,7 @@ func _ready():
 func _unhandled_input(event):
 	if moving:
 		return
-	if Globals.talking:
+	if Globals.CanMove == false:
 		# print("No moving yet!")
 		return
 	for dir in inputs.keys():

@@ -3,7 +3,7 @@ extends Area2D
 # This is for objects like signs, doors and other stuff.
 
 @export var Default: Array[String] = []
-@export var PartOne: Array[String] = []
+# @export var PartOne: Array[String] = []
 
 func Interact():
 	%DialogueBox.Say(Default)

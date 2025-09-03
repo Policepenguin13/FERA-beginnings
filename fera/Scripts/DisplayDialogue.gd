@@ -6,6 +6,8 @@ var skip
 
 var choice = false
 
+signal DialogueEnded
+
 func Say(words: Array[String]):
 	var betterWords: Array[String] = []
 	# print(words)
@@ -46,21 +48,28 @@ func Say(words: Array[String]):
 		await DisplaySentence(words[count])
 		busyDisplayingSentence = false
 		$saying.text = words[count]
+		if choice and count == len(words)-1:
+			$"../Yes".show()
+			$"../No".show()
 		# for ch in words[count]:
 		# 	%saying.text += ch
 			# print("ch = " + str(ch))
 		# 	await get_tree().create_timer(0.05).timeout
 		# %saying.text = str(words[count]) # stuff
-	count += 1
+	if choice:
+		var temp = count+1
+		if temp > len(words)-1:
+			count = count
+		else:
+			count += 1
+	else:
+		count += 1
 
 func EndDialogue():
 	# print("Dialogue is ending!")
-	if choice == false:
-		self.hide()
-		Globals.talking = false
-	else:
-		$"../Yes".show()
-		$"../No".show()
+	self.hide()
+	Globals.talking = false
+	Globals.CanMove = true
 	count = 0
 
 func DisplaySentence(sentence):

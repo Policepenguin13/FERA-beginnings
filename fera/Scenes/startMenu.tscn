@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://ccfown28gryj6"]
+
+[node name="Cam" type="Camera2D"]
+zoom = Vector2(3.5, 3.5)
+position_smoothing_enabled = true
+
+[node name="Start Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -104.0
+offset_right = 184.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="ColorRect" parent="Start Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Start Menu/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "
+
+start menu bg art"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Start Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -167.5
+offset_top = -39.0
+offset_right = 167.5
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="Button" type="Button" parent="Start Menu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+text = "new game"
+
+[node name="Button2" type="Button" parent="Start Menu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "continue"
+
+[node name="Button3" type="Button" parent="Start Menu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "settings"
+
+[node name="Button4" type="Button" parent="Start Menu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "quit game"
+
+[node name="Label" type="Label" parent="Start Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.0
+offset_right = 86.0
+offset_bottom = 99.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "FERA"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Start Menu/Label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.5
+offset_top = 5.5
+offset_right = 126.5
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "beginnings"
+horizontal_alignment = 1
+vertical_alignment = 2
