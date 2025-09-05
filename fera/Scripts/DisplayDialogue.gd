@@ -6,8 +6,6 @@ var skip
 
 var choice = false
 
-signal DialogueEnded
-
 func Say(words: Array[String]):
 	var betterWords: Array[String] = []
 	# print(words)

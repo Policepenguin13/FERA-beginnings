@@ -38,6 +38,7 @@ func Move(dir):
 		moving = true
 		await tween.finished
 		moving = false
+		# CHECK IF PLAYER IS STILL HOLDING BUTTON DOWN, MOVE IF SO
 
 func AnimeWalk(dir):
 	$art.flip_h = false

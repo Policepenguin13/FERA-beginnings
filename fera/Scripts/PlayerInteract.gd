@@ -15,9 +15,9 @@ func _process(_delta):
 			interactable.Interact()
 	
 func InteractFound(FoundInteractable):
-	print("found: " + str(FoundInteractable))
+	# print("found: " + str(FoundInteractable))
 	interactable = FoundInteractable
 
-func InteractLost(LostInteractable):
-	print("lost: " + str(LostInteractable))
+func InteractLost(_LostInteractable):
+	# print("lost: " + str(LostInteractable))
 	interactable = null

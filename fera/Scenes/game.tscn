@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://gxrued2pk22y"]
+[gd_scene load_steps=33 format=4 uid="uid://gxrued2pk22y"]
 
 [ext_resource type="Texture2D" uid="uid://xp8ptqibry6u" path="res://Art/PlayerIdlePLACEHOLDER-Sheet.png" id="1_qxrlw"]
 [ext_resource type="Script" uid="uid://b42030qkgrvfc" path="res://Scripts/player.gd" id="1_wrm1d"]
@@ -10,11 +10,13 @@
 [ext_resource type="Script" uid="uid://dav47sejrhewv" path="res://Scripts/ui.gd" id="5_wowpa"]
 [ext_resource type="StyleBox" uid="uid://c6o275xf1u4aq" path="res://Art/UI stuff/dialogue_style_box_flat.tres" id="6_i6g32"]
 [ext_resource type="Script" uid="uid://dh6lfm1u5pcai" path="res://Scripts/UImenu.gd" id="6_nb51f"]
+[ext_resource type="Script" uid="uid://dq2b6xigtl8h3" path="res://Scripts/inventory.gd" id="7_nnt18"]
 [ext_resource type="Script" uid="uid://dodqrl6c5cfhw" path="res://Scripts/InteractableSimple.gd" id="8_v158k"]
 [ext_resource type="Script" uid="uid://dankdbkb1et13" path="res://Scripts/NPCsimple.gd" id="10_ldgsr"]
 [ext_resource type="Script" uid="uid://5qh6xire8ogm" path="res://Scripts/NPCcomplex.gd" id="10_o5yvi"]
 [ext_resource type="Script" uid="uid://cj1kxh1iyy5i1" path="res://Scripts/NPCminigame.gd" id="12_rku1e"]
 [ext_resource type="Script" uid="uid://43558iee5ynl" path="res://Scripts/story_system.gd" id="13_rfjv2"]
+[ext_resource type="Script" uid="uid://b7fl2c5l1x0dp" path="res://Scripts/InteractableBurrow.gd" id="14_ewbju"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l0tm"]
 font_size = 14
@@ -330,6 +332,7 @@ theme_override_constants/separation = 10
 [node name="help" type="Button" parent="Player/Cam/UI/menu/box"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 theme_override_font_sizes/font_size = 24
 text = "?
 HELP"
@@ -344,6 +347,7 @@ theme_override_constants/separation = 10
 [node name="settings" type="Button" parent="Player/Cam/UI/menu/box/container1"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
 text = "SETTINGS"
 icon = ExtResource("5_1phco")
 icon_alignment = 1
@@ -353,6 +357,8 @@ expand_icon = true
 [node name="bag" type="Button" parent="Player/Cam/UI/menu/box/container1"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
+toggle_mode = true
 text = "BAG"
 icon = ExtResource("5_1phco")
 icon_alignment = 1
@@ -367,6 +373,7 @@ theme_override_constants/separation = 10
 [node name="save" type="Button" parent="Player/Cam/UI/menu/box/container2"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
 text = "SAVE"
 icon = ExtResource("5_1phco")
 icon_alignment = 1
@@ -376,11 +383,61 @@ expand_icon = true
 [node name="quit" type="Button" parent="Player/Cam/UI/menu/box/container2"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
 text = "QUIT"
 icon = ExtResource("5_1phco")
 icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
+
+[node name="inventory" type="PanelContainer" parent="Player/Cam/UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -96.0
+offset_right = 136.0
+offset_bottom = -5.0
+grow_vertical = 0
+script = ExtResource("7_nnt18")
+
+[node name="container1" type="VBoxContainer" parent="Player/Cam/UI/inventory"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="slot 1" type="Label" parent="Player/Cam/UI/inventory/container1"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "1x item"
+autowrap_mode = 2
+
+[node name="slot 2" type="Label" parent="Player/Cam/UI/inventory/container1"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "1x sausage roll"
+autowrap_mode = 2
+
+[node name="slot 3" type="Label" parent="Player/Cam/UI/inventory/container1"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "47x flower"
+autowrap_mode = 2
+
+[node name="slot 4" type="Label" parent="Player/Cam/UI/inventory/container1"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "1x water bowl"
+autowrap_mode = 2
 
 [node name="art" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_h4fw4")
@@ -572,8 +629,8 @@ uppercase = true
 position = Vector2(-216, -248)
 collision_layer = 2
 collision_mask = 6
-script = ExtResource("10_o5yvi")
-Default = Array[String](["THE BURROW HAS NOT BEEN CODED YET PLEASE CHECK IN LATER"])
+script = ExtResource("14_ewbju")
+Default = Array[String](["BURROW CODE IS WORK IN PROGRESS PLEASE CHECK BACK LATER"])
 
 [node name="sight" type="CollisionShape2D" parent="NPCs/Burrow"]
 shape = SubResource("RectangleShape2D_i6g32")
@@ -866,8 +923,9 @@ script = ExtResource("13_rfjv2")
 [connection signal="pressed" from="Player/Cam/UI/Yes" to="NPCs/DanceInstructor" method="_on_yes_pressed"]
 [connection signal="pressed" from="Player/Cam/UI/No" to="NPCs/DanceInstructor" method="_on_no_pressed"]
 [connection signal="toggled" from="Player/Cam/UI/MENU VISIBLE" to="Player/Cam/UI/menu" method="_on_menu_visible_toggled"]
+[connection signal="pressed" from="Player/Cam/UI/menu/box/help" to="Player/Cam/UI/menu" method="_on_help_pressed"]
 [connection signal="pressed" from="Player/Cam/UI/menu/box/container1/settings" to="Player/Cam/UI/menu" method="_on_settings_pressed"]
-[connection signal="pressed" from="Player/Cam/UI/menu/box/container1/bag" to="Player/Cam/UI/menu" method="_on_bag_pressed"]
+[connection signal="toggled" from="Player/Cam/UI/menu/box/container1/bag" to="Player/Cam/UI/menu" method="_on_bag_toggled"]
 [connection signal="pressed" from="Player/Cam/UI/menu/box/container2/save" to="Player/Cam/UI/menu" method="_on_save_pressed"]
 [connection signal="pressed" from="Player/Cam/UI/menu/box/container2/quit" to="Player/Cam/UI/menu" method="_on_quit_pressed"]
 [connection signal="animation_finished" from="Player/art" to="Player" method="_on_art_animation_finished"]

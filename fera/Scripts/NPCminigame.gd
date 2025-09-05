@@ -20,7 +20,7 @@ var YesToPlay = null
 
 func _ready():
 	reset()
-	%DialogueBox.DialogueEnded.connect(EndedDialogue)
+#	%DialogueBox.DialogueEnded.connect(EndedDialogue)
 
 func reset():
 	AskedToPlay = null

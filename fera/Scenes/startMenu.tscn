@@ -41,7 +41,7 @@ start menu bg art"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="HBoxContainer" parent="Start Menu"]
+[node name="button container" type="HBoxContainer" parent="Start Menu"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -56,28 +56,29 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="Button" type="Button" parent="Start Menu/VBoxContainer"]
+[node name="new" type="Button" parent="Start Menu/button container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
 text = "new game"
 
-[node name="Button2" type="Button" parent="Start Menu/VBoxContainer"]
+[node name="cont" type="Button" parent="Start Menu/button container"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "continue"
 
-[node name="Button3" type="Button" parent="Start Menu/VBoxContainer"]
+[node name="settings" type="Button" parent="Start Menu/button container"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "settings"
 
-[node name="Button4" type="Button" parent="Start Menu/VBoxContainer"]
+[node name="credits" type="Button" parent="Start Menu/button container"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "quit game"
+text = "credits"
 
-[node name="Label" type="Label" parent="Start Menu"]
+[node name="title" type="Label" parent="Start Menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -91,7 +92,7 @@ theme_override_font_sizes/font_size = 72
 text = "FERA"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="Start Menu/Label"]
+[node name="Label" type="Label" parent="Start Menu/title"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -109,3 +110,31 @@ theme_override_font_sizes/font_size = 32
 text = "beginnings"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Control" type="Control" parent="Start Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Start Menu/Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_right = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "CREDITS:
+
+Made using Godot v4.4.1
+Pixel art made with LibreSprite
+Made for Programming (formerly Game Dev) Major Project, Semester 2, 2025 taught by Andrew & Jim
+other credits go here :D"
+horizontal_alignment = 1
+autowrap_mode = 3

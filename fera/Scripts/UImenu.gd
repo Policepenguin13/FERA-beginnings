@@ -4,6 +4,7 @@ extends Panel
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.hide()
+	$"../inventory".hide()
 
 func _process(_delta):
 	if Globals.talking:
@@ -20,17 +21,25 @@ func _on_menu_visible_toggled(toggled_on):
 		Globals.CanMove = true
 
 
+
 func _on_settings_pressed():
-	pass # Replace with function body.
-
-
-func _on_bag_pressed():
-	pass # Replace with function body.
-
+	print("settings pressed!")
 
 func _on_save_pressed():
-	pass # Replace with function body.
-
+	print("save button pressed")
 
 func _on_quit_pressed():
-	pass # Replace with function body.
+	print("quit to main menu button pressed")
+
+func _on_bag_toggled(toggled_on):
+	if toggled_on: # is true
+		$"../inventory".show()
+		$box/help.disabled = true
+	else:
+		$"../inventory".hide()
+		$box/help.disabled = false
+
+
+func _on_help_pressed():
+	print("help button pressed")
+	# say {player}: hint for what to do next
