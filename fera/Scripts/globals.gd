@@ -10,9 +10,15 @@ var FeraName: String = "TETO"
 # inventory
 var BagAmounts: Dictionary[String, int] = {}
 var BagOrder: Array[String] = []
+var funds: int = 0
 
 # story
 var StoryMilestone: int = 0
+
+var ThreeDanced = false
+var FourGoals: Array[String] = []
+# if BagOrder has Toy or Water, add to this
+
 
 # STORY SYSTEM
 # 0 (TUTORIAL)

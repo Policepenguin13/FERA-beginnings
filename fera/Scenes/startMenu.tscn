@@ -1,4 +1,14 @@
-[gd_scene format=3 uid="uid://ccfown28gryj6"]
+[gd_scene load_steps=5 format=3 uid="uid://ccfown28gryj6"]
+
+[ext_resource type="Script" uid="uid://dco6kxomhdvgs" path="res://Scripts/settings.gd" id="1_ra7ee"]
+[ext_resource type="Script" uid="uid://b630cs0j8g4tt" path="res://Scripts/StartMenu.gd" id="1_w2614"]
+[ext_resource type="Script" uid="uid://bhq5ve21t8aj2" path="res://Scripts/VolumeSlider.gd" id="2_8opm2"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ra7ee"]
+color = Color(1, 1, 1, 1)
+grow_begin = -5.0
+grow_end = -5.0
+thickness = 2
 
 [node name="Cam" type="Camera2D"]
 zoom = Vector2(3.5, 3.5)
@@ -17,8 +27,9 @@ offset_right = 184.0
 offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_w2614")
 
-[node name="TextureRect" type="ColorRect" parent="Start Menu"]
+[node name="bgPlaceholder" type="ColorRect" parent="Start Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Start Menu/TextureRect"]
+[node name="Label" type="Label" parent="Start Menu/bgPlaceholder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +52,7 @@ start menu bg art"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="button container" type="HBoxContainer" parent="Start Menu"]
+[node name="buttonContainer" type="HBoxContainer" parent="Start Menu"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -56,29 +67,28 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="new" type="Button" parent="Start Menu/button container"]
+[node name="new" type="Button" parent="Start Menu/buttonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
 text = "new game"
 
-[node name="cont" type="Button" parent="Start Menu/button container"]
+[node name="cont" type="Button" parent="Start Menu/buttonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "continue"
 
-[node name="settings" type="Button" parent="Start Menu/button container"]
+[node name="settings" type="Button" parent="Start Menu/buttonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "settings"
 
-[node name="credits" type="Button" parent="Start Menu/button container"]
+[node name="credits" type="Button" parent="Start Menu/buttonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "credits"
 
 [node name="title" type="Label" parent="Start Menu"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -92,7 +102,7 @@ theme_override_font_sizes/font_size = 72
 text = "FERA"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="Start Menu/title"]
+[node name="subtitle" type="Label" parent="Start Menu/title"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -111,7 +121,8 @@ text = "beginnings"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Control" type="Control" parent="Start Menu"]
+[node name="CreditScreen" type="Control" parent="Start Menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +130,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Start Menu/Control"]
+[node name="bgPlaceholder" type="ColorRect" parent="Start Menu/CreditScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Start Menu/CreditScreen/bgPlaceholder"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -15
+theme_override_font_sizes/font_size = 32
+text = "credits bg art, same as start menu bg art"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="credits" type="Label" parent="Start Menu/CreditScreen"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -130,11 +166,357 @@ offset_right = 185.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -1
+theme_override_constants/paragraph_spacing = -5
 text = "CREDITS:
+Made in Godot v4.4.1
+Pixel art made using LibreSprite
+Made for Programming (formerly Game Dev) Semester 2, 2025, taught by Andrew & Jim
 
-Made using Godot v4.4.1
-Pixel art made with LibreSprite
-Made for Programming (formerly Game Dev) Major Project, Semester 2, 2025 taught by Andrew & Jim
 other credits go here :D"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="endCredits" type="Button" parent="Start Menu/CreditScreen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "X"
+
+[node name="SavesMenu" type="Control" parent="Start Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgPlaceholder" type="ColorRect" parent="Start Menu/SavesMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Start Menu/SavesMenu/bgPlaceholder"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -15
+theme_override_font_sizes/font_size = 32
+text = "save/load bg art, same as start menu bg art"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="back" type="Button" parent="Start Menu/SavesMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "back"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Start Menu/SavesMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="SaveSlot1" type="PanelContainer" parent="Start Menu/SavesMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="VBox" type="VBoxContainer" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot1"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot1/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "SAVE SLOT 1"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="HSeparator" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot1/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_ra7ee")
+
+[node name="nameLabel" type="Label" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot1/VBox"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+text = "player name"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="continue" type="Button" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot1/VBox"]
+layout_mode = 2
+focus_mode = 0
+text = "continue"
+
+[node name="delete" type="Button" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot1/VBox"]
+layout_mode = 2
+focus_mode = 0
+text = "delete"
+
+[node name="SaveSlot2" type="PanelContainer" parent="Start Menu/SavesMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="VBox" type="VBoxContainer" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot2"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot2/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "SAVE SLOT 2"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="HSeparator" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot2/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_ra7ee")
+
+[node name="nameLabel" type="Label" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot2/VBox"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+text = "empty"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="continue" type="Button" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot2/VBox"]
+layout_mode = 2
+focus_mode = 0
+text = "new game"
+
+[node name="delete" type="Button" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot2/VBox"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+text = "delete"
+
+[node name="SaveSlot3" type="PanelContainer" parent="Start Menu/SavesMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="VBox" type="VBoxContainer" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot3"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot3/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "SAVE SLOT 3"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="HSeparator" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot3/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_ra7ee")
+
+[node name="nameLabel" type="Label" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot3/VBox"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+text = "12345678"
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="continue" type="Button" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot3/VBox"]
+layout_mode = 2
+focus_mode = 0
+text = "continue"
+
+[node name="delete" type="Button" parent="Start Menu/SavesMenu/HBoxContainer/SaveSlot3/VBox"]
+layout_mode = 2
+focus_mode = 0
+text = "delete"
+
+[node name="SettingsScreen" type="Control" parent="Start Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -104.0
+offset_right = 184.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ra7ee")
+
+[node name="Panel" type="Panel" parent="Start Menu/SettingsScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="settings" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="volumes" type="VBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="title" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/volumes"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "VOLUMES"
+horizontal_alignment = 1
+
+[node name="master" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings/volumes"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+
+[node name="label" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/volumes/master"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "Main"
+horizontal_alignment = 1
+
+[node name="MasterBar" type="HSlider" parent="Start Menu/SettingsScreen/Panel/settings/volumes/master"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+value = 1.0
+rounded = true
+script = ExtResource("2_8opm2")
+bus_name = "Master"
+
+[node name="sfx" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings/volumes"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+
+[node name="sfxLabel" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/volumes/sfx"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="SFXBar" type="HSlider" parent="Start Menu/SettingsScreen/Panel/settings/volumes/sfx"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+rounded = true
+script = ExtResource("2_8opm2")
+bus_name = "SFX"
+
+[node name="bg" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings/volumes"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 1
+
+[node name="bgLabel" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/volumes/bg"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "Music"
+horizontal_alignment = 1
+
+[node name="bgBar" type="HSlider" parent="Start Menu/SettingsScreen/Panel/settings/volumes/bg"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+rounded = true
+script = ExtResource("2_8opm2")
+bus_name = "Background"
+
+[node name="VSeparator" type="VSeparator" parent="Start Menu/SettingsScreen/Panel/settings"]
+layout_mode = 2
+theme_override_constants/separation = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_ra7ee")
+
+[node name="other" type="VBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="top" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings/other"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/other/top"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "OTHER"
+
+[node name="closeSettings" type="Button" parent="Start Menu/SettingsScreen/Panel/settings/other/top"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "X"
+
+[node name="lightmode" type="CheckButton" parent="Start Menu/SettingsScreen/Panel/settings/other"]
+layout_mode = 2
+focus_mode = 0
+disabled = true
+text = "UI light mode"
+
+[node name="Label" type="Label" parent="Start Menu/SettingsScreen/Panel"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "ADD SETTINGS AS NEEDED"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[connection signal="pressed" from="Start Menu/buttonContainer/new" to="Start Menu" method="_on_new_pressed"]
+[connection signal="pressed" from="Start Menu/buttonContainer/cont" to="Start Menu" method="_on_cont_pressed"]
+[connection signal="pressed" from="Start Menu/buttonContainer/settings" to="Start Menu" method="_on_settings_pressed"]
+[connection signal="pressed" from="Start Menu/buttonContainer/credits" to="Start Menu" method="_on_credits_pressed"]
+[connection signal="pressed" from="Start Menu/SettingsScreen/Panel/settings/other/top/closeSettings" to="Start Menu/SettingsScreen" method="_on_close_settings_pressed"]
+[connection signal="toggled" from="Start Menu/SettingsScreen/Panel/settings/other/lightmode" to="Start Menu/SettingsScreen" method="_on_lightmode_toggled"]

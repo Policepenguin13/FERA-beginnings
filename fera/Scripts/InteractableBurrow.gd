@@ -3,7 +3,6 @@ extends Area2D
 # several variables
 
 @export var Default: Array[String] = [] # if all else fails
-# export other stuff.
 @export var ZeroTetoIntro: Array[String] = []
 @export_group("One")
 @export var OneNoFood: Array[String] = []
@@ -27,11 +26,45 @@ func Interact():
 	# CHECK STORY STUFF HERE.
 	if Globals.StoryMilestone == 0:
 		%DialogueBox.Say(ZeroTetoIntro)
+		# print("TETO INTRO CUTSCENE TRIGGER")
 	elif Globals.StoryMilestone == 1:
 		if Globals.BagOrder.has("Sausage Roll"):
-			%DialogueBox.Say(OneFoodBite)
+			# %DialogueBox.Say(OneFoodBite)
+			print("BITE CUTSCENE TRIGGER, also remove sausage")
 		else:
 			%DialogueBox.Say(OneNoFood)
+	
+	elif Globals.StoryMilestone == 2:
+		if Globals.BagOrder.has("Sausage Roll"):
+			%DialogueBox.Say(TwoFood)
+		else:
+			%DialogueBox.Say(TwoNoFood)
+	
+	elif Globals.StoryMilestone == 3:
+		if Globals.ThreeDanced:
+			# %DialogueBox.Say(ThreeDancedName)
+			print("TRIGGER NAME CUTSCENE")
+		else:
+			%DialogueBox.Say(ThreeNotDanced)
+	
+	elif Globals.StoryMilestone == 4:
+		if Globals.FourGoals.has("Toy"):
+			# %DialogueBox.Say(FourToy)
+			print("TRIGGER TOY CUTSCENE")
+		elif Globals.FourGoals.has("Flowers"):
+			# %DialogueBox.Say(FourFlowers)
+			print("TRIGGER SNEEZE CUTSCENE")
+		elif Globals.FourGoals.has("Water"):
+			# %DialogueBox.Say(FourWater)
+			print("TRIGGER SPLASH CUTSCENE")
+		elif Globals.FourGoals.has("Toy") and Globals.FourGoals.has("Flowers") and Globals.FourGoals.has("Water"):
+			# %DialogueBox.Say(FourFollow)
+			print("FOLLOW CUTSCENE TRIGGER")
+		else:
+			%DialogueBox.Say(FourNone)
+	
+	elif Globals.StoryMilestone == 5 or Globals.StoryMilestone == 6:
+		%DialogueBox.Say(Five)
 	else:
 		%DialogueBox.Say(Default)
 	

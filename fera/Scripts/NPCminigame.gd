@@ -28,13 +28,18 @@ func reset():
 
 func Interact():
 	if AskedToPlay == true:
-		print("have asked if player would like to play")
+		#print("have asked if player would like to play")
 		if YesToPlay == true:
-			print("player said they would like to play")
-			print("TRIGGER " + minigame + " MINIGAME")
+			#print("player said they would like to play")
+			print("TRIGGER " + minigame + " MINIGAME HERE")
+			if minigame == "DANCE":
+				Globals.danced = true
+			if Globals.StoryMilestone == 4 and minigame == "FLOWER":
+				print("as long as you get 1 more flower than you previously had, goal reached")
+				Globals.FourGoals.append("flowers")
 			reset()
 		else: 
-			print("player said no i wouldn't like to play")
+			#print("player said no i wouldn't like to play")
 			%DialogueBox.choice = false
 			%DialogueBox.Say(DontWantToPlay)
 	else:
@@ -43,13 +48,13 @@ func Interact():
 		%DialogueBox.Say(AskToPlay)
 
 func _on_yes_pressed():
-	print("said yes")
+	#print("said yes")
 	if YesToPlay == null:
 		YesToPlay = true
 	BothButtonPress()
 
 func _on_no_pressed():
-	print("said no")
+	#print("said no")
 	if YesToPlay == null:
 		YesToPlay = false
 	BothButtonPress()

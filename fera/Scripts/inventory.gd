@@ -1,17 +1,14 @@
 extends PanelContainer
 # controls the inventory list
 
-@onready var Zero = $"container1/slot 1"
-@onready var One = $"container1/slot 2"
-@onready var Two = $"container1/slot 3"
-@onready var Three = $"container1/slot 4"
-
-@onready var Slots = [Zero, One, Two, Three]
+var Slots = []
 @export var InventoryOrder: Array[String] = []
 var InventoryAmount: Dictionary[String, int] = {}
 # var showList: Array[String] = []
 
 func _ready():
+	Slots = $ScrollContainer/container1.get_children()
+	# print(str(Slots))
 	InventoryOrder.clear()
 	InventoryAmount.clear()
 	UpdateUI()
@@ -83,14 +80,17 @@ func UpdateUI():
 
 		for bob in InventoryOrder: #fills the slots
 			var q = InventoryAmount.get(bob)
-			Slots[number].text = str(q)+"x " + bob
+			if q <= 999:
+				Slots[number].text = str(q)+"x " + bob
+			else:
+				Slots[number].text = "999+x " + bob
 			Slots[number].set_self_modulate(Color(1,1,1,1))
 			number +=1
 		
 		for all in Slots: #deals with the rest
 			if all.text == "adding":
-				Slots[number].text =  "empty slot"
-				Slots[number].set_self_modulate(Color(1,1,1,0.5))
+				all.text =  "empty slot"
+				all.set_self_modulate(Color(1,1,1,0.5))
 				
 	else:
 		# print("inventory is empty")
@@ -98,3 +98,8 @@ func UpdateUI():
 			# print(str(thing))
 			thing.set_self_modulate(Color(1,1,1,0.5))
 			thing.text = "empty slot"
+	
+	if Globals.funds <= 999:
+		$money.text = "$" + str(Globals.funds)
+	else:
+		$money.text = "$999+"

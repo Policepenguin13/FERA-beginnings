@@ -62,6 +62,7 @@ func Say(words: Array[String]):
 			count += 1
 	else:
 		count += 1
+		print("DIALOGUE'S COUNT = " + str(count))
 
 func EndDialogue():
 	# print("Dialogue is ending!")

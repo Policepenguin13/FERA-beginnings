@@ -1,8 +1,26 @@
 extends Node
 
+func _process(delta):
+	if Globals.StoryMilestone == 0:
+		$tutorialBlock.monitorable = true
+		$tutorialBlock/CollisionShape2D.set_deferred("disabled", false)
+		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
+	else:
+		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
+		$tutorialBlock/CollisionShape2D.set_deferred("disabled", true)
+		$tutorialBlock.monitorable = false
+	if Globals.StoryMilestone == 6:
+		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
+		$tutorialBlock/CollisionShape2D.set_deferred("disabled", true)
+		$tutorialBlock.monitorable = false
+	else:
+		$tutorialBlock.monitorable = true
+		$tutorialBlock/CollisionShape2D.set_deferred("disabled", false)
+		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
+	
 # STORY SYSTEM
 # 0 (TUTORIAL)
-# - int w/ burrow, teto intro cutscene
+# - int w/ burrow, teto intro
 # 1 (FOOD) 
 #		. go to shopkeep, get sausage
 # - int w/ burrow when you have a sausage, bite cutscene
