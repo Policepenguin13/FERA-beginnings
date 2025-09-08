@@ -21,6 +21,8 @@ var YesToPlay = null
 func _ready():
 	reset()
 #	%DialogueBox.DialogueEnded.connect(EndedDialogue)
+	$"../../Player/Cam/UI/Yes".pressed.connect(_on_yes_pressed)
+	$"../../Player/Cam/UI/No".pressed.connect(_on_no_pressed)
 
 func reset():
 	AskedToPlay = null
@@ -32,8 +34,21 @@ func Interact():
 		if YesToPlay == true:
 			#print("player said they would like to play")
 			print("TRIGGER " + minigame + " MINIGAME HERE")
+			print(minigame + " minigame hasn't been coded yet, so have the reward anyway")
 			if minigame == "DANCE":
-				Globals.danced = true
+				Globals.ThreeDanced = true
+			else:
+				print("giving you 10 flowers")
+				%inventory.AddItem("Flower")# 1
+				%inventory.AddItem("Flower")# 2
+				%inventory.AddItem("Flower")# 3
+				%inventory.AddItem("Flower")# 4
+				%inventory.AddItem("Flower")# 5
+				%inventory.AddItem("Flower")# 6
+				%inventory.AddItem("Flower")# 7
+				%inventory.AddItem("Flower")# 8
+				%inventory.AddItem("Flower")# 9
+				%inventory.AddItem("Flower")# 10
 			if Globals.StoryMilestone == 4 and minigame == "FLOWER":
 				print("as long as you get 1 more flower than you previously had, goal reached")
 				Globals.FourGoals.append("flowers")
@@ -67,14 +82,3 @@ func BothButtonPress():
 	Interact()
 	$"../../Player/Cam/UI/Yes".hide()
 	$"../../Player/Cam/UI/No".hide()
-
-func EndedDialogue():
-	if AskedToPlay == true:
-#		print("have asked to play before")
-		if YesToPlay == true:
-			print("yes to play is true")
-		else:
-			print("yes to play is false")
-			# reset()
-	print("resetting variables")
-	reset()

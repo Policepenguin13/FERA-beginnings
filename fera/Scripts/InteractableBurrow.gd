@@ -36,9 +36,12 @@ func end():
 			print("just said zero teto intro, +1 story milestone")
 			Globals.StoryMilestone += 1
 		elif %DialogueBox.RawWords == OneFoodBite:
-			print("just said one food bite cutscene, remove 1 sausage from inventory")
+			print("just said one food bite cutscene, remove 1 sausage from inventory, +1 story milestone")
+			%inventory.RemoveItem("Sausage Roll")
+			Globals.StoryMilestone += 1
 		elif %DialogueBox.RawWords == TwoFood:
 			print("just said two food, remove 1 sausage from inventory")
+			%inventory.RemoveItem("Sausage Roll")
 		elif %DialogueBox.RawWords == ThreeDancedName:
 			print("just said three danced name, +1 story milestone")
 			Globals.StoryMilestone += 1

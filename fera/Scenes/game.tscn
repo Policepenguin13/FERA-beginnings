@@ -125,7 +125,7 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"0 (protag sits beside burrow)",
+"name": &"00 (protag sits beside burrow)",
 "speed": 5.0
 }, {
 "frames": [{
@@ -141,7 +141,7 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"2 (see into burrow where Teto is glaring)",
+"name": &"02 (see into burrow where Teto is glaring)",
 "speed": 5.0
 }, {
 "frames": [{
@@ -149,7 +149,7 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"3 (Teto pauses in burrow)",
+"name": &"03 (Teto pauses in burrow)",
 "speed": 5.0
 }, {
 "frames": [{
@@ -157,7 +157,7 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"4 (Teto thinking in burrow)",
+"name": &"04 (Teto thinking in burrow)",
 "speed": 5.0
 }, {
 "frames": [{
@@ -165,7 +165,7 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"5 (protag sits beside burrow)",
+"name": &"05 (protag sits beside burrow)",
 "speed": 5.0
 }, {
 "frames": [{
@@ -173,7 +173,7 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"6 (protag sits beside burrow !!)",
+"name": &"06 (protag sits beside burrow !!)",
 "speed": 5.0
 }, {
 "frames": [{
@@ -181,7 +181,7 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"7 (Teto hops into protag\'s lap)",
+"name": &"07 (Teto hops into protag\'s lap)",
 "speed": 5.0
 }, {
 "frames": [{
@@ -189,7 +189,7 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"8 (Teto hops into protag\'s lap)",
+"name": &"08 (Teto hops into protag\'s lap)",
 "speed": 5.0
 }, {
 "frames": [{
@@ -197,7 +197,55 @@ animations = [{
 "texture": ExtResource("8_iivbl")
 }],
 "loop": true,
-"name": &"9 (Teto demands pats and protag obliges)",
+"name": &"09 (Teto demands pats and protag obliges)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_iivbl")
+}],
+"loop": true,
+"name": &"10 (Teto sits in protags lap a)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_iivbl")
+}],
+"loop": true,
+"name": &"11 (Teto sits in protags lap b)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_iivbl")
+}],
+"loop": true,
+"name": &"12 (Teto sits in protags lap c)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_iivbl")
+}],
+"loop": true,
+"name": &"13 (Teto uncertain in protags lap)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_iivbl")
+}],
+"loop": true,
+"name": &"14 (Teto happy in protags lap)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_iivbl")
+}],
+"loop": true,
+"name": &"15 (fade to black)",
 "speed": 5.0
 }]
 
@@ -814,7 +862,7 @@ visible = false
 position = Vector2(184, 104)
 scale = Vector2(0.2875, 0.288889)
 sprite_frames = SubResource("SpriteFrames_exi56")
-animation = &"9 (Teto demands pats and protag obliges)"
+animation = &"15 (fade to black)"
 
 [node name="Label" type="Label" parent="Player/Cam/UI/Cutscenes/friend"]
 custom_minimum_size = Vector2(10, 0)
@@ -1176,11 +1224,11 @@ script = ExtResource("14_ewbju")
 Default = Array[String](["BURROW CODE IS WORK IN PROGRESS PLEASE CHECK BACK LATER"])
 ZeroTetoIntro = Array[String](["{player}: Hello?", "The Fera in the burrow growls.", "{player}: !", "{player}: I'm sorry, I didn't mean to scare you..!", ". . .", "{player}: I should bring the Fera some food as an apology. I'll go get something from the SHOPKEEPER in town!"])
 OneNoFood = Array[String](["{player}: I feel really bad for startling the Fera, I should bring food to apologize before I bother it again,"])
-OneFoodBite = Array[String](["bite cutscene trigger here"])
+OneFoodBite = Array[String](["bite cutscene 0", "one, fera emerges", "two, fera sniffs roll", "{player}: Go on, please?", "{player}: . . .", "{player}: Oh no, you're hurt!", "{player}: ...I'm trying to help", "seven, fade to black"])
 TwoNoFood = Array[String](["{player}: I don't want to bother the Fera until I can give them another sausage roll..."])
-TwoFood = Array[String](["drag food inside cutscene"])
+TwoFood = Array[String](["0 drag food inside cutscene", "1 teto emerges", "2 teto drags food back"])
 ThreeNotDanced = Array[String](["{player}: They're still mad at me,", "{player}: Maybe I should do some dancing to cheer myself up"])
-ThreeDancedName = Array[String](["friend / name cutscene trigger"])
+ThreeDancedName = Array[String](["0 friend / name cutscene trigger", "the fera growls at you", "{player}: I'm sorry, I didn't mean to back you into a corner like that, I was just trying to be your friend", ". . .", "{player}: MUM said I was being impatient and that I should let you come to me,", "{player}: I really hope you can forgive me,", "{player}: cause I really wanna be your friend...", "{player}: !", "{player}: Does this mean you forgive me?", "9 happy pause yay", "NAME BEGINS?", ""])
 FourNone = Array[String](["{player}: I should get one of the things MUM suggested, to help the Fera feel safe around me"])
 FourFlowers = Array[String](["sneeze cutscene"])
 FourWater = Array[String](["splash cutscene"])
@@ -1235,9 +1283,14 @@ position = Vector2(328, 8)
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("18_7nbq1")
+Default = Array[String](["SHOPKEEPER: {player}, how nice of you to stop by!", "SHOPKEEPER: I'll have to do some more packing until the shop's in tip-top shape."])
+TetoFollow = Array[String](["SHOPKEEPER: Back from your adventures already, {player}?", "SHOPKEEPER: Oh my, and who's this little Fera with you?", "{player}: Their name is {teto}!", "SHOPKEEPER: How fitting! You two have such a strong bond, you'll make a great pair."])
 OneNoSausage = Array[String](["{player}: Hi, Mr SHOPKEEPER!", "SHOPKEEPER: Oh, hello there, {player}! How nice of you to stop by!", "SHOPKEEPER:  I accidentally overstocked the shop again... Can I interest you in a free sample?", "{player}: Yes, please!", "SHOPKEEPER gave {player} 1 SAUSAGE ROLL!"])
 OneYesSausage = Array[String](["SHOPKEEPER: I hope you enjoyed the sausage roll! Run along now,"])
 TwoRequest = Array[String](["{player}: Mr SHOPKEEPER?", "SHOPKEEPER: Ah, {player}! I was just packing away the extra stock.", "{player}: Do you have any more free samples I could have?", "SHOPKEEPER: Well, I do have that extra stock... But I can't give it away for free all the time!", "{player}: Please?", "SHOPKEEPER: Hmm... Alright, you can have another sausage roll if you help me with something!", "{player}: What do you need help with?", "SHOPKEEPER: You see, I'd like to get a bouquet of flowers for my wife, because I love her very much,", "SHOPKEEPER: Does 10 flowers for 1 sausage roll sound fair?", "{player}: Mhm!", "SHOPKEEPER: FLORIST FLORA up the road should be able to help you find flowers!"])
+TwoNoSausageNoFlowers = Array[String](["SHOPKEEPER: FLORIST FLORA should be by the garden, it's just along the road that goes up next to my shop.", "SHOPKEEPER: 10 flowers should be enough."])
+TwoNoSausageYesFlowers = Array[String](["SHOPKEERER: Ah, {player}, you're back! And I see you've brought such lovely flowers!", "SHOPKEEPER: My wife will love these, thank you very much!", "SHOPKEEPER: Here, you've certainly earned this!", "SHOPKEEPER gave {player} 1 Sauasage Roll"])
+TwoYesSausageYesFlowers = Array[String](["SHOPKEEPER: My wife will love these flowers. Thank you for gathering them for me!"])
 
 [node name="sight" type="CollisionShape2D" parent="NPCs/Shopkeeper"]
 shape = SubResource("RectangleShape2D_i6g32")
@@ -1546,8 +1599,6 @@ uppercase = true
 position = Vector2(-32, 0)
 shape = SubResource("RectangleShape2D_85qyi")
 
-[connection signal="pressed" from="Player/Cam/UI/Yes" to="NPCs/DanceInstructor" method="_on_yes_pressed"]
-[connection signal="pressed" from="Player/Cam/UI/No" to="NPCs/DanceInstructor" method="_on_no_pressed"]
 [connection signal="toggled" from="Player/Cam/UI/MENU VISIBLE" to="Player/Cam/UI/menu" method="_on_menu_visible_toggled"]
 [connection signal="pressed" from="Player/Cam/UI/menu/box/help" to="Player/Cam/UI/menu" method="_on_help_pressed"]
 [connection signal="pressed" from="Player/Cam/UI/menu/box/container1/settings" to="Player/Cam/UI/menu" method="_on_settings_pressed"]

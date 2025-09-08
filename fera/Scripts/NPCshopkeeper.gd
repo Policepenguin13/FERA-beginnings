@@ -50,7 +50,8 @@ func Interact():
 		else:
 			%DialogueBox.Say(OneNoSausage, self)
 	elif Globals.StoryMilestone == 2:
-		if Requested:
+		print("requested ur help yet = " + str(Requested))
+		if Requested == false:
 			%DialogueBox.Say(TwoRequest, self)
 		else:
 			if Globals.BagOrder.has("Sausage Roll"):
@@ -62,6 +63,8 @@ func Interact():
 						%DialogueBox.Say(TwoNoSausageYesFlowers, self)
 					else:
 						%DialogueBox.Say(TwoNoSausageNoFlowers, self)
+				else:
+					%DialogueBox.Say(TwoNoSausageNoFlowers, self)
 	elif Globals.StoryMilestone >= 4:
 		%DialogueBox.Say(Default, self)
 	elif Globals.StoryMilestone <= 5:
