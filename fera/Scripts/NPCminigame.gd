@@ -41,11 +41,11 @@ func Interact():
 		else: 
 			#print("player said no i wouldn't like to play")
 			%DialogueBox.choice = false
-			%DialogueBox.Say(DontWantToPlay)
+			%DialogueBox.Say(DontWantToPlay, self)
 	else:
 		# print("have not asked if player wants to play")
 		%DialogueBox.choice = true
-		%DialogueBox.Say(AskToPlay)
+		%DialogueBox.Say(AskToPlay, self)
 
 func _on_yes_pressed():
 	#print("said yes")

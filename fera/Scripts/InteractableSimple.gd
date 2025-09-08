@@ -6,4 +6,4 @@ extends Area2D
 # @export var PartOne: Array[String] = []
 
 func Interact():
-	%DialogueBox.Say(Default)
+	%DialogueBox.Say(Default, self)

@@ -16,10 +16,10 @@
 [ext_resource type="Script" uid="uid://dodqrl6c5cfhw" path="res://Scripts/InteractableSimple.gd" id="8_v158k"]
 [ext_resource type="Script" uid="uid://cw8ohdm3p38rb" path="res://Scripts/placeholderCutsceneLabel.gd" id="9_7nbq1"]
 [ext_resource type="Script" uid="uid://dankdbkb1et13" path="res://Scripts/NPCsimple.gd" id="10_ldgsr"]
-[ext_resource type="Script" uid="uid://5qh6xire8ogm" path="res://Scripts/NPCcomplex.gd" id="10_o5yvi"]
 [ext_resource type="Script" uid="uid://cj1kxh1iyy5i1" path="res://Scripts/NPCminigame.gd" id="12_rku1e"]
 [ext_resource type="Script" uid="uid://43558iee5ynl" path="res://Scripts/story_system.gd" id="13_rfjv2"]
 [ext_resource type="Script" uid="uid://b7fl2c5l1x0dp" path="res://Scripts/InteractableBurrow.gd" id="14_ewbju"]
+[ext_resource type="Script" uid="uid://dhwhrfery3esg" path="res://Scripts/NPCshopkeeper.gd" id="18_7nbq1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l0tm"]
 font_size = 14
@@ -462,7 +462,7 @@ script = ExtResource("5_wowpa")
 
 [node name="DialogueBox" type="PanelContainer" parent="Player/Cam/UI"]
 unique_name_in_owner = true
-visible = false
+z_index = 2
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -1174,7 +1174,7 @@ collision_layer = 2
 collision_mask = 6
 script = ExtResource("14_ewbju")
 Default = Array[String](["BURROW CODE IS WORK IN PROGRESS PLEASE CHECK BACK LATER"])
-ZeroTetoIntro = Array[String](["{player}: Hello?", "The creature in the burrow growls", "{player}: !", "{player}: I'm sorry, I didn't mean to scare you..!", ". . .", "{player}: I should bring the Fera some food as an apology. I'll go get something from the SHOPKEEPER in town!"])
+ZeroTetoIntro = Array[String](["{player}: Hello?", "The Fera in the burrow growls.", "{player}: !", "{player}: I'm sorry, I didn't mean to scare you..!", ". . .", "{player}: I should bring the Fera some food as an apology. I'll go get something from the SHOPKEEPER in town!"])
 OneNoFood = Array[String](["{player}: I feel really bad for startling the Fera, I should bring food to apologize before I bother it again,"])
 OneFoodBite = Array[String](["bite cutscene trigger here"])
 TwoNoFood = Array[String](["{player}: I don't want to bother the Fera until I can give them another sausage roll..."])
@@ -1234,8 +1234,10 @@ uppercase = true
 position = Vector2(328, 8)
 collision_layer = 2
 collision_mask = 6
-script = ExtResource("10_o5yvi")
-Default = Array[String](["SHOPKEEPER HAS NOT BEEN CODED YET PLEASE CHECK BACK LATER"])
+script = ExtResource("18_7nbq1")
+OneNoSausage = Array[String](["{player}: Hi, Mr SHOPKEEPER!", "SHOPKEEPER: Oh, hello there, {player}! How nice of you to stop by!", "SHOPKEEPER:  I accidentally overstocked the shop again... Can I interest you in a free sample?", "{player}: Yes, please!", "SHOPKEEPER gave {player} 1 SAUSAGE ROLL!"])
+OneYesSausage = Array[String](["SHOPKEEPER: I hope you enjoyed the sausage roll! Run along now,"])
+TwoRequest = Array[String](["{player}: Mr SHOPKEEPER?", "SHOPKEEPER: Ah, {player}! I was just packing away the extra stock.", "{player}: Do you have any more free samples I could have?", "SHOPKEEPER: Well, I do have that extra stock... But I can't give it away for free all the time!", "{player}: Please?", "SHOPKEEPER: Hmm... Alright, you can have another sausage roll if you help me with something!", "{player}: What do you need help with?", "SHOPKEEPER: You see, I'd like to get a bouquet of flowers for my wife, because I love her very much,", "SHOPKEEPER: Does 10 flowers for 1 sausage roll sound fair?", "{player}: Mhm!", "SHOPKEEPER: FLORIST FLORA up the road should be able to help you find flowers!"])
 
 [node name="sight" type="CollisionShape2D" parent="NPCs/Shopkeeper"]
 shape = SubResource("RectangleShape2D_i6g32")
@@ -1369,7 +1371,7 @@ position = Vector2(680, -184)
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("10_ldgsr")
-Default = Array[String](["KID TIMMY: Hi there {player}!", "KID TIMMY: Did you know they found a new species of Fera the other day?", "{player}: Whoa, really?", "KID TIMMY: Yeah! It's like a mouse that goes zap with electricity!", "KID TIMMY:  It's really cool! We haven't even found all the species of Fera yet!", "KID TIMMY: Someday I wanna go out there and discover a cool new Fera too!"])
+Default = Array[String](["KID TIMMY: Hi there {player}!", "KID TIMMY: Did you know they found a new species of Fera the other day?", "{player}: Whoa, really?", "KID TIMMY: Yeah! It's like a mouse that goes zap with lightning!", "KID TIMMY:  It's really cool! We haven't even found all the species of Fera yet!", "KID TIMMY: Someday I wanna go out there and discover a cool new Fera too!"])
 IfTetoFollow = Array[String](["KID TIMMY: Whoa, is that a Fera?!", "KID TIMMY: I think I saw one like them in Fera Enthusiast Magazine #67, they're pretty rare!", "{player}: I call them {teto}!", "KID TIMMY: {teto}? That's not what the species of Fera is called, but it's a good name for this one!", "KID TIMMY: If you're gonna go and be a Tamer, I'm gonna follow my dream and be a Fera researcher!"])
 IfGoalThisNPC = Array[String](["KID TIMMY: Oh, hi {player}!", "{player}: Hi, TIMMY! Do you still have that toy I lent to you?", "KID TIMMY: The one with the bell? Yeah, I've got it!", "{player}: Can I have it back?", "KID TIMMY: Sure! Thanks for letting me borrow it!"])
 IfGoalAchieved = Array[String](["KID TIMMY: Hi there {player}!", "KID TIMMY: Did you know they found a new species of Fera the other day?", "{player}: Whoa, really?", "KID TIMMY: Yeah! It's like a mouse that goes zap with electricity!", "KID TIMMY:  It's really cool! We haven't even found all the species of Fera yet!", "KID TIMMY: Someday I wanna go out there and discover a cool new Fera too!"])

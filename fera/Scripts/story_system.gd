@@ -1,22 +1,26 @@
 extends Node
 
-func _process(delta):
+func _process(_delta):
 	if Globals.StoryMilestone == 0:
+		$tutorialBlock.show()
 		$tutorialBlock.monitorable = true
 		$tutorialBlock/CollisionShape2D.set_deferred("disabled", false)
 		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
 	else:
+		$tutorialBlock.hide()
 		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
 		$tutorialBlock/CollisionShape2D.set_deferred("disabled", true)
 		$tutorialBlock.monitorable = false
 	if Globals.StoryMilestone == 6:
-		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
-		$tutorialBlock/CollisionShape2D.set_deferred("disabled", true)
-		$tutorialBlock.monitorable = false
+		$endgameBlock.hide()
+		$endgameBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
+		$endgameBlock/CollisionShape2D.set_deferred("disabled", true)
+		$endgameBlock.monitorable = false
 	else:
-		$tutorialBlock.monitorable = true
-		$tutorialBlock/CollisionShape2D.set_deferred("disabled", false)
-		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
+		$endgameBlock.show()
+		$endgameBlock.monitorable = true
+		$endgameBlock/CollisionShape2D.set_deferred("disabled", false)
+		$endgameBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
 	
 # STORY SYSTEM
 # 0 (TUTORIAL)

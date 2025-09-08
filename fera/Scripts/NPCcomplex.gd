@@ -7,4 +7,4 @@ extends Area2D
 
 func Interact():
 	# CHECK STORY STUFF HERE.
-	%DialogueBox.Say(Default)
+	%DialogueBox.Say(Default, self)

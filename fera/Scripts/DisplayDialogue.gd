@@ -4,10 +4,20 @@ var count = 0
 var busyDisplayingSentence = false
 var skip
 
-var choice = false
+var talker
+var RawWords
 
-func Say(words: Array[String]):
+signal DialogueEnded
+signal SayDialogue
+
+var choice = false
+var cutscene = false
+
+func Say(words: Array[String], from: Node):
 	var betterWords: Array[String] = []
+	talker = from
+	RawWords = words
+	SayDialogue.emit()
 	# print(words)
 	for thing in words:
 		var newThing
@@ -62,13 +72,15 @@ func Say(words: Array[String]):
 			count += 1
 	else:
 		count += 1
-		print("DIALOGUE'S COUNT = " + str(count))
+		# print("DIALOGUE'S COUNT = " + str(count))
 
 func EndDialogue():
 	# print("Dialogue is ending!")
 	self.hide()
+	DialogueEnded.emit()
 	Globals.talking = false
 	Globals.CanMove = true
+	cutscene = false
 	count = 0
 
 func DisplaySentence(sentence):

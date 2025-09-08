@@ -18,16 +18,16 @@ func Interact():
 		if Globals.StoryMilestone == GoalMilestone:
 			print("you're at the right milestone for item to be given")
 			if Globals.BagOrder.has(Goal):
-				%DialogueBox.Say(IfGoalAchieved)
+				%DialogueBox.Say(IfGoalAchieved, self)
 			else:
-				%DialogueBox.Say(IfGoalThisNPC)
+				%DialogueBox.Say(IfGoalThisNPC, self)
 		else:
 			if Globals.StoryMilestone <= 4:
-				%DialogueBox.Say(Default)
+				%DialogueBox.Say(Default, self)
 			elif Globals.StoryMilestone >= 5:
-				%DialogueBox.Say(IfTetoFollow)
+				%DialogueBox.Say(IfTetoFollow, self)
 	elif Globals.StoryMilestone <= 4:
-		%DialogueBox.Say(Default)
+		%DialogueBox.Say(Default, self)
 	elif Globals.StoryMilestone >= 5:
-		%DialogueBox.Say(IfTetoFollow)
+		%DialogueBox.Say(IfTetoFollow, self)
 	# %DialogueBox.Say(Default)

@@ -14,21 +14,6 @@ func _ready():
 	UpdateUI()
 	# Test()
 
-func Test():
-	await get_tree().create_timer(2).timeout
-	AddItem("Sausage Roll")
-	AddItem("Flower")
-	await get_tree().create_timer(1).timeout
-	AddItem("Sausage Roll")
-	
-	# TestTwo()
-
-func TestTwo():
-	await get_tree().create_timer(2).timeout
-	RemoveItem("Sausage Roll")
-	RemoveItem("Flower")
-	# RemoveItem("Capture Crystal")
-
 func AddItem(Item: String):
 	if InventoryOrder.has(Item):
 		# print("order already has item (" + Item + ")")

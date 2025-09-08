@@ -22,51 +22,99 @@ extends Area2D
 @export_group("Five")
 @export var Five: Array[String] = []
 
+func _ready():
+	%DialogueBox.DialogueEnded.connect(end)
+
+func end():
+	# print("burrow notices that the dialogue has ended")
+	if %DialogueBox.talker != self:
+		# print("but you are not talking to burrow")
+		pass
+	else:
+		# print("you were talking to burrow!")
+		if %DialogueBox.RawWords == ZeroTetoIntro:
+			print("just said zero teto intro, +1 story milestone")
+			Globals.StoryMilestone += 1
+		elif %DialogueBox.RawWords == OneFoodBite:
+			print("just said one food bite cutscene, remove 1 sausage from inventory")
+		elif %DialogueBox.RawWords == TwoFood:
+			print("just said two food, remove 1 sausage from inventory")
+		elif %DialogueBox.RawWords == ThreeDancedName:
+			print("just said three danced name, +1 story milestone")
+			Globals.StoryMilestone += 1
+		elif %DialogueBox.RawWords == FourFlowers:
+			print("just said four flowers, remove 1 flower from inventory")
+			%inventory.RemoveItem("Flower")
+		elif %DialogueBox.RawWords == FourWater:
+			print("just said four water, remove 1 water bowl from inventory")
+			%inventory.RemoveItem("Water Bowl")
+		elif %DialogueBox.RawWords == FourToy:
+			print("just said one four toy, remove 1 toy from inventory")
+			%inventory.RemoveItem("Toy")
+		elif %DialogueBox.RawWords == FourFollow:
+			print("just said four follow, +1 story milestone")
+			Globals.StoryMilestone += 1
+		else:
+			print("no change needed as a result of dialogue")
+	
+
 func Interact():
 	# CHECK STORY STUFF HERE.
 	if Globals.StoryMilestone == 0:
-		%DialogueBox.Say(ZeroTetoIntro)
+		%DialogueBox.Say(ZeroTetoIntro, self)
 		# print("TETO INTRO CUTSCENE TRIGGER")
 	elif Globals.StoryMilestone == 1:
 		if Globals.BagOrder.has("Sausage Roll"):
-			# %DialogueBox.Say(OneFoodBite)
+			%Cutscenes.BiteCutscene()
+			%DialogueBox.cutscene = true
+			%DialogueBox.Say(OneFoodBite, self)
 			print("BITE CUTSCENE TRIGGER, also remove sausage")
 		else:
-			%DialogueBox.Say(OneNoFood)
+			%DialogueBox.Say(OneNoFood, self)
 	
 	elif Globals.StoryMilestone == 2:
 		if Globals.BagOrder.has("Sausage Roll"):
-			%DialogueBox.Say(TwoFood)
+			%Cutscenes.DragCutscene()
+			%DialogueBox.cutscene = true
+			%DialogueBox.Say(TwoFood, self)
 		else:
-			%DialogueBox.Say(TwoNoFood)
+			%DialogueBox.Say(TwoNoFood, self)
 	
 	elif Globals.StoryMilestone == 3:
 		if Globals.ThreeDanced:
-			# %DialogueBox.Say(ThreeDancedName)
-			print("TRIGGER NAME CUTSCENE")
+			%Cutscenes.FriendCutscene()
+			%DialogueBox.cutscene = true
+			%DialogueBox.Say(ThreeDancedName, self)
+			print("TRIGGER FRIEND (and then name) CUTSCENE")
 		else:
-			%DialogueBox.Say(ThreeNotDanced)
+			%DialogueBox.Say(ThreeNotDanced, self)
 	
 	elif Globals.StoryMilestone == 4:
 		if Globals.FourGoals.has("Toy"):
-			# %DialogueBox.Say(FourToy)
+			%Cutscenes.ToyCutscene()
+			%DialogueBox.cutscene = true
+			%DialogueBox.Say(FourToy, self)
 			print("TRIGGER TOY CUTSCENE")
 		elif Globals.FourGoals.has("Flowers"):
-			# %DialogueBox.Say(FourFlowers)
+			%Cutscenes.SneezeCutscene()
+			%DialogueBox.cutscene = true
+			%DialogueBox.Say(FourFlowers, self)
 			print("TRIGGER SNEEZE CUTSCENE")
 		elif Globals.FourGoals.has("Water"):
-			# %DialogueBox.Say(FourWater)
+			%Cutscenes.SplashCutscene()
+			%DialogueBox.cutscene = true
+			%DialogueBox.Say(FourWater, self)
 			print("TRIGGER SPLASH CUTSCENE")
 		elif Globals.FourGoals.has("Toy") and Globals.FourGoals.has("Flowers") and Globals.FourGoals.has("Water"):
-			# %DialogueBox.Say(FourFollow)
+			%DialogueBox.Say(FourFollow, self)
 			print("FOLLOW CUTSCENE TRIGGER")
 		else:
-			%DialogueBox.Say(FourNone)
+			%DialogueBox.Say(FourNone, self)
 	
 	elif Globals.StoryMilestone == 5 or Globals.StoryMilestone == 6:
-		%DialogueBox.Say(Five)
+		%DialogueBox.Say(Five, self)
 	else:
-		%DialogueBox.Say(Default)
+		%DialogueBox.Say(Default, self)
 	
 # 0 (TUTORIAL)
 # - int w/ burrow, teto intro cutscene
