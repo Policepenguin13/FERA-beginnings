@@ -30,8 +30,6 @@ func end():
 		elif %DialogueBox.RawWords == TwoRequest:
 			Requested = true
 		elif %DialogueBox.RawWords == TwoNoSausageYesFlowers:
-			%inventory.AddItem("Sausage Roll")
-			
 			%inventory.RemoveItem("Flower")# 1
 			%inventory.RemoveItem("Flower")# 2
 			%inventory.RemoveItem("Flower")# 3
@@ -43,6 +41,8 @@ func end():
 			%inventory.RemoveItem("Flower")# 9
 			%inventory.RemoveItem("Flower")# 10
 			
+			%inventory.AddItem("Sausage Roll")
+			
 func Interact():
 	if Globals.StoryMilestone ==1:
 		if Globals.BagOrder.has("Sausage Roll"):
@@ -50,7 +50,7 @@ func Interact():
 		else:
 			%DialogueBox.Say(OneNoSausage, self)
 	elif Globals.StoryMilestone == 2:
-		print("requested ur help yet = " + str(Requested))
+		# print("requested ur help yet = " + str(Requested))
 		if Requested == false:
 			%DialogueBox.Say(TwoRequest, self)
 		else:

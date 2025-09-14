@@ -7,25 +7,43 @@ var inputs = {"RIGHT": Vector2.RIGHT, "LEFT": Vector2.LEFT, "UP": Vector2.UP, "D
 var AnimeSpeed = 2
 var moving = false
 var CanMove = true
-var DIRECTION = "DOWN"
+var DIRECTION = "RIGHT"
 
 
 func _ready():
 	position = position.snapped(Vector2.ONE * TileSize)
 	position += Vector2.ONE * TileSize/2
 	$interactStuff/Sight.rotation = 0.0
+	Teleport(Vector2(-144,56), "DOWN")
 	
-func _unhandled_input(event):
+#func _unhandled_input(event):
+#	if moving:
+#		return
+#	if Globals.CanMove == false:
+		# print("No moving yet!")
+#		return
+#	for dir in inputs.keys():
+#		if event.is_action_pressed(dir):
+#			DIRECTION = dir
+#			print("going!")
+#			Go(event)
+			# print("check if event is still pressed")
+
+func Go():
+	AnimeWalk(DIRECTION)
+	await Move(DIRECTION)
+	
+
+func _process(_delta):
 	if moving:
 		return
 	if Globals.CanMove == false:
 		# print("No moving yet!")
 		return
 	for dir in inputs.keys():
-		if event.is_action_pressed(dir):
-			Move(dir)
-			AnimeWalk(dir)
+		if Input.is_action_pressed(dir):
 			DIRECTION = dir
+			await Go()
 
 func Move(dir):
 	# position += inputs[dir] * TileSize
@@ -33,12 +51,14 @@ func Move(dir):
 	ray.force_raycast_update()
 	if !ray.is_colliding():
 		# position += inputs[dir] * TileSize
+		# print("MOVE start")
 		var tween = create_tween()
 		tween.tween_property(self, "position", position + inputs[dir] *    TileSize, 1.0/AnimeSpeed).set_trans(Tween.TRANS_SINE)
 		moving = true
 		await tween.finished
 		moving = false
 		# CHECK IF PLAYER IS STILL HOLDING BUTTON DOWN, MOVE IF SO
+		# print("MOVE end")
 
 func AnimeWalk(dir):
 	$art.flip_h = false
@@ -56,6 +76,13 @@ func AnimeWalk(dir):
 		$art.play("walkLEFT")
 		$interactStuff/Sight.rotation_degrees = 90.0
 
+func Teleport(pos: Vector2, facing: String):
+	# print("teleport to " + str(pos) + " facing " + facing)
+	position = pos
+	position = position.snapped(Vector2.ONE * TileSize)
+	position += Vector2.ONE * TileSize/2
+	# print("rotating?")
+	DIRECTION = facing
 
 func _on_art_animation_finished():
 	var animeName

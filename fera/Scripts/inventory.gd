@@ -15,6 +15,8 @@ func _ready():
 	# Test()
 
 func AddItem(Item: String):
+	if Item == "Water Bowl":
+		RemoveItem("Bowl")
 	if InventoryOrder.has(Item):
 		# print("order already has item (" + Item + ")")
 		var itemQuantity = 0
@@ -88,3 +90,10 @@ func UpdateUI():
 		$money.text = "$" + str(Globals.funds)
 	else:
 		$money.text = "$999+"
+	
+	if InventoryOrder.has("Water Bowl"):
+		if !Globals.FourGoals.has("Water Bowl"):
+			Globals.FourGoals.append("Water")
+	if InventoryOrder.has("Water Bowl"):
+		if !Globals.FourGoals.has("Toy"):
+			Globals.FourGoals.append("Toy")

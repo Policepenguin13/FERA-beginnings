@@ -21,7 +21,7 @@ func _process(_delta):
 		$endgameBlock.monitorable = true
 		$endgameBlock/CollisionShape2D.set_deferred("disabled", false)
 		$endgameBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
-	
+
 # STORY SYSTEM
 # 0 (TUTORIAL)
 # - int w/ burrow, teto intro

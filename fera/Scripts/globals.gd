@@ -16,6 +16,7 @@ var funds: int = 0
 var StoryMilestone: int = 0
 
 var ThreeDanced = false
+var ThreeNameHappened = false
 var FourGoals: Array[String] = []
 # if BagOrder has Toy or Water, add to this
 

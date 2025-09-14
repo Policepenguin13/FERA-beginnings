@@ -18,7 +18,7 @@ func _on_menu_visible_toggled(toggled_on):
 		Globals.CanMove = false
 	else:
 		self.hide()
-		%inventory.hide()
+		# %inventory.hide()
 		Globals.CanMove = true
 
 func _on_settings_pressed():

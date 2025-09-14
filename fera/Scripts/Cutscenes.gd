@@ -1,4 +1,5 @@
 extends Control
+# controls the cutscenes
 
 var Animations
 var ThisCutscene = AnimatedSprite2D
@@ -25,8 +26,10 @@ func Say():
 			get_child(CutsceneIndex).show()
 			get_child(CutsceneIndex).play(Animations[%DialogueBox.count])
 		else:
+			print("count("+ str(%DialogueBox.count) + ") > temp (" + str(temp) +"), hiding")
 			EndOfCutscene()
 	else: 
+		# print("cutscene is false/null")
 		return
 
 func BiteCutscene():
@@ -51,7 +54,7 @@ func FriendCutscene():
 	ThisCutscene.show()
 	CutsceneIndex = $friend.get_index()
 	Animations = $friend.sprite_frames.get_animation_names()
-	print("do friend cutscene stuff here")
+	# print("do friend cutscene stuff here")
 	
 func SplashCutscene():
 	show()
@@ -83,6 +86,7 @@ func FinalCutscene():
 	ThisCutscene.show()
 	CutsceneIndex = $end.get_index()
 	Animations = $end.sprite_frames.get_animation_names()
+	print("it's the FI-NAL CUT-SCENE, insert epic off-key harmonica solo")
 	# it's the FI-NAL CUT-SCENE, insert epic off-key harmonica solo
 
 # 0 burrow + food
@@ -109,11 +113,11 @@ func FinalCutscene():
 # 7 !
 # 8 does this mean you forgive me?
 # 9 happy pause yay
-
-# 0 ...You don't have a name, do you?
-# 1 grumble?
-# 2 I know! I'll give you one!
-# 3 uncertain noise
+# 10 ...You don't have a name, do you?
+# 11 grumble?
+# 12 I know! I'll give you one!
+# 13 uncertain noise
 # NAME CUTSCENE ASK GOES HERE
-# 4 I'll call you TETO! what do you think?
-# 5 happy noise
+# 14 I'll call you TETO! what do you think?
+# 15 happy noise
+# 16 fade to black

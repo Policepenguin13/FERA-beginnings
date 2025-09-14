@@ -80,6 +80,8 @@ func EndDialogue():
 	DialogueEnded.emit()
 	Globals.talking = false
 	Globals.CanMove = true
+	talker = null
+	choice = false
 	cutscene = false
 	count = 0
 
