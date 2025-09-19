@@ -24,6 +24,7 @@ extends Area2D
 @export var Five: Array[String] = []
 
 var FourCutscenesShown: Array[String] = []
+signal MumCutscene
 
 func _ready():
 	%DialogueBox.DialogueEnded.connect(end)
@@ -39,42 +40,44 @@ func end():
 			# print("zero teto intro, +1 story milestone")
 			Globals.StoryMilestone += 1
 		elif %DialogueBox.RawWords == OneFoodBite:
-			print("just said one food bite cutscene, get storymilestone from mum")
+			# print("just said one food bite cutscene, get storymilestone from mum")
 			%inventory.RemoveItem("Sausage Roll")
 			$"../../Player".Teleport(Vector2(728,104), "RIGHT")
+			MumCutscene.emit()
+			print("burrow emitting mum cutscene")
 			# Globals.StoryMilestone += 1
-			$"../../Player/interactStuff".interactable = $"../Mum"
-			$"../Mum".CutsceneTime = true
-			$"../Mum".Interact()
-			%DialogueBox.cutscene = false
+			# %DialogueBox.cutscene = false
+			# $"../../Player/interactStuff".interactable = $"../Mum"
+			# $"../Mum".CutsceneTime = true
+			
 			
 		elif %DialogueBox.RawWords == TwoFood:
-			print("just said two food, remove 1 sausage from inventory, +1 story milestone")
+			# print("just said two food, remove 1 sausage from inventory, +1 story milestone")
 			Globals.StoryMilestone += 1
 			%inventory.RemoveItem("Sausage Roll")
 			
 		elif %DialogueBox.RawWords == ThreeDancedName:
-			print("just said three danced name, go talk to mum for story milestone")
+			# print("just said three danced name, go talk to mum for story milestone")
 			Globals.ThreeNameHappened = true
 			
 		elif %DialogueBox.RawWords == FourFlowers:
-			print("just said four flowers, remove 1 flower from inventory")
+			# print("just said four flowers, remove 1 flower from inventory")
 			%inventory.RemoveItem("Flower")
 			FourCutscenesShown.append("Flower")
 			
 		elif %DialogueBox.RawWords == FourWater:
-			print("just said four water, remove 1 water bowl from inventory")
+			# print("just said four water, remove 1 water bowl from inventory")
 			%inventory.RemoveItem("Water Bowl")
 			%inventory.AddItem("Bowl")
 			FourCutscenesShown.append("Water")
 			
 		elif %DialogueBox.RawWords == FourToy:
-			print("just said one four toy, remove 1 toy from inventory")
+			# print("just said one four toy, remove 1 toy from inventory")
 			# %inventory.RemoveItem("Toy")
 			FourCutscenesShown.append("Toy")
 			
 		elif %DialogueBox.RawWords == FourFollow:
-			print("just said four follow, +1 story milestone")
+			# print("just said four follow, +1 story milestone")
 			Globals.StoryMilestone += 1
 		else:
 			pass

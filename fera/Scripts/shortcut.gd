@@ -7,7 +7,7 @@ extends Area2D
 @export var Item: String = ""
 
 func Interact():
-	print("skip to number")
+	# print("skip to number")
 	Globals.StoryMilestone = SkipTo
 	Globals.talking = false
 	Globals.CanMove = true

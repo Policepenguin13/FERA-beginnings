@@ -12,9 +12,18 @@ signal SayDialogue
 
 var choice = false
 var cutscene = false
+var NoContinue = false
+
+func _ready():
+	choice = false
+	cutscene = false
+	NoContinue = false
+	count = 0
 
 func Say(words: Array[String], from: Node):
+	# print(count)
 	var betterWords: Array[String] = []
+	# print("SAYING " + str(words))
 	talker = from
 	RawWords = words
 	SayDialogue.emit()
@@ -45,13 +54,12 @@ func Say(words: Array[String], from: Node):
 		return
 	
 	if count > len(words)-1:
-		# print("count ("+str(count)+") greater than len(words) ("+str(len(words))+") !")
+		# print("count ("+str(count)+") greater than len(words)-1 ("+str(len(words)-1)+") !")
 		EndDialogue()
 		return
 	else:
 		# print("count ("+str(count)+") less than len(words) ("+str(len(words))+") !")
 		# print(words[count])
-		
 		busyDisplayingSentence = true
 		await DisplaySentence(words[count])
 		busyDisplayingSentence = false
@@ -70,20 +78,23 @@ func Say(words: Array[String], from: Node):
 			count = count
 		else:
 			count += 1
+	elif NoContinue:
+		count = count
 	else:
 		count += 1
 		# print("DIALOGUE'S COUNT = " + str(count))
 
 func EndDialogue():
-	# print("Dialogue is ending!")
+	# print("Dialogue with " + str(talker) + " is ending!")
 	self.hide()
+	count = 0
 	DialogueEnded.emit()
 	Globals.talking = false
 	Globals.CanMove = true
 	talker = null
 	choice = false
 	cutscene = false
-	count = 0
+	
 
 func DisplaySentence(sentence):
 	$saying.text = ""

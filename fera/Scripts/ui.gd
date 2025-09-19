@@ -13,4 +13,5 @@ func _ready():
 func _process(_delta):
 	%saying.visible_characters = -1
 	$storyUItodelete.text = " " + str(Globals.StoryMilestone)
+	# print(%DialogueBox.count)
 	

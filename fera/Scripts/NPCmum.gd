@@ -12,9 +12,22 @@ extends Area2D
 var CutsceneTime = false
 var SaidYouCanGo = false
 
+var SaidBiteYet = false
+
 func _ready():
 	%DialogueBox.DialogueEnded.connect(end)
 	SaidYouCanGo = false
+	SaidBiteYet = false
+	$"../Burrow".MumCutscene.connect(cut)
+
+func cut():
+	# print("MUM: cutscene called")
+	CutsceneTime = true
+	await get_tree().create_timer(0.05).timeout
+	# print("MUM: physics might have readjusted now")
+	# $"../../Player/interactStuff".InteractLost($"../../Player/interactStuff".interactable)
+	# $"../../Player/interactStuff".InteractFound(self)
+	$"../../Player/interactStuff".AutoInteract()
 
 func end():
 	# print("burrow notices that the dialogue has ended")
@@ -22,12 +35,13 @@ func end():
 		# print("but you are not talking to burrow")
 		return
 	else:
-		# print("you're talking to " + str(self))
-		if Globals.StoryMilestone == 1 and CutsceneTime:
-			CutsceneTime = false
-			print()
-			Globals.StoryMilestone += 1
-		if Globals.StoryMilestone == 3 and Globals.ThreeNameHappened:
+		# print("END CALLED WHEN TALKER WAS MUM")
+		if %DialogueBox.RawWords == OneBite:
+			if SaidBiteYet:
+				CutsceneTime = false
+				# print("MUM said oneBite, +1 story milestone")
+				Globals.StoryMilestone += 1
+		if %DialogueBox.RawWords == ThreeLikes:
 			print("+1 story milestone from mum")
 			Globals.StoryMilestone += 1
 			%inventory.AddItem("Bowl")
@@ -38,6 +52,8 @@ func Interact():
 	# print("interact w/ mum")
 	if CutsceneTime:
 		%DialogueBox.Say(OneBite, self)
+		# print("said onebite / triggered saying onebite")
+		SaidBiteYet = true
 	elif Globals.StoryMilestone == 3:
 		if Globals.ThreeNameHappened:
 			%DialogueBox.Say(ThreeLikes, self)
@@ -50,4 +66,3 @@ func Interact():
 			%DialogueBox.Say(Five, self)
 		else:
 			%DialogueBox.Say(FiveCanGo, self)
-	

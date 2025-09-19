@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccfown28gryj6"]
+[gd_scene load_steps=6 format=3 uid="uid://ccfown28gryj6"]
 
 [ext_resource type="Script" uid="uid://dco6kxomhdvgs" path="res://Scripts/settings.gd" id="1_ra7ee"]
 [ext_resource type="Script" uid="uid://b630cs0j8g4tt" path="res://Scripts/StartMenu.gd" id="1_w2614"]
@@ -9,6 +9,13 @@ color = Color(1, 1, 1, 1)
 grow_begin = -5.0
 grow_end = -5.0
 thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_w2614"]
+color = Color(1, 1, 1, 1)
+grow_begin = -5.0
+grow_end = -5.0
+thickness = 2
+vertical = true
 
 [node name="Cam" type="Camera2D"]
 zoom = Vector2(3.5, 3.5)
@@ -67,25 +74,31 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="new" type="Button" parent="Start Menu/buttonContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 10
-text = "new game"
-
 [node name="cont" type="Button" parent="Start Menu/buttonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../credits")
+focus_neighbor_right = NodePath("../settings")
+focus_next = NodePath("../settings")
+focus_previous = NodePath("../credits")
 text = "continue"
 
 [node name="settings" type="Button" parent="Start Menu/buttonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../cont")
+focus_neighbor_right = NodePath("../credits")
+focus_next = NodePath("../cont")
+focus_previous = NodePath("../credits")
 text = "settings"
 
 [node name="credits" type="Button" parent="Start Menu/buttonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../settings")
+focus_neighbor_right = NodePath("../cont")
+focus_next = NodePath("../cont")
+focus_previous = NodePath("../settings")
 text = "credits"
 
 [node name="title" type="Label" parent="Start Menu"]
@@ -121,7 +134,7 @@ text = "beginnings"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="CreditScreen" type="Control" parent="Start Menu"]
+[node name="Credits" type="Control" parent="Start Menu"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -130,7 +143,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="bgPlaceholder" type="ColorRect" parent="Start Menu/CreditScreen"]
+[node name="bgPlaceholder" type="ColorRect" parent="Start Menu/Credits"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,7 +152,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Start Menu/CreditScreen/bgPlaceholder"]
+[node name="Label" type="Label" parent="Start Menu/Credits/bgPlaceholder"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -155,7 +169,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
-[node name="credits" type="Label" parent="Start Menu/CreditScreen"]
+[node name="credits" type="Label" parent="Start Menu/Credits"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -177,7 +191,7 @@ other credits go here :D"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="endCredits" type="Button" parent="Start Menu/CreditScreen"]
+[node name="endCredits" type="Button" parent="Start Menu/Credits"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -197,6 +211,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="bgPlaceholder" type="ColorRect" parent="Start Menu/SavesMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -354,8 +369,7 @@ layout_mode = 2
 focus_mode = 0
 text = "delete"
 
-[node name="SettingsScreen" type="Control" parent="Start Menu"]
-visible = false
+[node name="Settings" type="Control" parent="Start Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -370,7 +384,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ra7ee")
 
-[node name="Panel" type="Panel" parent="Start Menu/SettingsScreen"]
+[node name="Panel" type="Panel" parent="Start Menu/Settings"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -382,7 +396,7 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="settings" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel"]
+[node name="settings" type="HBoxContainer" parent="Start Menu/Settings/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -392,30 +406,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="volumes" type="VBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings"]
+[node name="volumes" type="VBoxContainer" parent="Start Menu/Settings/Panel/settings"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
-[node name="title" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/volumes"]
+[node name="title" type="Label" parent="Start Menu/Settings/Panel/settings/volumes"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "VOLUMES"
 horizontal_alignment = 1
 
-[node name="master" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings/volumes"]
+[node name="master" type="HBoxContainer" parent="Start Menu/Settings/Panel/settings/volumes"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 1
 
-[node name="label" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/volumes/master"]
+[node name="label" type="Label" parent="Start Menu/Settings/Panel/settings/volumes/master"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "Main"
 horizontal_alignment = 1
 
-[node name="MasterBar" type="HSlider" parent="Start Menu/SettingsScreen/Panel/settings/volumes/master"]
+[node name="MasterBar" type="HSlider" parent="Start Menu/Settings/Panel/settings/volumes/master"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -426,19 +440,19 @@ rounded = true
 script = ExtResource("2_8opm2")
 bus_name = "Master"
 
-[node name="sfx" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings/volumes"]
+[node name="sfx" type="HBoxContainer" parent="Start Menu/Settings/Panel/settings/volumes"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 1
 
-[node name="sfxLabel" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/volumes/sfx"]
+[node name="sfxLabel" type="Label" parent="Start Menu/Settings/Panel/settings/volumes/sfx"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "SFX"
 horizontal_alignment = 1
 
-[node name="SFXBar" type="HSlider" parent="Start Menu/SettingsScreen/Panel/settings/volumes/sfx"]
+[node name="SFXBar" type="HSlider" parent="Start Menu/Settings/Panel/settings/volumes/sfx"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -447,19 +461,19 @@ rounded = true
 script = ExtResource("2_8opm2")
 bus_name = "SFX"
 
-[node name="bg" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings/volumes"]
+[node name="bg" type="HBoxContainer" parent="Start Menu/Settings/Panel/settings/volumes"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 1
 
-[node name="bgLabel" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/volumes/bg"]
+[node name="bgLabel" type="Label" parent="Start Menu/Settings/Panel/settings/volumes/bg"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "Music"
 horizontal_alignment = 1
 
-[node name="bgBar" type="HSlider" parent="Start Menu/SettingsScreen/Panel/settings/volumes/bg"]
+[node name="bgBar" type="HSlider" parent="Start Menu/Settings/Panel/settings/volumes/bg"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -468,37 +482,37 @@ rounded = true
 script = ExtResource("2_8opm2")
 bus_name = "Background"
 
-[node name="VSeparator" type="VSeparator" parent="Start Menu/SettingsScreen/Panel/settings"]
+[node name="VSeparator" type="VSeparator" parent="Start Menu/Settings/Panel/settings"]
 layout_mode = 2
 theme_override_constants/separation = 3
-theme_override_styles/separator = SubResource("StyleBoxLine_ra7ee")
+theme_override_styles/separator = SubResource("StyleBoxLine_w2614")
 
-[node name="other" type="VBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings"]
+[node name="other" type="VBoxContainer" parent="Start Menu/Settings/Panel/settings"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
-[node name="top" type="HBoxContainer" parent="Start Menu/SettingsScreen/Panel/settings/other"]
+[node name="top" type="HBoxContainer" parent="Start Menu/Settings/Panel/settings/other"]
 layout_mode = 2
 
-[node name="title" type="Label" parent="Start Menu/SettingsScreen/Panel/settings/other/top"]
+[node name="title" type="Label" parent="Start Menu/Settings/Panel/settings/other/top"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "OTHER"
 
-[node name="closeSettings" type="Button" parent="Start Menu/SettingsScreen/Panel/settings/other/top"]
+[node name="closeSettings" type="Button" parent="Start Menu/Settings/Panel/settings/other/top"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "X"
 
-[node name="lightmode" type="CheckButton" parent="Start Menu/SettingsScreen/Panel/settings/other"]
+[node name="lightmode" type="CheckButton" parent="Start Menu/Settings/Panel/settings/other"]
 layout_mode = 2
 focus_mode = 0
 disabled = true
 text = "UI light mode"
 
-[node name="Label" type="Label" parent="Start Menu/SettingsScreen/Panel"]
+[node name="Label" type="Label" parent="Start Menu/Settings/Panel"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 1
 anchors_preset = 12
@@ -514,9 +528,9 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
-[connection signal="pressed" from="Start Menu/buttonContainer/new" to="Start Menu" method="_on_new_pressed"]
-[connection signal="pressed" from="Start Menu/buttonContainer/cont" to="Start Menu" method="_on_cont_pressed"]
+[connection signal="pressed" from="Start Menu/buttonContainer/cont" to="Start Menu" method="to_save_menu"]
 [connection signal="pressed" from="Start Menu/buttonContainer/settings" to="Start Menu" method="_on_settings_pressed"]
 [connection signal="pressed" from="Start Menu/buttonContainer/credits" to="Start Menu" method="_on_credits_pressed"]
-[connection signal="pressed" from="Start Menu/SettingsScreen/Panel/settings/other/top/closeSettings" to="Start Menu/SettingsScreen" method="_on_close_settings_pressed"]
-[connection signal="toggled" from="Start Menu/SettingsScreen/Panel/settings/other/lightmode" to="Start Menu/SettingsScreen" method="_on_lightmode_toggled"]
+[connection signal="pressed" from="Start Menu/Credits/endCredits" to="Start Menu" method="_on_credits_pressed"]
+[connection signal="pressed" from="Start Menu/SavesMenu/back" to="Start Menu" method="to_save_menu"]
+[connection signal="toggled" from="Start Menu/Settings/Panel/settings/other/lightmode" to="Start Menu/Settings" method="_on_lightmode_toggled"]

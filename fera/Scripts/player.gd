@@ -9,6 +9,8 @@ var moving = false
 var CanMove = true
 var DIRECTION = "RIGHT"
 
+signal Moving
+signal Moved
 
 func _ready():
 	position = position.snapped(Vector2.ONE * TileSize)
@@ -52,11 +54,13 @@ func Move(dir):
 	if !ray.is_colliding():
 		# position += inputs[dir] * TileSize
 		# print("MOVE start")
+		Moving.emit()
 		var tween = create_tween()
 		tween.tween_property(self, "position", position + inputs[dir] *    TileSize, 1.0/AnimeSpeed).set_trans(Tween.TRANS_SINE)
 		moving = true
 		await tween.finished
 		moving = false
+		Moved.emit()
 		# CHECK IF PLAYER IS STILL HOLDING BUTTON DOWN, MOVE IF SO
 		# print("MOVE end")
 
@@ -65,16 +69,20 @@ func AnimeWalk(dir):
 	if dir == "UP":
 		$art.play("walkUP")
 		$interactStuff/Sight.rotation_degrees = 180.0
+		$interactStuff/Check.rotation_degrees = 180.0
 	elif dir == "DOWN":
 		$art.play("walkDOWN")
 		$interactStuff/Sight.rotation_degrees = 0.0
+		$interactStuff/Check.rotation_degrees = 0.0
 	elif dir == "RIGHT":
 		$art.play("walkRIGHT")
 		$interactStuff/Sight.rotation_degrees = 270.0
+		$interactStuff/Check.rotation_degrees = 270.0
 	elif dir == "LEFT":
 		$art.flip_h = true
 		$art.play("walkLEFT")
 		$interactStuff/Sight.rotation_degrees = 90.0
+		$interactStuff/Check.rotation_degrees = 90.0
 
 func Teleport(pos: Vector2, facing: String):
 	# print("teleport to " + str(pos) + " facing " + facing)
@@ -83,6 +91,18 @@ func Teleport(pos: Vector2, facing: String):
 	position += Vector2.ONE * TileSize/2
 	# print("rotating?")
 	DIRECTION = facing
+	if DIRECTION == "UP":
+		$interactStuff/Sight.rotation_degrees = 180.0
+		$interactStuff/Check.rotation_degrees = 180.0
+	elif DIRECTION == "DOWN":
+		$interactStuff/Sight.rotation_degrees = 0.0
+		$interactStuff/Check.rotation_degrees = 0.0
+	elif DIRECTION == "RIGHT":
+		$interactStuff/Sight.rotation_degrees = 270.0
+		$interactStuff/Check.rotation_degrees = 270.0
+	elif DIRECTION == "LEFT":
+		$interactStuff/Sight.rotation_degrees = 90.0
+		$interactStuff/Check.rotation_degrees = 90.0
 
 func _on_art_animation_finished():
 	var animeName

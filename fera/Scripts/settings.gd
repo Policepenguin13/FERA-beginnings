@@ -4,7 +4,7 @@ extends Control
 func _ready():
 	hide() 
 
-func _on_lightmode_toggled(toggled_on):
+func _on_lightmode_toggled(_toggled_on):
 	print("sorry this doesn't work yet")
 	pass
 

@@ -679,6 +679,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_nb51f")
+HelpSay = null
 
 [node name="box" type="HBoxContainer" parent="Player/Cam/UI/menu"]
 layout_mode = 1
@@ -1405,13 +1406,6 @@ script = ExtResource("4_1l0tm")
 
 [node name="Sight" type="CollisionShape2D" parent="Player/interactStuff"]
 shape = SubResource("SeparationRayShape2D_i6g32")
-
-[node name="Check" type="RayCast2D" parent="Player/interactStuff"]
-self_modulate = Color(0.183333, 1, 0, 1)
-target_position = Vector2(0, 16)
-collision_mask = 6
-collide_with_areas = true
-collide_with_bodies = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 

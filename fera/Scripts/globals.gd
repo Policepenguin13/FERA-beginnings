@@ -50,10 +50,3 @@ var FourGoals: Array[String] = []
 #		.optionally do other stuff
 # - walk to trail 01
 # 6 (THE END), you completed the game!
-
-
-# IMMEDIATE TO-DO:
-# - shopkeeper
-# - functional cutscenes (link w/ dialoguebox's count)
-# - ur mum
-# - functional ui

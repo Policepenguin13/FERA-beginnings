@@ -5,14 +5,18 @@ var Animations
 var ThisCutscene = AnimatedSprite2D
 var CutsceneIndex
 
+var tempholding
+
 func _ready():
 	hide()
 	for child in get_children():
 		child.hide()
 	%DialogueBox.DialogueEnded.connect(EndOfCutscene)
 	%DialogueBox.SayDialogue.connect(Say)
+	$"../Ask".asked.connect(NameAquired)
 
 func EndOfCutscene():
+	%DialogueBox.cutscene = false
 	hide()
 	for child in get_children():
 		child.hide()
@@ -25,12 +29,25 @@ func Say():
 		if %DialogueBox.count <= temp:
 			get_child(CutsceneIndex).show()
 			get_child(CutsceneIndex).play(Animations[%DialogueBox.count])
+			if ThisCutscene == $friend and %DialogueBox.count == 14:
+				%DialogueBox.NoContinue = true
+				$"../Ask".FeraStart()
+				$"../../../../NPCs/Burrow".monitorable = false
+				tempholding = $"../../../interactStuff".interactable
+				$"../../../interactStuff".interactable = null
 		else:
-			print("count("+ str(%DialogueBox.count) + ") > temp (" + str(temp) +"), hiding")
+			# print("count("+ str(%DialogueBox.count) + ") > temp (" + str(temp) +"), hiding")
 			EndOfCutscene()
 	else: 
 		# print("cutscene is false/null")
 		return
+
+func NameAquired():
+	%DialogueBox.NoContinue = false
+	$"../../../../NPCs/Burrow".monitorable = true
+	$"../../../interactStuff".interactable = tempholding
+	if !$"../Ask".ProtagVer:
+		%DialogueBox.count += 1
 
 func BiteCutscene():
 	show()
@@ -38,7 +55,7 @@ func BiteCutscene():
 	ThisCutscene.show()
 	CutsceneIndex = $bite.get_index()
 	Animations = $bite.sprite_frames.get_animation_names()
-	print("teto says this is my food, mine, omnomnom")
+	# print("teto says this is my food, mine, omnomnom")
 
 func DragCutscene():
 	show()
@@ -46,7 +63,7 @@ func DragCutscene():
 	ThisCutscene.show()
 	CutsceneIndex = $drag.get_index()
 	Animations = $drag.sprite_frames.get_animation_names()
-	print("teto drags food back dramatically")
+	# print("teto drags food back dramatically")
 
 func FriendCutscene():
 	show()
