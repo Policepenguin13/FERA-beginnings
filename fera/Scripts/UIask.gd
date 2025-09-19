@@ -6,6 +6,11 @@ var ProtagVer = true
 var PotentialName = "RIN"
 
 func _ready():
+	self.set_modulate(Color.WHITE)
+	self.show()
+	$Trans.show()
+	OpeningTransition()
+	# await get_tree().create_timer(1.3).timeout
 	ProtagStart()
 
 func ProtagStart():
@@ -15,6 +20,13 @@ func ProtagStart():
 	$box/name/question.text = "What will your name be?"
 	Setup()
 
+func OpeningTransition():
+	$box.hide()
+	$AnimationPlayer.play("intoScene")
+	await get_tree().create_timer(1.2).timeout
+	$Trans.hide()
+	$box.show()
+
 func FeraStart():
 	Globals.CanMove = false
 	ProtagVer = false
@@ -23,8 +35,6 @@ func FeraStart():
 	Setup()
 
 func Setup():
-	$box/name/answer.grab_focus()
-	$box/name/answer.editable = true
 	$box/askConfirm.hide()
 	$box/answers.hide()
 	$box/name.show()
@@ -32,6 +42,8 @@ func Setup():
 	$box/answers/No.disabled = false
 	self.set_modulate(Color.WHITE)
 	self.show()
+	$box/name/answer.grab_focus()
+	$box/name/answer.editable = true
 
 
 func Next():

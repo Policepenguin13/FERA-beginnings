@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccfown28gryj6"]
+[gd_scene load_steps=9 format=3 uid="uid://ccfown28gryj6"]
 
 [ext_resource type="Script" uid="uid://dco6kxomhdvgs" path="res://Scripts/settings.gd" id="1_ra7ee"]
 [ext_resource type="Script" uid="uid://b630cs0j8g4tt" path="res://Scripts/StartMenu.gd" id="1_w2614"]
@@ -16,6 +16,66 @@ grow_begin = -5.0
 grow_end = -5.0
 thickness = 2
 vertical = true
+
+[sub_resource type="Animation" id="Animation_w2614"]
+resource_name = "ToGame"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransT:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -208), Vector2(0, -104)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransB:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 208), Vector2(0, 104)]
+}
+
+[sub_resource type="Animation" id="Animation_s62a1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransT:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(368, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransB:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-184, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2en7b"]
+_data = {
+&"RESET": SubResource("Animation_s62a1"),
+&"ToGame": SubResource("Animation_w2614")
+}
 
 [node name="Cam" type="Camera2D"]
 zoom = Vector2(3.5, 3.5)
@@ -370,6 +430,7 @@ focus_mode = 0
 text = "delete"
 
 [node name="Settings" type="Control" parent="Start Menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -527,6 +588,33 @@ text = "ADD SETTINGS AS NEEDED"
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
+
+[node name="TransT" type="ColorRect" parent="Start Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 368.0
+offset_right = 368.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="TransB" type="ColorRect" parent="Start Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_right = -184.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="Anime" type="AnimationPlayer" parent="Start Menu"]
+libraries = {
+&"": SubResource("AnimationLibrary_2en7b")
+}
 
 [connection signal="pressed" from="Start Menu/buttonContainer/cont" to="Start Menu" method="to_save_menu"]
 [connection signal="pressed" from="Start Menu/buttonContainer/settings" to="Start Menu" method="_on_settings_pressed"]
