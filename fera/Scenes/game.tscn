@@ -1437,7 +1437,7 @@ script = ExtResource("14_81klo")
 
 [node name="art" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_h4fw4")
-animation = &"idleDOWN"
+animation = &"idleRIGHT"
 autoplay = "idleDOWN"
 
 [node name="hitbox" type="CollisionShape2D" parent="Player"]

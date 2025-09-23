@@ -1,6 +1,169 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyd3ix8576mhj"]
+[gd_scene load_steps=15 format=3 uid="uid://cyd3ix8576mhj"]
 
 [ext_resource type="Script" uid="uid://dl110e5fholqh" path="res://Scripts/dance_minigame.gd" id="1_vgwhe"]
+[ext_resource type="Texture2D" uid="uid://cttollsglvbcx" path="res://Art/NPCDancePLACEHOLDER.png" id="2_timxg"]
+[ext_resource type="Texture2D" uid="uid://dc12rfcbvifme" path="res://Art/PlayerDancePLACEHOLDER.png" id="3_7yxam"]
+[ext_resource type="Texture2D" uid="uid://dssiyfj4gtsfo" path="res://Art/DanceArrow.png" id="4_365a4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yxam"]
+atlas = ExtResource("2_timxg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_365a4"]
+atlas = ExtResource("2_timxg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esg24"]
+atlas = ExtResource("2_timxg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_damrg"]
+atlas = ExtResource("2_timxg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vl0po"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yxam")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_365a4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esg24")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esg24")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_damrg")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl0po"]
+atlas = ExtResource("3_7yxam")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5blcg"]
+atlas = ExtResource("3_7yxam")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cocts"]
+atlas = ExtResource("3_7yxam")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjkxa"]
+atlas = ExtResource("3_7yxam")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wsgm6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl0po")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5blcg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cocts")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cocts")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjkxa")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
 
 [node name="DanceMinigame" type="Node2D"]
 script = ExtResource("1_vgwhe")
+
+[node name="NPCart" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, -16)
+sprite_frames = SubResource("SpriteFrames_vl0po")
+animation = &"idle"
+
+[node name="PlayerArt" type="AnimatedSprite2D" parent="."]
+position = Vector2(-32, 16)
+sprite_frames = SubResource("SpriteFrames_wsgm6")
+animation = &"idle"
+
+[node name="Cam" type="Camera2D" parent="."]
+zoom = Vector2(8, 8)
+
+[node name="ui" type="Control" parent="Cam"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -80.0
+offset_top = -45.0
+offset_right = 80.0
+offset_bottom = 45.0
+
+[node name="instructions" type="Node" parent="."]
+
+[node name="One" type="Sprite2D" parent="instructions"]
+position = Vector2(8, -32)
+texture = ExtResource("4_365a4")
+
+[node name="Two" type="Sprite2D" parent="instructions"]
+self_modulate = Color(1, 1, 1, 0.647059)
+position = Vector2(28, -32)
+texture = ExtResource("4_365a4")
+
+[node name="Three" type="Sprite2D" parent="instructions"]
+self_modulate = Color(1, 1, 1, 0.376471)
+position = Vector2(48, -32)
+texture = ExtResource("4_365a4")
+
+[node name="Four" type="Sprite2D" parent="instructions"]
+self_modulate = Color(1, 1, 1, 0.156863)
+position = Vector2(68, -32)
+texture = ExtResource("4_365a4")
