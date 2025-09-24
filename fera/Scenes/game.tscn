@@ -1,6 +1,7 @@
-[gd_scene load_steps=59 format=4 uid="uid://gxrued2pk22y"]
+[gd_scene load_steps=61 format=4 uid="uid://gxrued2pk22y"]
 
 [ext_resource type="Texture2D" uid="uid://xp8ptqibry6u" path="res://Art/PlayerIdlePLACEHOLDER-Sheet.png" id="1_qxrlw"]
+[ext_resource type="Script" uid="uid://w7a8n6aewyw2" path="res://Scripts/GAME.gd" id="1_tgy6u"]
 [ext_resource type="Script" uid="uid://b42030qkgrvfc" path="res://Scripts/player.gd" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://gruyy67og738" path="res://Art/PlayerPLACEHOLDER-Sheet.png" id="2_wrm1d"]
 [ext_resource type="Script" uid="uid://db65fkmom8cfd" path="res://Scripts/PlayerInteract.gd" id="4_1l0tm"]
@@ -27,6 +28,7 @@
 [ext_resource type="Script" uid="uid://85avtuawqiq6" path="res://Scripts/NPCmum.gd" id="18_7t8sx"]
 [ext_resource type="Script" uid="uid://cync6nwx3yi1n" path="res://Scripts/shortcut.gd" id="21_exi56"]
 [ext_resource type="Script" uid="uid://boyaj0dvjyre8" path="res://Scripts/Helper.gd" id="24_vm72l"]
+[ext_resource type="PackedScene" uid="uid://cyd3ix8576mhj" path="res://Scenes/dance_minigame.tscn" id="29_cwurv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l0tm"]
 font_size = 14
@@ -574,6 +576,7 @@ size = Vector2(160, 16)
 size = Vector2(16, 16)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_tgy6u")
 
 [node name="Player" type="Area2D" parent="."]
 z_index = 1
@@ -776,6 +779,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+disabled = true
 text = "SAVE"
 icon = ExtResource("5_1phco")
 icon_alignment = 1
@@ -2209,6 +2213,9 @@ uppercase = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="shortcuts/5/StaticBody2D"]
 shape = SubResource("RectangleShape2D_ewbju")
+
+[node name="DanceMinigame" parent="." instance=ExtResource("29_cwurv")]
+position = Vector2(-992, 512)
 
 [connection signal="toggled" from="Player/Cam/UI/MENU VISIBLE" to="Player/Cam/UI/menu" method="_on_menu_visible_toggled"]
 [connection signal="pressed" from="Player/Cam/UI/menu/box/help" to="Player/Cam/UI/menu" method="_on_help_pressed"]

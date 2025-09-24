@@ -27,8 +27,19 @@ var step = 0
 var note
 
 var InstructorDancing = true
+var FirstTime = true
+var winning = false
+
+signal DanceOver
 
 func _ready():
+	self.process_mode = PROCESS_MODE_DISABLED
+	self.hide()
+	$Cam.enabled = false
+
+func Ready():
+	process_mode = PROCESS_MODE_INHERIT
+	$Cam.enabled = true
 	# RandomNewSong()
 	# sequence = songs.pick_random()
 	sequence = ["LEFT","DOWN","LEFT", "UP","RIGHT","UP", "DOWN","LEFT","DOWN", "RIGHT","UP","RIGHT"]
@@ -38,27 +49,35 @@ func _ready():
 	for child in $instructions.get_children():
 		child.hide()
 		child.set_modulate(Color(0.667,0.0,1.0,1.0))
+	winning = false
+	self.show()
 	
-	await get_tree().create_timer(1.0).timeout
+	$OneSec.start()
+	await $OneSec.timeout
 	KimDance()
 	
 
 func Restart():
 	print("RESTARTING")
+	$Cam/ui/fade.color = Color(0.0,0.0,0.0,1.0)
 	for child in $instructions.get_children():
 		child.hide()
 	await Flash()
 	step = 0
 	UpdateInstructions()
-	_ready()
+	Ready()
 
 func _process(_delta):
 	if !InstructorDancing:
 		$"Cam/ui/other turn".hide()
 		$"Cam/ui/your turn".show()
 		if step > 11:
-			print("you won")
-			YouWin()
+			# print("you won")
+			if !winning:
+				YouWin()
+			else:
+				return
+			# print("after await you win")
 		else:
 			note = sequence[step]
 	
@@ -171,19 +190,27 @@ func CutsceneInstructions(number: int):
 			add +=1
 
 func YouWin():
+	winning = true
 	print("WOOO YOU WON LETS GOOOO")
+	$Cam/ui/fade.color = Color(1.0,1.0,1.0,1.0)
+	await Flash()
+	DanceOver.emit()
+	self.hide()
+	process_mode = PROCESS_MODE_DISABLED
 
 func Flash():
 	$Cam/ui/fade.show()
 	# print("flashy flashy!")
 	$Cam/ui/fade.set_modulate(Color.TRANSPARENT)
 	var tween = get_tree().create_tween()
-	tween.tween_property($Cam/ui/fade, "modulate", Color.BLACK, 0.5)
+	tween.tween_property($Cam/ui/fade, "modulate", Color.WHITE, 0.5)
 	
-	await get_tree().create_timer(0.6).timeout
+	$PointSix.start()
+	await $PointSix.timeout
 	tween = get_tree().create_tween()
 	tween.tween_property($Cam/ui/fade, "modulate", Color.TRANSPARENT, 0.5)
-	await get_tree().create_timer(0.6).timeout
+	$PointSix.start()
+	await $PointSix.timeout
 	# print("ok we good")
 	$Cam/ui/fade.hide()
 
@@ -215,36 +242,42 @@ func RandomNewSong():
 	
 
 func KimDance():
+	$instructions.position = Vector2(0, 0)
 	InstructorDancing = true
 	$NPCart.play("idle")
-	await get_tree().create_timer(0.7).timeout
-	
-	# for test in sequence:
-	# 	print(test)
-	var i = 0
-	for move in sequence:
-		# print(move)
-		if move == "LEFT":
-			$NPCart.flip_h = true
-		else:
-			$NPCart.flip_h = false
-		$NPCart.play(move.to_lower())
-		CutsceneInstructions(i)
-		# print(str($NPCart.animation))
-		await get_tree().create_timer(0.8).timeout
-		if i+1 > sequence.size():
-			# print("i (" + str(i) + ") plus one (" + str(i+1) + ") is greater than sequence.size()-1 ("+ str(sequence.size()-1))
-			pass
-		else:
-			i += 1
+	if FirstTime:
+		await get_tree().create_timer(0.7).timeout
 		
-		$NPCart.play("idle")
-		await get_tree().create_timer(0.3).timeout
+		# for test in sequence:
+		# 	print(test)
+		var i = 0
+		for move in sequence:
+			# print(move)
+			if move == "LEFT":
+				$NPCart.flip_h = true
+			else:
+				$NPCart.flip_h = false
+			$NPCart.play(move.to_lower())
+			CutsceneInstructions(i)
+			# print(str($NPCart.animation))
+			await get_tree().create_timer(0.8).timeout
+			if i+1 > sequence.size():
+				# print("i (" + str(i) + ") plus one (" + str(i+1) + ") is greater than sequence.size()-1 ("+ str(sequence.size()-1))
+				pass
+			else:
+				i += 1
+		
+			$NPCart.play("idle")
+			$PointThree.start()
+			await $PointThree.timeout
 	
-	$NPCart.play("idle")
-	await get_tree().create_timer(0.3).timeout
+		$NPCart.play("idle")
+		$PointSix.start()
+		await $PointSix.timeout
+		FirstTime = false
 	InstructorDancing = false
 	
+	$instructions.position = Vector2(-72.0, 64.0)
 	UpdateInstructions()
 	for child in $instructions.get_children():
 		child.set_modulate(Color.WHITE)

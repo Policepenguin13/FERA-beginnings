@@ -10,6 +10,9 @@ extends Area2D
 # else (no):
 # 	NPC: alright then
 
+signal DanceMini
+signal FlowerMini
+
 @export var AskToPlay: Array[String] = [] # normal thing
 @export var QuestGuide: Array[String] = [] # thing
 # @export var EndgameStart: Array[String] = [] # main story complete start
@@ -51,11 +54,15 @@ func Interact():
 		if YesToPlay == true:
 			#print("player said they would like to play")
 			print("TRIGGER " + minigame + " MINIGAME HERE")
-			print(minigame + " minigame hasn't been coded yet, so have the reward anyway")
 			if minigame == "DANCE":
-				print("You dance with kim, hooray!")
-				Globals.ThreeDanced = true
-			else:
+				DanceMini.emit()
+			elif minigame == "FLOWER":
+				FlowerMini.emit()
+			# print(minigame + " minigame hasn't been coded yet, so have the reward anyway")
+			# if minigame == "DANCE":
+			# 	print("You dance with kim, hooray!")
+			# 	Globals.ThreeDanced = true
+			if minigame == "FLOWER":
 				print("giving you 10 flowers")
 				%inventory.AddItem("Flower")# 1
 				%inventory.AddItem("Flower")# 2

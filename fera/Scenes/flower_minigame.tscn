@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://gddrv4t4x4mo"]
+
+[ext_resource type="Script" uid="uid://o5g86oy3giwb" path="res://Scripts/flower_minigame.gd" id="1_xdbef"]
+
+[node name="FlowerMinigame" type="Node2D"]
+script = ExtResource("1_xdbef")

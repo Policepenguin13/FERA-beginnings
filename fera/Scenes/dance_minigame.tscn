@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cyd3ix8576mhj"]
+[gd_scene load_steps=18 format=4 uid="uid://cyd3ix8576mhj"]
 
 [ext_resource type="Script" uid="uid://dl110e5fholqh" path="res://Scripts/dance_minigame.gd" id="1_vgwhe"]
 [ext_resource type="Texture2D" uid="uid://cttollsglvbcx" path="res://Art/NPCDancePLACEHOLDER.png" id="2_timxg"]
 [ext_resource type="Texture2D" uid="uid://dc12rfcbvifme" path="res://Art/PlayerDancePLACEHOLDER.png" id="3_7yxam"]
 [ext_resource type="Texture2D" uid="uid://dssiyfj4gtsfo" path="res://Art/DanceArrow.png" id="4_365a4"]
+[ext_resource type="Texture2D" uid="uid://p5d5wja4scjb" path="res://Art/TilesetPLACEHOLDER.png" id="5_esg24"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7yxam"]
 atlas = ExtResource("2_timxg")
@@ -123,6 +124,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_damrg"]
+texture = ExtResource("5_esg24")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vl0po"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_damrg")
+
 [node name="DanceMinigame" type="Node2D"]
 script = ExtResource("1_vgwhe")
 
@@ -156,38 +169,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
 [node name="other turn" type="Label" parent="Cam/ui"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -24.0
+offset_right = 83.0
+offset_bottom = -11.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 9
+text = "DANCER KIM's turn"
+horizontal_alignment = 1
+
+[node name="your turn" type="Label" parent="Cam/ui"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = -8.0
-offset_right = -5.0
-offset_bottom = 5.0
+offset_left = -80.0
+offset_top = 8.0
+offset_bottom = 21.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 9
-text = "DANCER KIM's turn"
-
-[node name="your turn" type="Label" parent="Cam/ui"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -21.0
-offset_right = 91.0
-offset_bottom = -8.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 9
 text = "RIN's turn"
+horizontal_alignment = 1
 
-[node name="instructions" type="Node" parent="."]
+[node name="instructions" type="Node2D" parent="."]
+position = Vector2(-72, 64)
 
 [node name="One" type="Sprite2D" parent="instructions"]
 position = Vector2(8, -32)
@@ -207,3 +220,19 @@ texture = ExtResource("4_365a4")
 self_modulate = Color(1, 1, 1, 0.156863)
 position = Vector2(68, -32)
 texture = ExtResource("4_365a4")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -1
+tile_map_data = PackedByteArray("AAD7//3/AAACAAAAAAD7//7/AAACAAAAAAD7////AAACAAAAAAD7/wAAAAACAAAAAAD7/wEAAAACAAAAAAD7/wIAAAACAAAAAAD8//3/AAACAAAAAAD8//7/AAACAAAAAAD8////AAACAAAAAAD8/wAAAAACAAAAAAD8/wEAAAACAAAAAAD8/wIAAAACAAAAAAD9//3/AAACAAAAAAD9//7/AAACAAAAAAD9////AAACAAAAAAD9/wAAAAACAAAAAAD9/wEAAAACAAAAAAD9/wIAAAACAAAAAAD+//3/AAACAAAAAAD+//7/AAACAAAAAAD+////AAACAAAAAAD+/wAAAAACAAAAAAD+/wEAAAACAAAAAAD+/wIAAAACAAAAAAD///3/AAACAAAAAAD///7/AAACAAAAAAD/////AAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAAAAP3/AAACAAAAAAAAAP7/AAACAAAAAAAAAP//AAACAAAAAAAAAAAAAAACAAAAAAAAAAEAAAACAAAAAAAAAAIAAAACAAAAAAABAP3/AAACAAAAAAABAP7/AAACAAAAAAABAP//AAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAACAP3/AAACAAAAAAACAP7/AAACAAAAAAACAP//AAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAADAP3/AAACAAAAAAADAP7/AAACAAAAAAADAP//AAACAAAAAAADAAAAAAACAAAAAAADAAEAAAACAAAAAAADAAIAAAACAAAAAAAEAP3/AAACAAAAAAAEAP7/AAACAAAAAAAEAP//AAACAAAAAAAEAAAAAAACAAAAAAAEAAEAAAACAAAAAAAEAAIAAAACAAAAAAD6//z/AAACAAAAAAD6//3/AAACAAAAAAD6//7/AAACAAAAAAD6////AAACAAAAAAD6/wAAAAACAAAAAAD6/wEAAAACAAAAAAD6/wIAAAACAAAAAAD6/wMAAAACAAAAAAD7//z/AAACAAAAAAD7/wMAAAACAAAAAAD8//z/AAACAAAAAAD8/wMAAAACAAAAAAD9//z/AAACAAAAAAD9/wMAAAACAAAAAAD+//z/AAACAAAAAAD+/wMAAAACAAAAAAD///z/AAACAAAAAAD//wMAAAACAAAAAAAAAPz/AAACAAAAAAAAAAMAAAACAAAAAAABAPz/AAACAAAAAAABAAMAAAACAAAAAAACAPz/AAACAAAAAAACAAMAAAACAAAAAAADAPz/AAACAAAAAAADAAMAAAACAAAAAAAEAPz/AAACAAAAAAAEAAMAAAACAAAAAAAFAPz/AAACAAAAAAAFAP3/AAACAAAAAAAFAP7/AAACAAAAAAAFAP//AAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_vl0po")
+
+[node name="OneSec" type="Timer" parent="."]
+one_shot = true
+
+[node name="PointSix" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="PointThree" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
