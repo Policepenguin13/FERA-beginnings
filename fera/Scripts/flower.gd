@@ -7,7 +7,11 @@ var from
 signal PlusOneFlower
 
 func _ready():
+	hide()
+
+func Ready():
 	# RunAway(self)
+	show()
 	self.body_entered.connect(BodyEnter)
 	self.body_exited.connect(BodyExit)
 	var target = waypoints.pick_random()
@@ -68,6 +72,10 @@ func RunAway():
 			pass
 		if from == $"../../Gatherer":
 			PlusOneFlower.emit()
+			self.get_child(1).set_deferred("disabled", true)
+			self.get_child(2).start()
+			await self.get_child(2).timeout
+			self.get_child(1).set_deferred("disabled", false)
 		else:
 			# print(str(self.name)+" ran away from something that wasn't a flower or the tilemap, " + str(from.name))
 			pass
@@ -76,7 +84,7 @@ func RunAway():
 func BodyEnter(body):
 	# print(str(self.name)+"'s body was entered by " + str(body.name))
 	from = body
-	RunAway()
+	# RunAway()
 
 func BodyExit(_body):
 	from = null

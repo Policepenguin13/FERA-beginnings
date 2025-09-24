@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://gxrued2pk22y"]
+[gd_scene load_steps=63 format=4 uid="uid://gxrued2pk22y"]
 
 [ext_resource type="Texture2D" uid="uid://xp8ptqibry6u" path="res://Art/PlayerIdlePLACEHOLDER-Sheet.png" id="1_qxrlw"]
 [ext_resource type="Script" uid="uid://w7a8n6aewyw2" path="res://Scripts/GAME.gd" id="1_tgy6u"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cfmv8j6lpar3t" path="res://icon.svg" id="5_1phco"]
 [ext_resource type="Script" uid="uid://dav47sejrhewv" path="res://Scripts/ui.gd" id="5_wowpa"]
 [ext_resource type="StyleBox" uid="uid://c6o275xf1u4aq" path="res://Art/UI stuff/dialogue_style_box_flat.tres" id="6_i6g32"]
+[ext_resource type="FontFile" uid="uid://cik180oqc4f50" path="res://Art/UI stuff/Nudge Orb.ttf" id="6_mucmn"]
 [ext_resource type="Script" uid="uid://dh6lfm1u5pcai" path="res://Scripts/UImenu.gd" id="6_nb51f"]
 [ext_resource type="Script" uid="uid://dq2b6xigtl8h3" path="res://Scripts/inventory.gd" id="7_nnt18"]
 [ext_resource type="Script" uid="uid://opk8twmq3a37" path="res://Scripts/Cutscenes.gd" id="8_7nbq1"]
@@ -29,9 +30,11 @@
 [ext_resource type="Script" uid="uid://cync6nwx3yi1n" path="res://Scripts/shortcut.gd" id="21_exi56"]
 [ext_resource type="Script" uid="uid://boyaj0dvjyre8" path="res://Scripts/Helper.gd" id="24_vm72l"]
 [ext_resource type="PackedScene" uid="uid://cyd3ix8576mhj" path="res://Scenes/dance_minigame.tscn" id="29_cwurv"]
+[ext_resource type="PackedScene" uid="uid://gddrv4t4x4mo" path="res://Scenes/flower_minigame.tscn" id="31_8m3t6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l0tm"]
-font_size = 14
+font = ExtResource("6_mucmn")
+font_size = 8
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ewbju"]
 animations = [{
@@ -632,11 +635,12 @@ custom_minimum_size = Vector2(184, 36)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_constants/line_spacing = 0
 text = "NAME: Hi, this is dialogue text! Stuff is being said, let's put some stuff here. Okay and what if what's being said goes too long like this, it just cuts off like this"
 label_settings = SubResource("LabelSettings_1l0tm")
 autowrap_mode = 2
 clip_text = true
+text_overrun_behavior = 4
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -651,6 +655,7 @@ offset_right = 128.0
 offset_bottom = 31.0
 grow_vertical = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
 theme_override_styles/focus = ExtResource("6_i6g32")
 theme_override_styles/disabled_mirrored = ExtResource("6_i6g32")
 theme_override_styles/disabled = ExtResource("6_i6g32")
@@ -676,6 +681,7 @@ offset_bottom = 31.0
 grow_horizontal = 0
 grow_vertical = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
 theme_override_styles/focus = ExtResource("6_i6g32")
 theme_override_styles/disabled_mirrored = ExtResource("6_i6g32")
 theme_override_styles/disabled = ExtResource("6_i6g32")
@@ -738,8 +744,10 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "?
+
 HELP"
 icon_alignment = 1
 expand_icon = true
@@ -753,6 +761,8 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 text = "SETTINGS"
 icon = ExtResource("5_1phco")
 icon_alignment = 1
@@ -763,6 +773,8 @@ expand_icon = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 toggle_mode = true
 text = "BAG"
 icon = ExtResource("5_1phco")
@@ -779,6 +791,8 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 disabled = true
 text = "SAVE"
 icon = ExtResource("5_1phco")
@@ -790,6 +804,8 @@ expand_icon = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 text = "QUIT"
 icon = ExtResource("5_1phco")
 icon_alignment = 1
@@ -805,17 +821,18 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = -96.0
-offset_right = 136.0
+offset_right = 144.0
 offset_bottom = -5.0
 grow_vertical = 0
 script = ExtResource("7_nnt18")
 
 [node name="money" type="Label" parent="Player/Cam/UI/inventory"]
-custom_minimum_size = Vector2(0.5, 0)
+custom_minimum_size = Vector2(0.5, 16)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 text = "$999+"
 autowrap_mode = 2
 
@@ -832,7 +849,8 @@ theme_override_constants/separation = 1
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "999+x flower"
 autowrap_mode = 2
 
@@ -840,15 +858,17 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 14
-text = "5x Capture crystal"
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
+text = "5x Capture Crystal"
 autowrap_mode = 2
 
 [node name="slot 3" type="Label" parent="Player/Cam/UI/inventory/ScrollContainer/container1"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "1x item"
 autowrap_mode = 2
 
@@ -856,7 +876,8 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "1x item"
 autowrap_mode = 2
 
@@ -864,7 +885,8 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "1x item"
 autowrap_mode = 2
 
@@ -1148,6 +1170,7 @@ grow_vertical = 2
 script = ExtResource("11_mg4q0")
 
 [node name="Trans" type="ColorRect" parent="Player/Cam/UI/Ask"]
+visible = false
 z_index = 3
 layout_mode = 1
 anchors_preset = 15
@@ -1180,19 +1203,22 @@ grow_vertical = 2
 theme_override_constants/separation = 15
 
 [node name="name" type="VBoxContainer" parent="Player/Cam/UI/Ask/box"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 6
 
 [node name="question" type="Label" parent="Player/Cam/UI/Ask/box/name"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "What will your name be?"
 horizontal_alignment = 1
 
 [node name="answer" type="LineEdit" parent="Player/Cam/UI/Ask/box/name"]
-custom_minimum_size = Vector2(128, 31)
+custom_minimum_size = Vector2(158, 31)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "RIN"
 placeholder_text = "Your Name"
 max_length = 8
@@ -1201,14 +1227,18 @@ deselect_on_focus_loss_enabled = false
 select_all_on_focus = true
 
 [node name="askConfirm" type="Label" parent="Player/Cam/UI/Ask/box"]
+visible = false
 custom_minimum_size = Vector2(253, 0)
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "Are you sure you want your name to be RIN?"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="answers" type="HBoxContainer" parent="Player/Cam/UI/Ask/box"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 2
 theme_override_constants/separation = 125
@@ -1222,6 +1252,7 @@ focus_neighbor_left = NodePath("../No")
 focus_neighbor_right = NodePath("../No")
 focus_next = NodePath("../No")
 focus_previous = NodePath("../No")
+theme_override_fonts/font = ExtResource("6_mucmn")
 theme_override_styles/focus = ExtResource("6_i6g32")
 theme_override_styles/disabled_mirrored = ExtResource("6_i6g32")
 theme_override_styles/disabled = ExtResource("6_i6g32")
@@ -1242,6 +1273,7 @@ focus_neighbor_left = NodePath("../Yes")
 focus_neighbor_right = NodePath("../Yes")
 focus_next = NodePath("../Yes")
 focus_previous = NodePath("../Yes")
+theme_override_fonts/font = ExtResource("6_mucmn")
 theme_override_styles/focus = ExtResource("6_i6g32")
 theme_override_styles/disabled_mirrored = ExtResource("6_i6g32")
 theme_override_styles/disabled = ExtResource("6_i6g32")
@@ -1306,6 +1338,8 @@ theme_override_constants/separation = 5
 [node name="title" type="Label" parent="Player/Cam/UI/Settings/Panel/settings/volumes"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "VOLUMES"
 horizontal_alignment = 1
 
@@ -1318,6 +1352,8 @@ theme_override_constants/separation = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 text = "Main"
 horizontal_alignment = 1
 
@@ -1341,6 +1377,8 @@ theme_override_constants/separation = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 text = "SFX"
 horizontal_alignment = 1
 
@@ -1362,6 +1400,8 @@ theme_override_constants/separation = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 text = "Music"
 horizontal_alignment = 1
 
@@ -1391,16 +1431,22 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "OTHER"
 
 [node name="closeSettings" type="Button" parent="Player/Cam/UI/Settings/Panel/settings/other/top"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "X"
 
 [node name="lightmode" type="CheckButton" parent="Player/Cam/UI/Settings/Panel/settings/other"]
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 8
 disabled = true
 text = "UI light mode"
 
@@ -1415,12 +1461,15 @@ offset_top = -24.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "ADD SETTINGS AS NEEDED"
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
 [node name="Tutorial" type="Label" parent="Player/Cam/UI"]
+visible = false
 custom_minimum_size = Vector2(224, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -1434,6 +1483,8 @@ offset_right = 49.0
 offset_bottom = -37.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_mucmn")
+theme_override_font_sizes/font_size = 16
 text = "WASD or arrow keys to move"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -1630,9 +1681,9 @@ position = Vector2(776, 72)
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("10_ldgsr")
-Default = Array[String](["It's an outdoor tap."])
-IfGoalThisNPC = Array[String](["You fill the bowl up just a little bit, your friend will need more water than that!", "You fill the bowl again, maybe just a little more?", "You have filled the bowl!"])
-IfGoalAchieved = Array[String](["It's an outdoor tap."])
+Default = Array[String](["{player}: This is the outdoor tap."])
+IfGoalThisNPC = Array[String](["{player} fills the bowl up just a little bit. The Fera will need more water than that!", "{player} fills the bowl again, maybe just a little more?", "{player} has filled the bowl!"])
+IfGoalAchieved = Array[String](["{player}: This is the outdoor tap."])
 GoalNeeded = true
 GoalMilestone = 4
 Goal = "Water Bowl"
@@ -2216,6 +2267,10 @@ shape = SubResource("RectangleShape2D_ewbju")
 
 [node name="DanceMinigame" parent="." instance=ExtResource("29_cwurv")]
 position = Vector2(-992, 512)
+
+[node name="FlowerMinigame" parent="." instance=ExtResource("31_8m3t6")]
+visible = false
+position = Vector2(8, 0)
 
 [connection signal="toggled" from="Player/Cam/UI/MENU VISIBLE" to="Player/Cam/UI/menu" method="_on_menu_visible_toggled"]
 [connection signal="pressed" from="Player/Cam/UI/menu/box/help" to="Player/Cam/UI/menu" method="_on_help_pressed"]

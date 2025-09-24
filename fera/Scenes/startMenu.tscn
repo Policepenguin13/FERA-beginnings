@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccfown28gryj6"]
+[gd_scene load_steps=10 format=3 uid="uid://ccfown28gryj6"]
 
 [ext_resource type="Script" uid="uid://dco6kxomhdvgs" path="res://Scripts/settings.gd" id="1_ra7ee"]
 [ext_resource type="Script" uid="uid://b630cs0j8g4tt" path="res://Scripts/StartMenu.gd" id="1_w2614"]
 [ext_resource type="Script" uid="uid://bhq5ve21t8aj2" path="res://Scripts/VolumeSlider.gd" id="2_8opm2"]
+[ext_resource type="FontFile" uid="uid://cik180oqc4f50" path="res://Art/UI stuff/Nudge Orb.ttf" id="2_s62a1"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ra7ee"]
 color = Color(1, 1, 1, 1)
@@ -141,6 +142,8 @@ focus_neighbor_left = NodePath("../credits")
 focus_neighbor_right = NodePath("../settings")
 focus_next = NodePath("../settings")
 focus_previous = NodePath("../credits")
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 16
 text = "continue"
 
 [node name="settings" type="Button" parent="Start Menu/buttonContainer"]
@@ -150,6 +153,8 @@ focus_neighbor_left = NodePath("../cont")
 focus_neighbor_right = NodePath("../credits")
 focus_next = NodePath("../cont")
 focus_previous = NodePath("../credits")
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 16
 text = "settings"
 
 [node name="credits" type="Button" parent="Start Menu/buttonContainer"]
@@ -159,6 +164,8 @@ focus_neighbor_left = NodePath("../settings")
 focus_neighbor_right = NodePath("../cont")
 focus_next = NodePath("../cont")
 focus_previous = NodePath("../settings")
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 16
 text = "credits"
 
 [node name="title" type="Label" parent="Start Menu"]
@@ -171,9 +178,11 @@ offset_right = 86.0
 offset_bottom = 99.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 72
 text = "FERA"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="subtitle" type="Label" parent="Start Menu/title"]
 layout_mode = 1
@@ -189,6 +198,7 @@ offset_bottom = 72.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 32
 text = "beginnings"
 horizontal_alignment = 1
@@ -240,13 +250,16 @@ offset_right = 185.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -1
-theme_override_constants/paragraph_spacing = -5
+theme_override_constants/line_spacing = 7
+theme_override_constants/paragraph_spacing = -3
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 8
 text = "CREDITS:
 Made in Godot v4.4.1
 Pixel art made using LibreSprite
 Made for Programming (formerly Game Dev) Semester 2, 2025, taught by Andrew & Jim
 
+Nudge Orb font by Sysl on Itch.io
 other credits go here :D"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -259,6 +272,8 @@ anchor_right = 1.0
 offset_left = -18.0
 offset_bottom = 31.0
 grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 16
 text = "X"
 
 [node name="SavesMenu" type="Control" parent="Start Menu"]
@@ -475,6 +490,8 @@ theme_override_constants/separation = 5
 [node name="title" type="Label" parent="Start Menu/Settings/Panel/settings/volumes"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 16
 text = "VOLUMES"
 horizontal_alignment = 1
 
@@ -487,6 +504,8 @@ theme_override_constants/separation = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 8
 text = "Main"
 horizontal_alignment = 1
 
@@ -510,6 +529,8 @@ theme_override_constants/separation = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 8
 text = "SFX"
 horizontal_alignment = 1
 
@@ -531,6 +552,8 @@ theme_override_constants/separation = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 8
 text = "Music"
 horizontal_alignment = 1
 
@@ -560,16 +583,21 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 16
 text = "OTHER"
 
 [node name="closeSettings" type="Button" parent="Start Menu/Settings/Panel/settings/other/top"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_s62a1")
 text = "X"
 
 [node name="lightmode" type="CheckButton" parent="Start Menu/Settings/Panel/settings/other"]
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 8
 disabled = true
 text = "UI light mode"
 
@@ -584,6 +612,8 @@ offset_top = -24.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_s62a1")
+theme_override_font_sizes/font_size = 16
 text = "ADD SETTINGS AS NEEDED"
 horizontal_alignment = 1
 vertical_alignment = 2

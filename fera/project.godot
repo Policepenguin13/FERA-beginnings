@@ -74,6 +74,8 @@ INTERACT={
 2d_physics/layer_1="collide"
 2d_physics/layer_2="interact"
 2d_physics/layer_3="playerOnly"
+2d_physics/layer_11="FlowerCollide"
+2d_physics/layer_12="FlowerPlayerOnly"
 
 [rendering]
 

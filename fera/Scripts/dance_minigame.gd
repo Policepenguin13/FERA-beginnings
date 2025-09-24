@@ -33,9 +33,9 @@ var winning = false
 signal DanceOver
 
 func _ready():
-	self.process_mode = PROCESS_MODE_DISABLED
 	self.hide()
 	$Cam.enabled = false
+	self.process_mode = PROCESS_MODE_DISABLED
 
 func Ready():
 	process_mode = PROCESS_MODE_INHERIT
