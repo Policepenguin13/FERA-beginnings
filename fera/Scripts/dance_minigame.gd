@@ -2,7 +2,6 @@ extends Node2D
 
 # input event actions: UP DOWN LEFT RIGHT
 # ^ possible notes/things
-var PotentialSteps = ["UP", "DOWN", "LEFT","RIGHT"]
 
 # sequence = an array of all the notes in order for this tune/minigame/thing,
 # simple eg:
@@ -22,17 +21,177 @@ var songs = [
 	["UP","DOWN","RIGHT","LEFT", "RIGHT","LEFT","DOWN","UP", "DOWN","UP","LEFT","RIGHT"],
 	# or randomize.
 	]
-
+var PotentialSteps = ["UP", "DOWN", "LEFT","RIGHT"]
 var sequence: Array[String] = []
 var step = 0
+var note
+
+var InstructorDancing = true
 
 func _ready():
-	RandomNewSong()
+	# RandomNewSong()
+	# sequence = songs.pick_random()
+	sequence = ["LEFT","DOWN","LEFT", "UP","RIGHT","UP", "DOWN","LEFT","DOWN", "RIGHT","UP","RIGHT"]
+	# print(str(sequence))
+	$Cam/ui/fade.set_modulate(Color.TRANSPARENT)
+	$Cam/ui/fade.hide()
+	for child in $instructions.get_children():
+		child.hide()
+		child.set_modulate(Color(0.667,0.0,1.0,1.0))
 	
+	await get_tree().create_timer(1.0).timeout
+	KimDance()
+	
+
+func Restart():
+	print("RESTARTING")
+	for child in $instructions.get_children():
+		child.hide()
+	await Flash()
+	step = 0
+	UpdateInstructions()
+	_ready()
+
+func _process(_delta):
+	if !InstructorDancing:
+		$"Cam/ui/other turn".hide()
+		$"Cam/ui/your turn".show()
+		if step > 11:
+			print("you won")
+			YouWin()
+		else:
+			note = sequence[step]
+	
+		if Input.is_action_just_pressed("DOWN"):
+			if $PlayerArt.animation != "down":
+				$PlayerArt.flip_h = false
+				$PlayerArt.play("down")
+		elif Input.is_action_just_pressed("UP"):
+			if $PlayerArt.animation != "up":
+				$PlayerArt.flip_h = false
+				$PlayerArt.play("up")
+		elif Input.is_action_just_pressed("LEFT"):
+			if $PlayerArt.animation != "left":
+				$PlayerArt.flip_h = true
+				$PlayerArt.play("left")
+		if Input.is_action_just_pressed("RIGHT"):
+			if $PlayerArt.animation != "right":
+				$PlayerArt.flip_h = false
+				$PlayerArt.play("right")
+
+		if Input.is_action_just_released("DOWN"):
+			print("down RELEASED")
+			checkNote("down")
+			$PlayerArt.play("idle")
+		elif Input.is_action_just_released("UP"):
+			print("up RELEASED")
+			checkNote("up")
+			$PlayerArt.play("idle")
+		elif Input.is_action_just_released("LEFT"):
+			print("left RELEASED")
+			checkNote("left")
+			$PlayerArt.play("idle")
+		elif Input.is_action_just_released("RIGHT"):
+			print("right RELEASED")
+			checkNote("right")
+			$PlayerArt.play("idle")
+	else:
+		$"Cam/ui/other turn".show()
+		$"Cam/ui/your turn".hide()
+	# await $PlayerArt.animation_finished
+	# $PlayerArt.play("idle")
+	
+	$"Cam/ui/your turn".text = Globals.PlayerName + "'s turn"
+
+func checkNote(released: String):
+	if note == released.to_upper():
+		print("note (" + str(note) + ") = " +str(released)+ " !! Next!")
+		step += 1
+		UpdateInstructions()
+	else:
+		print("note (" + str(note) + ") is NOT " +str(released)+ ", restart")
+		Restart()
+
+func UpdateInstructions():
+	var list = $instructions.get_children()
+	var thing
+	if step > 11:
+		YouWin()
+		thing = sequence[step-1]
+	else:
+		thing = sequence[step]
+	var add = 0
+	# print(thing)
+	for child in list:
+		if step+add > 11:
+			child.hide()
+		else:
+			child.show()
+			thing = sequence[step + add]
+			# print(str(thing))
+			# print(str(child))
+			if thing == "DOWN":
+				child.rotation_degrees = 180
+			elif thing == "RIGHT":
+				child.rotation_degrees = 90
+			elif thing == "LEFT":
+				child.rotation_degrees = 270
+			else:
+				child.rotation_degrees = 0
+			add +=1
+
+func CutsceneInstructions(number: int):
+	var list = $instructions.get_children()
+	var thing
+	# if number > 11:
+	# 	return
+	# 	thing = sequence[number-1]
+	# else:
+	#	thing = sequence[number]
+	thing = sequence[number]
+	var add = 0
+	# print(thing)
+	for child in list:
+		var temp = number+add
+		if temp > 11:
+			child.hide()
+		else:
+			child.show()
+			thing = sequence[number + add]
+			# print(str(thing))
+			# print(str(child))
+			if thing == "DOWN":
+				child.rotation_degrees = 180
+			elif thing == "RIGHT":
+				child.rotation_degrees = 90
+			elif thing == "LEFT":
+				child.rotation_degrees = 270
+			else:
+				child.rotation_degrees = 0
+			add +=1
+
+func YouWin():
+	print("WOOO YOU WON LETS GOOOO")
+
+func Flash():
+	$Cam/ui/fade.show()
+	# print("flashy flashy!")
+	$Cam/ui/fade.set_modulate(Color.TRANSPARENT)
+	var tween = get_tree().create_tween()
+	tween.tween_property($Cam/ui/fade, "modulate", Color.BLACK, 0.5)
+	
+	await get_tree().create_timer(0.6).timeout
+	tween = get_tree().create_tween()
+	tween.tween_property($Cam/ui/fade, "modulate", Color.TRANSPARENT, 0.5)
+	await get_tree().create_timer(0.6).timeout
+	# print("ok we good")
+	$Cam/ui/fade.hide()
+
 func RandomNewSong():
-	var NewSong: Array[String]
-	var UsableSteps = ["UP", "DOWN", "LEFT", "RIGHT"]
-	var chosen = PotentialSteps.pick_random()
+	pass
+	# var NewSong: Array[String]
+	# var UsableSteps = ["UP", "DOWN", "LEFT", "RIGHT"]
+	# var chosen = PotentialSteps.pick_random()
 	# WHAT I WANT THIS TO DO:
 	# first, pick a random step from PotentialSteps,
 	# add that to the new song,
@@ -54,3 +213,39 @@ func RandomNewSong():
 	#if UsableSteps.has(chosen):
 	#	UsableSteps.erase(chosen)
 	
+
+func KimDance():
+	InstructorDancing = true
+	$NPCart.play("idle")
+	await get_tree().create_timer(0.7).timeout
+	
+	# for test in sequence:
+	# 	print(test)
+	var i = 0
+	for move in sequence:
+		# print(move)
+		if move == "LEFT":
+			$NPCart.flip_h = true
+		else:
+			$NPCart.flip_h = false
+		$NPCart.play(move.to_lower())
+		CutsceneInstructions(i)
+		# print(str($NPCart.animation))
+		await get_tree().create_timer(0.8).timeout
+		if i+1 > sequence.size():
+			# print("i (" + str(i) + ") plus one (" + str(i+1) + ") is greater than sequence.size()-1 ("+ str(sequence.size()-1))
+			pass
+		else:
+			i += 1
+		
+		$NPCart.play("idle")
+		await get_tree().create_timer(0.3).timeout
+	
+	$NPCart.play("idle")
+	await get_tree().create_timer(0.3).timeout
+	InstructorDancing = false
+	
+	UpdateInstructions()
+	for child in $instructions.get_children():
+		child.set_modulate(Color.WHITE)
+	note = sequence[step]
