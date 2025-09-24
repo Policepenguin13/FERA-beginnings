@@ -551,7 +551,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wowpa"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwurv"]
 texture = ExtResource("4_3dryh")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -561,7 +561,7 @@ texture = ExtResource("4_3dryh")
 
 [sub_resource type="TileSet" id="TileSet_i6g32"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_wowpa")
+sources/0 = SubResource("TileSetAtlasSource_cwurv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_22asu"]
 size = Vector2(20, 48)
