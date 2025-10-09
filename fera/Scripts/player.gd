@@ -75,11 +75,11 @@ func AnimeWalk(dir):
 		$interactStuff/Sight.rotation_degrees = 0.0
 		$interactStuff/Check.rotation_degrees = 0.0
 	elif dir == "RIGHT":
+		$art.flip_h = true
 		$art.play("walkRIGHT")
 		$interactStuff/Sight.rotation_degrees = 270.0
 		$interactStuff/Check.rotation_degrees = 270.0
 	elif dir == "LEFT":
-		$art.flip_h = true
 		$art.play("walkLEFT")
 		$interactStuff/Sight.rotation_degrees = 90.0
 		$interactStuff/Check.rotation_degrees = 90.0
@@ -106,7 +106,7 @@ func Teleport(pos: Vector2, facing: String):
 
 func _on_art_animation_finished():
 	var animeName
-	if DIRECTION == "LEFT":
+	if DIRECTION == "RIGHT":
 		$art.flip_h = true
 	else:
 		$art.flip_h = false
