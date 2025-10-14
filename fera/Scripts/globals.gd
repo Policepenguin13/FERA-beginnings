@@ -23,7 +23,7 @@ var FourGoals: Array[String] = []
 # STORY SYSTEM
 # 0 (TUTORIAL)
 # - int w/ burrow, teto intro cutscene
-# 1 (FOOD) 
+# 1 (FOOD) OK BUT WHAT IF INSTEAD, TETO INTRO AND BITE WERE THE SAME?
 #		. go to shopkeep, get sausage
 # - int w/ burrow when you have a sausage, bite cutscene
 # 2 (APOLOGY SAUSAGE + FLOWERS)

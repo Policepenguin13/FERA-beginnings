@@ -40,7 +40,7 @@ func end():
 			if SaidBiteYet:
 				CutsceneTime = false
 				# print("MUM said oneBite, +1 story milestone")
-				Globals.StoryMilestone += 1
+				Globals.StoryMilestone = 2
 		if %DialogueBox.RawWords == ThreeLikes:
 			print("+1 story milestone from mum")
 			Globals.StoryMilestone += 1

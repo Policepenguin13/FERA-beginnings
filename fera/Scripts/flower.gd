@@ -88,3 +88,6 @@ func BodyEnter(body):
 
 func BodyExit(_body):
 	from = null
+
+func End():
+	self_modulate = Color("TRANSPARENT")

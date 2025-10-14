@@ -9,6 +9,7 @@ func _ready():
 	self.hide()
 	for child in $flowers.get_children():
 		child.position = Vector2(0,0)
+		
 	$Cam.enabled = false
 	self.process_mode = PROCESS_MODE_DISABLED
 
@@ -18,6 +19,7 @@ func Ready():
 	score = 0
 	for child in $flowers.get_children():
 		child.PlusOneFlower.connect(PlusOne)
+		child.self_modulate = Color("WHITE")
 		child.Ready()
 		# print("connected " + str(child.name) + "'s PlusOneFlower to PlusOne")
 	$BIGTIMER.timeout.connect(End)
@@ -45,6 +47,8 @@ func PlusOne():
 func End():
 	$Label.text = "Time's up!"
 	$Label.show()
+	for child in $flowers.get_children():
+		child.self_modulate = Color("TRANSPARENT")
 	FlowerEnded.emit()
 	process_mode = PROCESS_MODE_DISABLED
 	

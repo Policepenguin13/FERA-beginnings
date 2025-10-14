@@ -11,6 +11,7 @@ func _ready():
 	# print(str(Slots))
 	InventoryOrder.clear()
 	InventoryAmount.clear()
+	AddItem("Sausage Roll")
 	UpdateUI()
 	# Test()
 

@@ -58,7 +58,7 @@ func Ready():
 	
 
 func Restart():
-	print("RESTARTING")
+	# print("RESTARTING")
 	$Cam/ui/fade.color = Color(0.0,0.0,0.0,1.0)
 	for child in $instructions.get_children():
 		child.hide()
@@ -99,19 +99,19 @@ func _process(_delta):
 				$PlayerArt.play("right")
 
 		if Input.is_action_just_released("DOWN"):
-			print("down RELEASED")
+			# print("down RELEASED")
 			checkNote("down")
 			$PlayerArt.play("idle")
 		elif Input.is_action_just_released("UP"):
-			print("up RELEASED")
+			# print("up RELEASED")
 			checkNote("up")
 			$PlayerArt.play("idle")
 		elif Input.is_action_just_released("LEFT"):
-			print("left RELEASED")
+			# print("left RELEASED")
 			checkNote("left")
 			$PlayerArt.play("idle")
 		elif Input.is_action_just_released("RIGHT"):
-			print("right RELEASED")
+			# print("right RELEASED")
 			checkNote("right")
 			$PlayerArt.play("idle")
 	else:
@@ -124,11 +124,11 @@ func _process(_delta):
 
 func checkNote(released: String):
 	if note == released.to_upper():
-		print("note (" + str(note) + ") = " +str(released)+ " !! Next!")
+		# print("note (" + str(note) + ") = " +str(released)+ " !! Next!")
 		step += 1
 		UpdateInstructions()
 	else:
-		print("note (" + str(note) + ") is NOT " +str(released)+ ", restart")
+		# print("note (" + str(note) + ") is NOT " +str(released)+ ", restart")
 		Restart()
 
 func UpdateInstructions():
@@ -191,7 +191,7 @@ func CutsceneInstructions(number: int):
 
 func YouWin():
 	winning = true
-	print("WOOO YOU WON LETS GOOOO")
+	# print("WOOO YOU WON LETS GOOOO")
 	$Cam/ui/fade.color = Color(1.0,1.0,1.0,1.0)
 	await Flash()
 	DanceOver.emit()

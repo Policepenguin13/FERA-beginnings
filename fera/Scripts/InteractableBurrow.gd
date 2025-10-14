@@ -87,7 +87,11 @@ func end():
 func Interact():
 	# CHECK STORY STUFF HERE.
 	if Globals.StoryMilestone == 0:
-		%DialogueBox.Say(ZeroTetoIntro, self)
+		# print("doing bite cutscene instead of tetoIntro")
+		%Cutscenes.BiteCutscene()
+		%DialogueBox.cutscene = true
+		%DialogueBox.Say(OneFoodBite, self)
+		#%DialogueBox.Say(ZeroTetoIntro, self)
 		# print("TETO INTRO CUTSCENE TRIGGER")
 	elif Globals.StoryMilestone == 1:
 		if Globals.BagOrder.has("Sausage Roll"):
