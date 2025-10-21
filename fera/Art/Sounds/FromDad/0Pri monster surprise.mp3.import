@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chfjb8r8rgygh"
+path="res://.godot/imported/0Pri monster surprise.mp3-a0e404376fa00b05248502e9eecda677.mp3str"
+
+[deps]
+
+source_file="res://Art/Sounds/FromDad/0Pri monster surprise.mp3"
+dest_files=["res://.godot/imported/0Pri monster surprise.mp3-a0e404376fa00b05248502e9eecda677.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

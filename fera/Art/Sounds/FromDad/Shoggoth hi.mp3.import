@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cpaccqqhq7huy"
+path="res://.godot/imported/Shoggoth hi.mp3-6da1711d8adf80c4a15732b39aaceaf5.mp3str"
+
+[deps]
+
+source_file="res://Art/Sounds/FromDad/Shoggoth hi.mp3"
+dest_files=["res://.godot/imported/Shoggoth hi.mp3-6da1711d8adf80c4a15732b39aaceaf5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cns35p7y37c11"
+path="res://.godot/imported/Toy squeak.mp3-366249e1924a25b3d362b989226566ea.mp3str"
+
+[deps]
+
+source_file="res://Art/Sounds/FromDad/Toy squeak.mp3"
+dest_files=["res://.godot/imported/Toy squeak.mp3-366249e1924a25b3d362b989226566ea.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5,6 +5,9 @@ extends Area2D
 @export var SkipTo: int = 0
 @export var ItemNeeded = false
 @export var Item: String = ""
+func _ready():
+	self.monitoring = false
+	self.monitorable = false
 
 func Interact():
 	# print("skip to number")

@@ -3,12 +3,14 @@ extends Node2D
 signal FlowerEnded
 # @onready var scene = preload("res://Scenes/flower.tscn")
 var score = 0
-# Called when the node enters the scene tree for the first time.
+
+@export var flower_scene: PackedScene
 
 func _ready():
+	# Ready()
 	self.hide()
-	for child in $flowers.get_children():
-		child.position = Vector2(0,0)
+#	for child in $flowers.get_children():
+#		child.position = Vector2(0,0)
 		
 	$Cam.enabled = false
 	self.process_mode = PROCESS_MODE_DISABLED
@@ -17,10 +19,22 @@ func Ready():
 	process_mode = PROCESS_MODE_INHERIT
 	$Cam.enabled = true
 	score = 0
+	
+	var counter = 0
+	while counter <= 5:
+		Plant()
+		counter +=1
+		# print(counter)
+	
 	for child in $flowers.get_children():
-		child.PlusOneFlower.connect(PlusOne)
+		if child.is_connected("PlusOneFlower", PlusOne):
+			# print("already connected")
+			pass
+		else:
+			child.PlusOneFlower.connect(PlusOne)
+			child.FlowerPlucked.connect(Pluck)
+		
 		child.self_modulate = Color("WHITE")
-		child.Ready()
 		# print("connected " + str(child.name) + "'s PlusOneFlower to PlusOne")
 	$BIGTIMER.timeout.connect(End)
 	$Label.text = "Collect as many flowers as you can before time runs out!"
@@ -28,7 +42,7 @@ func Ready():
 
 	$wait.start()
 	await $wait.timeout
-	print("starting the big timer!!")
+	# print("starting the big timer!!")
 	$BIGTIMER.start(30.0)
 	$wait.start(2.0)
 	await $wait.timeout
@@ -42,9 +56,27 @@ func _process(_delta):
 	$TIME.max_value = $BIGTIMER.wait_time
 
 func PlusOne():
+	# print("+1 score")
 	score += 1
 
+func Pluck():
+	# print("pluck")
+	Plant()
+
+func Plant():
+	# print("planting!")
+	var bud = flower_scene.instantiate()
+	# IF THE FLOWER ISN'T CONNECTED
+	if bud.is_connected("PlusOneFlower", PlusOne):
+		# print("already connected")
+		pass
+	else:
+		bud.PlusOneFlower.connect(PlusOne)
+		bud.FlowerPlucked.connect(Pluck)
+	$flowers.add_child(bud)
+	
 func End():
+	get_tree().call_group("flower", "queue_free")
 	$Label.text = "Time's up!"
 	$Label.show()
 	for child in $flowers.get_children():

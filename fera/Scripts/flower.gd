@@ -1,19 +1,19 @@
 extends Area2D
 
-@export var waypoints: Array[Node2D]
+@onready var waypoints = $"/root/FlowerMinigame/waypoints".get_children()
 
 var from
 
 signal PlusOneFlower
+signal FlowerPlucked
 
 func _ready():
-	hide()
-
-func Ready():
-	# RunAway(self)
+	# print(self.name + "is _ready")
 	show()
+	self_modulate = Color("WHITE")
 	self.body_entered.connect(BodyEnter)
 	self.body_exited.connect(BodyExit)
+#	$"../..".End.connect(End)
 	var target = waypoints.pick_random()
 	# print(str(self.name) + "'s target is " + str(target.name))
 	var offsetX = randf_range(-56.0, 56.0)
@@ -30,7 +30,8 @@ func _process(_delta):
 			from = get_overlapping_areas().pick_random()
 		elif has_overlapping_bodies():
 			from = get_overlapping_bodies().pick_random()
-		RunAway()
+		# RunAway()
+		Flee()
 
 func RunAway():
 	# print(str(waypoints))
@@ -39,7 +40,7 @@ func RunAway():
 	# print(str(self.name) + "'s target is " + str(target.name))
 	var offsetX = randf_range(-56.0, 56.0)
 	var offsetY = randf_range(-56.0, 56.0)
-	if randi_range(0,100) >= 50:
+	if randi_range(0,100) >= -1: #for 1 in 2 chance, change to >= 50
 		target = waypoints.pick_random()
 	# print(str(self.name) + "'s target is " + str(target.name))
 	else:
@@ -72,6 +73,7 @@ func RunAway():
 			pass
 		if from == $"../../Gatherer":
 			PlusOneFlower.emit()
+			# print(self.name + "ran away from gatherer")
 			self.get_child(1).set_deferred("disabled", true)
 			self.get_child(2).start()
 			await self.get_child(2).timeout
@@ -80,6 +82,19 @@ func RunAway():
 			# print(str(self.name)+" ran away from something that wasn't a flower or the tilemap, " + str(from.name))
 			pass
 
+func Flee():
+	if from == TileMapLayer:
+		# print(self.name + "ran away from a tilemaplayer")
+		pass
+	elif from == $"/root/FlowerMinigame/Gatherer":
+		# print(self.name + "ran away from a gatherer")
+		PlusOneFlower.emit()
+	else:
+		# print(self.name + "ran away from something unknown")
+		pass
+	# print(self.name + "is dying now")
+	FlowerPlucked.emit()
+	queue_free()
 
 func BodyEnter(body):
 	# print(str(self.name)+"'s body was entered by " + str(body.name))
