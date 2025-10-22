@@ -49,6 +49,7 @@ func end():
 				reset()
 
 func Interact():
+	$art.CheckDir()
 	if AskedToPlay == true:
 		# print(str(self) + " has asked if player would like to play")
 		if YesToPlay == true:

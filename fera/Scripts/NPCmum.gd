@@ -49,6 +49,7 @@ func end():
 			SaidYouCanGo = true
 
 func Interact():
+	$art.CheckDir()
 	# print("interact w/ mum")
 	if CutsceneTime:
 		%DialogueBox.Say(OneBite, self)

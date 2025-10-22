@@ -21,6 +21,7 @@ func end():
 			%inventory.AddItem(Goal)
 
 func Interact():
+	$art.CheckDir()
 	# CHECK STORY STUFF HERE. eg, export a string 
 	# and if 'npc item' == globals.goal, say IfGoalThisNPC
 	if GoalNeeded:
