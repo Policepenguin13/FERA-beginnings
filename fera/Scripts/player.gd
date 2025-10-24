@@ -32,6 +32,7 @@ func _ready():
 			# print("check if event is still pressed")
 
 func Go():
+	print("player is at " + str(global_position))
 	AnimeWalk(DIRECTION)
 	await Move(DIRECTION)
 	
@@ -61,6 +62,7 @@ func Move(dir):
 		await tween.finished
 		moving = false
 		Moved.emit()
+		print("player is at " + str(global_position))
 		# CHECK IF PLAYER IS STILL HOLDING BUTTON DOWN, MOVE IF SO
 		# print("MOVE end")
 
