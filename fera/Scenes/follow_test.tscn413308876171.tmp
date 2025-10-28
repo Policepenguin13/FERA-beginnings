@@ -412,7 +412,7 @@ region = Rect2(32, 32, 16, 16)
 [sub_resource type="SpriteFrames" id="SpriteFrames_7swb2"]
 animations = [{
 "frames": [{
-"duration": 2.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_dwrto")
 }, {
 "duration": 1.0,
@@ -426,7 +426,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_ogpoj")
 }, {
 "duration": 1.0,
@@ -440,7 +440,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_ogpoj")
 }, {
 "duration": 1.0,
@@ -454,7 +454,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_5tqje")
 }, {
 "duration": 1.0,
@@ -519,9 +519,9 @@ tile_set = SubResource("TileSet_7swb2")
 [node name="Teto" type="AnimatedSprite2D" parent="."]
 position = Vector2(-128, 56)
 sprite_frames = SubResource("SpriteFrames_7swb2")
-animation = &"up"
+animation = &"left"
 autoplay = "left"
-frame_progress = 0.240354
+frame_progress = 0.285709
 script = ExtResource("8_dwrto")
 
 [node name="Ray" type="RayCast2D" parent="Teto"]

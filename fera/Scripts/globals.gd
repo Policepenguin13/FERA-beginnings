@@ -3,6 +3,8 @@ extends Node
 var talking = false
 var CanMove = true
 
+var MovingTo
+
 # set to RIN and TETO by default
 var PlayerName: String = "RIN"
 var FeraName: String = "TETO"

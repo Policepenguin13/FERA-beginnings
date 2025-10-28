@@ -16,6 +16,7 @@ func CheckDir():
 		if $Ray.is_colliding():
 			# print("direction is down?")
 			dir = "down"
+			flip_h = false
 			if animation != dir:
 				play("down")
 		else: 
@@ -25,6 +26,7 @@ func CheckDir():
 			if $Ray.is_colliding():
 				# print("direction is up?")
 				dir = "up"
+				flip_h = false
 				if animation != dir:
 					play("up")
 			else:
@@ -44,6 +46,7 @@ func CheckDir():
 					if $Ray.is_colliding():
 					#	print("direction is left?")
 						dir = "left"
+						flip_h = false
 						if animation != dir:
 							play("left")
 	# print("done checking")

@@ -32,7 +32,7 @@ func _ready():
 			# print("check if event is still pressed")
 
 func Go():
-	print("player is at " + str(global_position))
+	# print("player is at " + str(global_position))
 	AnimeWalk(DIRECTION)
 	await Move(DIRECTION)
 	
@@ -55,6 +55,8 @@ func Move(dir):
 	if !ray.is_colliding():
 		# position += inputs[dir] * TileSize
 		# print("MOVE start")
+		Globals.MovingTo = position + inputs[dir] * TileSize
+		# print("SET MovingTo TO: " + str(Globals.MovingTo))
 		Moving.emit()
 		var tween = create_tween()
 		tween.tween_property(self, "position", position + inputs[dir] *    TileSize, 1.0/AnimeSpeed).set_trans(Tween.TRANS_SINE)
@@ -62,7 +64,7 @@ func Move(dir):
 		await tween.finished
 		moving = false
 		Moved.emit()
-		print("player is at " + str(global_position))
+		# print("player is at " + str(global_position))
 		# CHECK IF PLAYER IS STILL HOLDING BUTTON DOWN, MOVE IF SO
 		# print("MOVE end")
 

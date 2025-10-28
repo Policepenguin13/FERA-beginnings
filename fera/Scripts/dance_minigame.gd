@@ -22,7 +22,7 @@ var songs = [
 	# or randomize.
 	]
 var PotentialSteps = ["UP", "DOWN", "LEFT","RIGHT"]
-var sequence: Array[String] = []
+var sequence: Array = []
 var step = 0
 var note
 
@@ -43,13 +43,16 @@ func Ready():
 	# RandomNewSong()
 	# sequence = songs.pick_random()
 	sequence = ["LEFT","DOWN","LEFT", "UP","RIGHT","UP", "DOWN","LEFT","DOWN", "RIGHT","UP","RIGHT"]
+	sequence = songs.pick_random()
 	# print(str(sequence))
 	$Cam/ui/fade.set_modulate(Color.TRANSPARENT)
 	$Cam/ui/fade.hide()
+	
 	for child in $instructions.get_children():
 		child.hide()
 		child.set_modulate(Color(0.667,0.0,1.0,1.0))
 	winning = false
+	$PlayerArt.play("idle")
 	self.show()
 	
 	$OneSec.start()
@@ -191,7 +194,7 @@ func CutsceneInstructions(number: int):
 
 func YouWin():
 	winning = true
-	# print("WOOO YOU WON LETS GOOOO")
+	print("WOOO YOU WON LETS GOOOO")
 	$Cam/ui/fade.color = Color(1.0,1.0,1.0,1.0)
 	await Flash()
 	DanceOver.emit()
