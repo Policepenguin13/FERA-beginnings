@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var waypoints = $"/root/FlowerMinigame/waypoints".get_children()
+@onready var waypoints = $"/root/MAIN/Game/FlowerMinigame/waypoints".get_children()
 
 var from
 
@@ -86,7 +86,7 @@ func Flee():
 	if from == TileMapLayer:
 		# print(self.name + "ran away from a tilemaplayer")
 		pass
-	elif from == $"/root/FlowerMinigame/Gatherer":
+	elif from.name == "Gatherer":
 		# print(self.name + "ran away from a gatherer")
 		PlusOneFlower.emit()
 	else:

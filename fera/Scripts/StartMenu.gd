@@ -1,6 +1,7 @@
 extends Control
 
 var GameBegun = false
+signal BEGIN
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,12 +11,10 @@ func _ready():
 	$Settings.hide()
 	$TransT.hide()
 	$TransB.hide()
-	# if all the Savefiles are empty/default
-	# $buttonContainer/cont.text = "new game"
-	# else
-	# $buttonContainer/cont.text = "continue"
-	# but for now...
-	$buttonContainer/cont.text = "start"
+	if Globals.StoryMilestone != 0:
+		$buttonContainer/cont.text = "continue"
+	else:
+		$buttonContainer/cont.text = "new game"
 	
 	$Settings/Panel/settings/other/top/closeSettings.pressed.connect(_on_close_settings_pressed)
 
@@ -46,7 +45,9 @@ func to_save_menu():
 	$TransT.show()
 	$Anime.play("ToGame")
 	await get_tree().create_timer(1.5).timeout
-	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	BEGIN.emit()
+#	self.PROCESS_MODE_DISABLED
+	# get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 func _on_settings_pressed():
 	ToggleVis($Settings)

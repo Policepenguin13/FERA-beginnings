@@ -21,11 +21,9 @@ func _ready():
 
 func _process(_delta):
 	if Globals.StoryMilestone < 5:
-		pass
-		# hide()
+		hide()
 	else:
-		pass
-		# show()
+		show()
 
 func moving():
 	from = you.global_position

@@ -54,30 +54,16 @@ func Interact():
 		# print(str(self) + " has asked if player would like to play")
 		if YesToPlay == true:
 			#print("player said they would like to play")
-			print("TRIGGER " + minigame + " MINIGAME HERE")
+			# print("TRIGGER " + minigame + " MINIGAME HERE")
 			if minigame == "DANCE":
 				DanceMini.emit()
 			elif minigame == "FLOWER":
+				var bob = %inventory.InventoryAmount["Flower"]
 				FlowerMini.emit()
 			# print(minigame + " minigame hasn't been coded yet, so have the reward anyway")
 			# if minigame == "DANCE":
 			# 	print("You dance with kim, hooray!")
 			# 	Globals.ThreeDanced = true
-			if minigame == "FLOWER":
-				print("giving you 10 flowers")
-				%inventory.AddItem("Flower")# 1
-				%inventory.AddItem("Flower")# 2
-				%inventory.AddItem("Flower")# 3
-				%inventory.AddItem("Flower")# 4
-				%inventory.AddItem("Flower")# 5
-				%inventory.AddItem("Flower")# 6
-				%inventory.AddItem("Flower")# 7
-				%inventory.AddItem("Flower")# 8
-				%inventory.AddItem("Flower")# 9
-				%inventory.AddItem("Flower")# 10
-			if Globals.StoryMilestone == 4 and minigame == "FLOWER":
-				print("as long as you get 1 more flower than you previously had, goal reached")
-				Globals.FourGoals.append("Flower")
 			reset()
 		else: 
 			# print("player said no i wouldn't like to play")

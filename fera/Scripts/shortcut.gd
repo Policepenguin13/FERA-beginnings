@@ -6,6 +6,7 @@ extends Area2D
 @export var ItemNeeded = false
 @export var Item: String = ""
 func _ready():
+	return
 	self.monitoring = false
 	self.monitorable = false
 

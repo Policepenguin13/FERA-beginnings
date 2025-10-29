@@ -5,7 +5,7 @@ signal asked
 var ProtagVer = true
 var PotentialName = "RIN"
 
-func _ready():
+func Ready():
 	self.set_modulate(Color.WHITE)
 	self.show()
 	$Trans.show()
@@ -31,7 +31,8 @@ func FeraStart():
 	Globals.CanMove = false
 	ProtagVer = false
 	$box/name/answer.text = "TETO"
-	$box/name/question.text = "What will your Fera's name be?"
+	$box/name/question.text = "What will your 
+	Fera's name be?"
 	Setup()
 
 func Setup():
@@ -58,6 +59,10 @@ func Next():
 	await get_tree().create_timer(0.6).timeout
 	$box/askConfirm.show()
 	$box/answers.show()
+	$box/answers/Yes.show()
+	$box/answers/No.show()
+	$box/answers/Yes.disabled = false
+	$box/answers/No.disabled = false
 	$box/name.hide()
 	$box/answers/Yes.grab_focus()
 	

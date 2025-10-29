@@ -83,22 +83,18 @@ func _process(_delta):
 			# print("after await you win")
 		else:
 			note = sequence[step]
-	
+		$PlayerArt.flip_h = false
 		if Input.is_action_just_pressed("DOWN"):
 			if $PlayerArt.animation != "down":
-				$PlayerArt.flip_h = false
 				$PlayerArt.play("down")
 		elif Input.is_action_just_pressed("UP"):
 			if $PlayerArt.animation != "up":
-				$PlayerArt.flip_h = false
 				$PlayerArt.play("up")
 		elif Input.is_action_just_pressed("LEFT"):
 			if $PlayerArt.animation != "left":
-				$PlayerArt.flip_h = true
 				$PlayerArt.play("left")
 		if Input.is_action_just_pressed("RIGHT"):
 			if $PlayerArt.animation != "right":
-				$PlayerArt.flip_h = false
 				$PlayerArt.play("right")
 
 		if Input.is_action_just_released("DOWN"):

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk2knrlpbwfwt"]
+
+[ext_resource type="Script" uid="uid://bufi5p5kcwfur" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://ccfown28gryj6" path="res://Scenes/startMenu.tscn" id="2_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://gxrued2pk22y" path="res://Scenes/game.tscn" id="3_kry3j"]
+
+[node name="MAIN" type="Node"]
+script = ExtResource("1_8gbba")
+
+[node name="StartMenu" parent="." instance=ExtResource("2_jjvhh")]
+z_index = 6
+position = Vector2(-1520, -72)
+
+[node name="Game" parent="." instance=ExtResource("3_kry3j")]
+
+[editable path="Game"]

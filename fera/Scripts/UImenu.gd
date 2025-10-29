@@ -4,6 +4,8 @@ extends Panel
 @export var HelpSay: Array[String] = []
 var says = ""
 
+signal QuitToMenu
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.hide()
@@ -30,7 +32,7 @@ func _on_menu_visible_toggled(toggled_on):
 		Globals.CanMove = true
 
 func _on_settings_pressed():
-	print("settings pressed!")
+	# print("settings pressed!")
 	$"../Settings".show()
 	self.hide()
 	%inventory.hide()
@@ -44,6 +46,7 @@ func _on_save_pressed():
 
 func _on_quit_pressed():
 	print("quit to main menu button pressed")
+	QuitToMenu.emit()
 
 func _on_bag_toggled(toggled_on):
 	if toggled_on: # is true
@@ -54,7 +57,7 @@ func _on_bag_toggled(toggled_on):
 		$box/help.disabled = false
 
 func _on_help_pressed():
-	print("help button pressed")
+	# print("help button pressed")
 	# _on_menu_visible_toggled(vis)
 	$"../../../helper".Enable()
 	Globals.talking = true
@@ -63,7 +66,7 @@ func _on_help_pressed():
 	$"../../../helper".Interact()
 	
 func CloseMenuForDialogue():
-	print("Close Menu")
+	# print("Close Menu")
 	self.hide()
 	%inventory.hide()
 

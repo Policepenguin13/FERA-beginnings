@@ -1,6 +1,8 @@
 extends Node2D
 @onready var dance = load("res://Scenes/dance_minigame.tscn")
 
+signal GetToMenu
+
 func pause():
 	process_mode = PROCESS_MODE_DISABLED
 
@@ -9,10 +11,24 @@ func unpause():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$NPCs/DanceInstructor.DanceMini.connect(triggerDance)
-	$NPCs/FloristFlora.FlowerMini.connect(triggerFlower)
-	$DanceMinigame.DanceOver.connect(EndDance)
-	$FlowerMinigame.FlowerEnded.connect(EndFlower)
+	print("pausing " + self.name)
+	$Player/Cam.enabled = false
+	pause()
+	
+func Ready():
+	print("no longer paused")
+	process_mode = PROCESS_MODE_INHERIT
+	$Player/Cam.enabled = true
+	if !$NPCs/DanceInstructor.DanceMini.is_connected(triggerDance):
+		$NPCs/DanceInstructor.DanceMini.connect(triggerDance)
+	if !$NPCs/FloristFlora.FlowerMini.is_connected(triggerFlower):
+		$NPCs/FloristFlora.FlowerMini.connect(triggerFlower)
+	if !$DanceMinigame.DanceOver.is_connected(EndDance):
+		$DanceMinigame.DanceOver.connect(EndDance)
+	if !$FlowerMinigame.FlowerEnded.is_connected(EndFlower):
+		$FlowerMinigame.FlowerEnded.connect(EndFlower)
+	if !$Player/Cam/UI/menu.QuitToMenu.is_connected(ToMenu):
+		$Player/Cam/UI/menu.QuitToMenu.connect(ToMenu)
 	# triggerDance()
 	$Player/Cam.enabled = true
 	for child in self.get_children():
@@ -24,6 +40,8 @@ func _ready():
 				kid.show()
 	$FlowerMinigame.hide()
 	$DanceMinigame.hide()
+	
+	$Player/Cam/UI/Ask.Ready()
 
 func triggerDance():
 	print("trigger dance")
@@ -72,7 +90,7 @@ func EndDance():
 		Globals.ThreeDanced = true
 
 func EndFlower():
-	print("flower ended")
+	# print("flower ended")
 	$FlowerMinigame/Cam.enabled = false
 	$Player/Cam.enabled = true
 	for child in self.get_children():
@@ -81,7 +99,7 @@ func EndFlower():
 				child.show()
 		else:
 			for kid in child.get_children():
-				kid.hide()
+				kid.show()
 	$FlowerMinigame.hide()
 	var number = 0
 	while number != $FlowerMinigame.score:
@@ -89,4 +107,10 @@ func EndFlower():
 		%inventory.AddItem("Flower")
 		# print(number)
 	Globals.CanMove = true
+	if Globals.StoryMilestone == 4 and !Globals.FourGoals.has("Flower"):
+		if %NPCs/FloristFlora.bob != number:
+			Globals.FourGoals.append("Flower")
 	
+func ToMenu():
+	print("To menu!!")
+	pause()

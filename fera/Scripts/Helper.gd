@@ -31,14 +31,14 @@ func moved():
 		global_position.y = $"..".global_position.y
 
 func Enable():
-	print("enable interactable here")
+	# print("enable interactable here")
 	show()
 	$sight.disabled = false
 	# monitorable = true
 	# Interact()
 
 func Disable():
-	print("disable interactacle here")
+	# print("disable interactacle here")
 	hide()
 	$sight.disabled = true
 	position += Vector2(300, 20)
@@ -63,7 +63,7 @@ func Interact():
 			# print(says)
 			HelpSay.append(says)
 	if Globals.StoryMilestone == 2:
-		if $"../../NPCs/Shopkeeper".Requested:
+		if %NPCs/Shopkeeper.Requested:
 			if Globals.BagOrder.has("Sausage Roll"):
 				says = "{player}: I should give this Sausage Roll to the Fera in the burrow."
 				# print(says)
@@ -102,7 +102,7 @@ func Interact():
 			HelpSay.append(says)
 	if Globals.StoryMilestone == 4:
 		if Globals.FourGoals.has("Toy"):
-			if !$"../../../../NPCs/Burrow".FourCutscenesShown.has("Toy"):
+			if !%NPCs/Burrow.FourCutscenesShown.has("Toy"):
 				# print("{player}: I should take this toy to the burrow.")
 				FourBurrow()
 		else:
@@ -111,7 +111,7 @@ func Interact():
 			HelpSay.append(says)
 		
 		if Globals.FourGoals.has("Water"):
-			if !$"../../../../NPCs/Burrow".FourCutscenesShown.has("Water"):
+			if !!%NPCs/Burrow.FourCutscenesShown.has("Water"):
 				FourBurrow()
 		else:
 			says = "{player}: I can get a bowl of water from the tap beside my house."
@@ -119,14 +119,14 @@ func Interact():
 			HelpSay.append(says)
 		
 		if Globals.FourGoals.has("Flower"):
-			if !$"../../../../NPCs/Burrow".FourCutscenesShown.has("Flower"):
+			if !%NPCs/Burrow.FourCutscenesShown.has("Flower"):
 				FourBurrow()
 		else:
 			says = "{player}: I can get a flower from FLORIST FLORA up the road from the shop to give to the Fera."
 			# print(says)
 			HelpSay.append(says)
 	if Globals.StoryMilestone == 5:
-		if $"../../NPCs/Mum".SaidYouCanGo:
+		if %NPCs/Mum.SaidYouCanGo:
 			says = "{player}: I can start on my adventure down the road from my house, on TRAIL 01!"
 			# print(says)
 			HelpSay.append(says)
