@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cb4t6rh048dsu"
+path="res://.godot/imported/Definitely Our Town by xDeviruchi.wav-fd1f68199e460d91060d1f05e6db5390.sample"
+
+[deps]
+
+source_file="res://Art/Music/Definitely Our Town by xDeviruchi.wav"
+dest_files=["res://.godot/imported/Definitely Our Town by xDeviruchi.wav-fd1f68199e460d91060d1f05e6db5390.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

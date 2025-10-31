@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://t1p52rnlm2ji"
+path="res://.godot/imported/fantasy Dragon by Ansimuz.ogg-044645f47afe8880854a95ca61cfed99.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/Music/fantasy Dragon by Ansimuz.ogg"
+dest_files=["res://.godot/imported/fantasy Dragon by Ansimuz.ogg-044645f47afe8880854a95ca61cfed99.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

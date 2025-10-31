@@ -5,6 +5,8 @@ var Animations
 var ThisCutscene = AnimatedSprite2D
 var CutsceneIndex
 
+signal CutsceneStarted
+
 var tempholding
 
 func _ready():
@@ -51,6 +53,7 @@ func NameAquired():
 
 func BiteCutscene():
 	show()
+	CutsceneStarted.emit()
 	ThisCutscene = $bite
 	ThisCutscene.show()
 	CutsceneIndex = $bite.get_index()
@@ -59,6 +62,7 @@ func BiteCutscene():
 
 func DragCutscene():
 	show()
+	CutsceneStarted.emit()
 	ThisCutscene = $drag
 	ThisCutscene.show()
 	CutsceneIndex = $drag.get_index()
@@ -67,6 +71,7 @@ func DragCutscene():
 
 func FriendCutscene():
 	show()
+	CutsceneStarted.emit()
 	ThisCutscene = $friend
 	ThisCutscene.show()
 	CutsceneIndex = $friend.get_index()
@@ -75,6 +80,7 @@ func FriendCutscene():
 	
 func SplashCutscene():
 	show()
+	CutsceneStarted.emit()
 	ThisCutscene = $splash
 	ThisCutscene.show()
 	CutsceneIndex = $splash.get_index()
@@ -83,6 +89,7 @@ func SplashCutscene():
 
 func SneezeCutscene():
 	show()
+	CutsceneStarted.emit()
 	ThisCutscene = $sneeze
 	ThisCutscene.show()
 	CutsceneIndex = $sneeze.get_index()
@@ -91,6 +98,7 @@ func SneezeCutscene():
 
 func ToyCutscene():
 	show()
+	CutsceneStarted.emit()
 	ThisCutscene = $toy
 	ThisCutscene.show()
 	CutsceneIndex = $toy.get_index()
@@ -99,6 +107,7 @@ func ToyCutscene():
 
 func FinalCutscene():
 	show()
+	CutsceneStarted.emit()
 	ThisCutscene = $end
 	ThisCutscene.show()
 	CutsceneIndex = $end.get_index()

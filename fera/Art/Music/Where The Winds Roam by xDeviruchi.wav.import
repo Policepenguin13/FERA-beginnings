@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dygf7xou5wtn3"
+path="res://.godot/imported/Where The Winds Roam by xDeviruchi.wav-c284f9f5400fe23710097a1a3e5fe2fe.sample"
+
+[deps]
+
+source_file="res://Art/Music/Where The Winds Roam by xDeviruchi.wav"
+dest_files=["res://.godot/imported/Where The Winds Roam by xDeviruchi.wav-c284f9f5400fe23710097a1a3e5fe2fe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

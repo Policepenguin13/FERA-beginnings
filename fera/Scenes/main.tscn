@@ -13,4 +13,5 @@ position = Vector2(-1520, -72)
 
 [node name="Game" parent="." instance=ExtResource("3_kry3j")]
 
+[editable path="StartMenu"]
 [editable path="Game"]

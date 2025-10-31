@@ -2,6 +2,7 @@ extends Control
 
 var GameBegun = false
 signal BEGIN
+signal MusicFade
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,6 +45,7 @@ func to_save_menu():
 	$TransB.show()
 	$TransT.show()
 	$Anime.play("ToGame")
+	MusicFade.emit()
 	await get_tree().create_timer(1.5).timeout
 	BEGIN.emit()
 #	self.PROCESS_MODE_DISABLED

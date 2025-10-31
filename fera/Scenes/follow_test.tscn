@@ -521,7 +521,7 @@ position = Vector2(-128, 56)
 sprite_frames = SubResource("SpriteFrames_7swb2")
 animation = &"up"
 autoplay = "left"
-frame_progress = 0.697278
+frame_progress = 0.440695
 script = ExtResource("8_dwrto")
 
 [node name="Ray" type="RayCast2D" parent="Teto"]

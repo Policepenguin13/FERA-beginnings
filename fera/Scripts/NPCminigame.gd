@@ -58,7 +58,8 @@ func Interact():
 			if minigame == "DANCE":
 				DanceMini.emit()
 			elif minigame == "FLOWER":
-				var bob = %inventory.InventoryAmount["Flower"]
+				if Globals.BagOrder.has("Flower"):
+					var bob = Globals.BagAmounts["Flower"]
 				FlowerMini.emit()
 			# print(minigame + " minigame hasn't been coded yet, so have the reward anyway")
 			# if minigame == "DANCE":

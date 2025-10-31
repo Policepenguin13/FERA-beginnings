@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccfown28gryj6"]
+[gd_scene load_steps=17 format=3 uid="uid://ccfown28gryj6"]
 
 [ext_resource type="Script" uid="uid://bk3b40h8kmi3q" path="res://Scripts/startOversight.gd" id="1_da5rh"]
 [ext_resource type="Script" uid="uid://dco6kxomhdvgs" path="res://Scripts/settings.gd" id="1_ra7ee"]
@@ -8,6 +8,9 @@
 [ext_resource type="StyleBox" uid="uid://c34tay75qipsy" path="res://Art/UI stuff/button_pressed_stylebox.tres" id="3_734s5"]
 [ext_resource type="StyleBox" uid="uid://tnghs0aaar6b" path="res://Art/UI stuff/button_disabled.tres" id="3_ob5tf"]
 [ext_resource type="StyleBox" uid="uid://bihd10fllgxtk" path="res://Art/UI stuff/button_not_pressed_stylebox.tres" id="4_ob5tf"]
+[ext_resource type="Script" uid="uid://cyiliyuq4bhu1" path="res://Scripts/start_menu_music.gd" id="9_8vrrs"]
+[ext_resource type="AudioStream" uid="uid://bwo412vc76xlf" path="res://Art/Music/Banners in the Wind by Alkakrab.wav" id="10_xegfj"]
+[ext_resource type="AudioStream" uid="uid://dygf7xou5wtn3" path="res://Art/Music/Where The Winds Roam by xDeviruchi.wav" id="11_fcctw"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ra7ee"]
 color = Color(1, 1, 1, 1)
@@ -90,6 +93,7 @@ zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
 
 [node name="Start Menu" type="Control" parent="StartMenuCam"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -271,6 +275,7 @@ Made for Programming (formerly Game Dev) Semester 2, 2025, taught by Andrew & Ji
 
 Nudge Orb font by Sysl on Itch.io
 Art includes modified assets by ErisEzra and O_Lobster on Itch.io
+
 other credits go here :D"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -656,6 +661,18 @@ color = Color(0.1, 0.1, 0.1, 1)
 libraries = {
 &"": SubResource("AnimationLibrary_2en7b")
 }
+
+[node name="StartMenuMusic" type="Node" parent="."]
+script = ExtResource("9_8vrrs")
+
+[node name="BannersInTheWind" type="AudioStreamPlayer2D" parent="StartMenuMusic"]
+stream = ExtResource("10_xegfj")
+volume_db = -80.0
+bus = &"Background"
+
+[node name="WhereTheWindsRoam" type="AudioStreamPlayer2D" parent="StartMenuMusic"]
+stream = ExtResource("11_fcctw")
+bus = &"Background"
 
 [connection signal="pressed" from="StartMenuCam/Start Menu/buttonContainer/cont" to="StartMenuCam/Start Menu" method="to_save_menu"]
 [connection signal="pressed" from="StartMenuCam/Start Menu/buttonContainer/settings" to="StartMenuCam/Start Menu" method="_on_settings_pressed"]
