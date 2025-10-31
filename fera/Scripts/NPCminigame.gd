@@ -24,6 +24,8 @@ var AskedToPlay = null
 var YesToPlay = null
 var AmIAsking = false
 
+var previous: int
+
 func _ready():
 	reset()
 	$"../../Player/Cam/UI/Yes".pressed.connect(_on_yes_pressed)
@@ -59,7 +61,7 @@ func Interact():
 				DanceMini.emit()
 			elif minigame == "FLOWER":
 				if Globals.BagOrder.has("Flower"):
-					var bob = Globals.BagAmounts["Flower"]
+					previous = Globals.BagAmounts["Flower"]
 				FlowerMini.emit()
 			# print(minigame + " minigame hasn't been coded yet, so have the reward anyway")
 			# if minigame == "DANCE":

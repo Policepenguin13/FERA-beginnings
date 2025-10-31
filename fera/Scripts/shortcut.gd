@@ -9,11 +9,15 @@ func _ready():
 	return
 	self.monitoring = false
 	self.monitorable = false
+	hide()
 
 func Interact():
 	# print("skip to number")
 	Globals.StoryMilestone = SkipTo
 	Globals.talking = false
 	Globals.CanMove = true
+	%inventory.InventoryOrder.clear()
+	%inventory.InventoryAmount.clear()
+	%inventory.UpdateUI()
 	if ItemNeeded:
 		%inventory.AddItem(Item)

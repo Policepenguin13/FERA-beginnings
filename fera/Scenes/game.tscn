@@ -3046,7 +3046,7 @@ script = ExtResource("18_7t8sx")
 Default = Array[String](["MUM: You look like you're having fun, {player}", "MUM: I'm just doing some gardening, it's such a nice day outside.", "MUM: I'm so glad we moved to Lilton, it's much better than the big city."])
 OneBite = Array[String](["{player}: *sniffle* ...And then they bit me! I was only trying to help!", "MUM: The Fera was feeling scared and threatened, they didn't mean to hurt you, just like you didn't mean to scare them.", "{player}: But... *sniffle* how do I stop them being afraid of me?", "MUM: How about you try to bring them some food as a way to say sorry?", "MUM: You could ask SHOPKEEPER if he has any spare,", "{player}: That sounds like a good idea..."])
 ThreeLikes = Array[String](["{player}: Hey MUM, what sort of things do Fera like?", "MUM: Fera? Hmm... Well, you've already given them some food,", "MUM: They might like some water to drink, a flower to decorate their home or a toy to play with!", "{player}: Where do I get those?", "MUM: Let's see, you can ask FLORIST FLORA in the garden behind SHOPKEEPER's shop about flowers,", "MUM: I've been leaving this bowl out for wild Fera who might want a drink, but it's empty right now.", "MUM gave {player} 1 Bowl", "MUM: You can fill it with water from the tap on the side of our house", "MUM: And that toy you lent to KID TIMMY would probably be perfect for a Fera to play with,", "MUM: I saw KID TIMMY playing in the field up behind our house earlier, he's probably still there."])
-FiveCanGo = Array[String](["MUM: !", "MUM: Who's this little Fera, {player}?", "{player}: Their name is {teto}!", "MUM: I've never seen a Fera like {teto} before... They remind me a little of your DAD's Fera companion.", "{player}: I want to go and become a Master Fera Tamer!"])
+FiveCanGo = Array[String](["MUM: !", "MUM: Who's this little Fera, {player}?", "{player}: Their name is {teto}!", "MUM: I've never seen a Fera like {teto} before... They remind me a little of your DAD's companion.", "{player}: Now that I have a partner Fera, can I go become a Master Fera Tamer?", "MUM: Well, does {teto} want to win at the Tournament with you?", "{teto} yips excitedly and scurries in a little circle, they're filled with determination!", "MUM: I'll take that as a yes! If you're sure, {player}...", "{player}: I'm really sure, MUM! I want to explore the rest of Tanill and meet all kinds of new Fera!", "MUM: Alright, you can go... But not until you're prepared.", "MUM: Here, take these. Your DAD got them for you.", "MUM gave {player} 5 Capture Crystals!", "MUM: And don't forget this,", "MUM gave {player} $500 !", "{player}: Whoa, thanks MUM!", "MUM: You're always welcome back home if you want to check in... Please stay safe out there, {player}.", "{player}: I will, I promise!", "{teto} yips affirmatively!", "{player}: And {teto} promises too!", "MUM: Then... Trail 01 should take you to the first city on the way to the Tournament."])
 Five = Array[String](["MUM: {player}, you and {teto} take care of eachother, alright?", "MUM: You're welcome back home whenever you'd like."])
 
 [node name="sight" type="CollisionShape2D" parent="NPCs/Mum"]
@@ -3377,6 +3377,7 @@ position = Vector2(8, 0)
 visible = false
 
 [node name="3" type="Area2D" parent="shortcuts"]
+visible = false
 position = Vector2(-184, 104)
 collision_layer = 3
 collision_mask = 7
@@ -3406,6 +3407,7 @@ text = "3"
 shape = SubResource("RectangleShape2D_6uxt2")
 
 [node name="4" type="Area2D" parent="shortcuts"]
+visible = false
 position = Vector2(-168, 104)
 collision_layer = 3
 collision_mask = 7

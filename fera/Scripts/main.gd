@@ -7,8 +7,10 @@ func _ready():
 		$"StartMenu/StartMenuCam/Start Menu".BEGIN.connect(Go)
 
 func Go():
-	print("Go")
+	# print("Go")
 #	$StartMenu.PROCESS_MODE_DISABLED
 #	$Game.PROCESS_MODE_INHERIT
 	if Globals.StoryMilestone == 0:
 		$Game.Ready()
+	else:
+		$Game.unpause()

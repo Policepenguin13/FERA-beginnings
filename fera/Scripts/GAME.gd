@@ -101,6 +101,11 @@ func EndFlower():
 			for kid in child.get_children():
 				kid.show()
 	$FlowerMinigame.hide()
+	var bob
+	if Globals.BagOrder.has("Flower"):
+		bob = Globals.BagAmounts["Flower"]
+	else:
+		bob = 0
 	var number = 0
 	while number != $FlowerMinigame.score:
 		number+=1
@@ -108,7 +113,7 @@ func EndFlower():
 		# print(number)
 	Globals.CanMove = true
 	if Globals.StoryMilestone == 4 and !Globals.FourGoals.has("Flower"):
-		if %NPCs/FloristFlora.bob != number:
+		if bob < number:
 			Globals.FourGoals.append("Flower")
 	
 func ToMenu():

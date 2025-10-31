@@ -47,6 +47,12 @@ func end():
 			%inventory.AddItem("Bowl")
 		if Globals.StoryMilestone == 5 and %DialogueBox.RawWords == FiveCanGo:
 			SaidYouCanGo = true
+			Globals.funds += 500
+			%inventory.AddItem("Capture Crystal")
+			%inventory.AddItem("Capture Crystal")
+			%inventory.AddItem("Capture Crystal")
+			%inventory.AddItem("Capture Crystal")
+			%inventory.AddItem("Capture Crystal")
 
 func Interact():
 	$art.CheckDir()

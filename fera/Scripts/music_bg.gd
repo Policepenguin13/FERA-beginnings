@@ -4,6 +4,7 @@ var playing
 var NormalTracks = ["TheJourney","DefinitelyOurTown","BannersInTheWind"]
 var CutsceneTracks = ["FantasyDragon","WhereTheWindsRoam"]
 var ViableTracks = []
+var bus_index: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +20,7 @@ func _ready():
 		%Cutscenes.CutsceneStarted.connect(ToCutscene)
 	if !%DialogueBox.DialogueEnded.is_connected(ToBg):
 		%DialogueBox.DialogueEnded.connect(ToBg)
+	bus_index = AudioServer.get_bus_index("Background")
 	
 
 func NextTrack():
@@ -35,6 +37,7 @@ func FadeOut():
 	print("GAME is fading out")
 	var fader = get_tree().create_tween()
 	playing.volume_db = 0.0
+	# AudioServer.set_bus_volume_db(bus_index, linear_to_db(-80.0))
 	fader.tween_property(playing, "volume_db", -80.0, 1.5)
 
 func FadeIn():

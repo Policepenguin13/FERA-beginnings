@@ -7,10 +7,10 @@ func _ready():
 	$StartMenuCam.enabled = true
 	if !$"StartMenuCam/Start Menu".BEGIN.is_connected(begin):
 		$"StartMenuCam/Start Menu".BEGIN.connect(begin)
-	print("START MENU")
+	# print("START MENU")
 	
 func begin():
-	print("lol")
+	# print("lol")
 	$StartMenuCam.enabled = false
 	# await $"StartMenuCam/Start Menu".to_save_menu()
 	print(get_parent().name)
