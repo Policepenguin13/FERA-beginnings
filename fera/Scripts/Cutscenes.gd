@@ -31,7 +31,7 @@ func Say():
 		if %DialogueBox.count <= temp:
 			get_child(CutsceneIndex).show()
 			get_child(CutsceneIndex).play(Animations[%DialogueBox.count])
-			if ThisCutscene == $friend and %DialogueBox.count == 14:
+			if ThisCutscene == $friend and %DialogueBox.count == 13:
 				%DialogueBox.NoContinue = true
 				$"../Ask".FeraStart()
 				$"../../../../NPCs/Burrow".monitorable = false
@@ -56,6 +56,7 @@ func BiteCutscene():
 	CutsceneStarted.emit()
 	ThisCutscene = $bite
 	ThisCutscene.show()
+	$blank.show()
 	CutsceneIndex = $bite.get_index()
 	Animations = $bite.sprite_frames.get_animation_names()
 	# print("teto says this is my food, mine, omnomnom")
@@ -65,6 +66,7 @@ func DragCutscene():
 	CutsceneStarted.emit()
 	ThisCutscene = $drag
 	ThisCutscene.show()
+	$blank.show()
 	CutsceneIndex = $drag.get_index()
 	Animations = $drag.sprite_frames.get_animation_names()
 	# print("teto drags food back dramatically")
@@ -74,6 +76,7 @@ func FriendCutscene():
 	CutsceneStarted.emit()
 	ThisCutscene = $friend
 	ThisCutscene.show()
+	$blank.show()
 	CutsceneIndex = $friend.get_index()
 	Animations = $friend.sprite_frames.get_animation_names()
 	# print("do friend cutscene stuff here")
@@ -83,27 +86,30 @@ func SplashCutscene():
 	CutsceneStarted.emit()
 	ThisCutscene = $splash
 	ThisCutscene.show()
+	$blank.show()
 	CutsceneIndex = $splash.get_index()
 	Animations = $splash.sprite_frames.get_animation_names()
-	print(Globals.FeraName + " used SPLASH!")
+	# print(Globals.FeraName + " used SPLASH!")
 
 func SneezeCutscene():
 	show()
 	CutsceneStarted.emit()
 	ThisCutscene = $sneeze
 	ThisCutscene.show()
+	$blank.show()
 	CutsceneIndex = $sneeze.get_index()
 	Animations = $sneeze.sprite_frames.get_animation_names()
-	print("achoo! sneeze cutscene")
+	# print("achoo! sneeze cutscene")
 
 func ToyCutscene():
 	show()
 	CutsceneStarted.emit()
 	ThisCutscene = $toy
 	ThisCutscene.show()
+	$blank.show()
 	CutsceneIndex = $toy.get_index()
 	Animations = $toy.sprite_frames.get_animation_names()
-	print("wholesome playing with toys, lookit the lil guuuyyy")
+	# print("wholesome playing with toys, lookit the lil guuuyyy")
 
 func FinalCutscene():
 	show()
@@ -112,7 +118,10 @@ func FinalCutscene():
 	ThisCutscene.show()
 	CutsceneIndex = $end.get_index()
 	Animations = $end.sprite_frames.get_animation_names()
-	print("it's the FI-NAL CUT-SCENE, insert epic off-key harmonica solo")
+	Globals.CanMove = false
+	Globals.StoryMilestone = 6
+	
+	# print("it's the FI-NAL CUT-SCENE, insert epic off-key harmonica solo")
 	# it's the FI-NAL CUT-SCENE, insert epic off-key harmonica solo
 
 # 0 burrow + food

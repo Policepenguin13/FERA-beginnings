@@ -21,8 +21,10 @@ func _ready():
 
 func _process(_delta):
 	if Globals.StoryMilestone < 5:
+		# pass
 		hide()
 	else:
+		# pass
 		show()
 
 func moving():
@@ -43,13 +45,14 @@ func moving():
 			dir = "down"
 			# print("Y from.y (" + str(from.y) + ") is MORE THAN global_position.y ("+ str(global_position.y) +")")
 		else:
-			print("something is up with your fera's sense of direction")
+			# print("something is up with your fera's sense of direction")
+			pass
 			
 	CheckNeeded = true
 	to = you.global_position
 	# print("the fera has noticed you arriving to " + str(to))
 	var tween = create_tween()
-	tween.tween_property(self, "position", from, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "position", from, 0.75/%Player.AnimeSpeed).set_trans(Tween.TRANS_SINE)
 	going = true
 	# print("fera has started moving")
 	await tween.finished
@@ -111,7 +114,7 @@ func CheckDir():
 	CheckNeeded = false
 
 func AnimeDone():
-	print("animation finished?")
+	# print("animation finished?")
 	if dir == "right":
 		flip_h = true
 		play("right")

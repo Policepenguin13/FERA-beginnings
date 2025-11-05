@@ -65,7 +65,7 @@ func Interact():
 						%DialogueBox.Say(TwoNoSausageNoFlowers, self)
 				else:
 					%DialogueBox.Say(TwoNoSausageNoFlowers, self)
-	elif Globals.StoryMilestone >= 4:
-		%DialogueBox.Say(Default, self)
 	elif Globals.StoryMilestone <= 5:
 		%DialogueBox.Say(TetoFollow, self)
+	else:
+		%DialogueBox.Say(Default, self)

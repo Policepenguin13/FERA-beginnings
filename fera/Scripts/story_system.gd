@@ -11,7 +11,7 @@ func _process(_delta):
 		$tutorialBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
 		$tutorialBlock/CollisionShape2D.set_deferred("disabled", true)
 		$tutorialBlock.monitorable = false
-	if Globals.StoryMilestone == 6:
+	if Globals.StoryMilestone == 5:
 		$endgameBlock.hide()
 		$endgameBlock/StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
 		$endgameBlock/CollisionShape2D.set_deferred("disabled", true)

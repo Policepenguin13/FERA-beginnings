@@ -53,7 +53,7 @@ func CheckDir():
 	CheckNeeded = false
 
 func thing():
-	print("animation finished?")
+	# print("animation finished?")
 	if dir == "right":
 		flip_h = true
 		play("right")

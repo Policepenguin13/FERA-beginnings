@@ -44,7 +44,7 @@ func end():
 			%inventory.RemoveItem("Sausage Roll")
 			$"../../Player".Teleport(Vector2(728,104), "RIGHT")
 			MumCutscene.emit()
-			print("burrow emitting mum cutscene")
+			# print("burrow emitting mum cutscene")
 			# Globals.StoryMilestone += 1
 			# %DialogueBox.cutscene = false
 			# $"../../Player/interactStuff".interactable = $"../Mum"
@@ -125,25 +125,25 @@ func Interact():
 	elif Globals.StoryMilestone == 4:
 		if FourCutscenesShown.size() == 3:
 			%DialogueBox.Say(FourFollow, self)
-			print("FOLLOW CUTSCENE TRIGGER")
+			# print("FOLLOW CUTSCENE TRIGGER")
 			
 		elif Globals.FourGoals.has("Toy") and !FourCutscenesShown.has("Toy"):
 			%Cutscenes.ToyCutscene()
 			%DialogueBox.cutscene = true
 			%DialogueBox.Say(FourToy, self)
-			print("TRIGGER TOY CUTSCENE")
+			# print("TRIGGER TOY CUTSCENE")
 			
 		elif Globals.FourGoals.has("Flower") and !FourCutscenesShown.has("Flower"):
 			%Cutscenes.SneezeCutscene()
 			%DialogueBox.cutscene = true
 			%DialogueBox.Say(FourFlowers, self)
-			print("TRIGGER SNEEZE CUTSCENE")
+			# print("TRIGGER SNEEZE CUTSCENE")
 			
 		elif Globals.FourGoals.has("Water") and !FourCutscenesShown.has("Water"):
 			%Cutscenes.SplashCutscene()
 			%DialogueBox.cutscene = true
 			%DialogueBox.Say(FourWater, self)
-			print("TRIGGER SPLASH CUTSCENE")
+			# print("TRIGGER SPLASH CUTSCENE")
 			
 		else:
 			%DialogueBox.Say(FourNone, self)

@@ -13,5 +13,5 @@ func begin():
 	# print("lol")
 	$StartMenuCam.enabled = false
 	# await $"StartMenuCam/Start Menu".to_save_menu()
-	print(get_parent().name)
+	# print(get_parent().name)
 	$"..".Go()

@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0147njq055x5"]
+
+[ext_resource type="Script" uid="uid://yhaar50p5g8d" path="res://Scripts/music_bg.gd" id="1_3qant"]
+[ext_resource type="AudioStream" uid="uid://binlpgenfr6dc" path="res://Art/Music/The Journey by xDeviruchi.wav" id="2_8m4xp"]
+[ext_resource type="AudioStream" uid="uid://cb4t6rh048dsu" path="res://Art/Music/Definitely Our Town by xDeviruchi.wav" id="3_vja3a"]
+[ext_resource type="AudioStream" uid="uid://dygf7xou5wtn3" path="res://Art/Music/Where The Winds Roam by xDeviruchi.wav" id="4_2vogh"]
+[ext_resource type="AudioStream" uid="uid://bwo412vc76xlf" path="res://Art/Music/Banners in the Wind by Alkakrab.wav" id="5_4r86j"]
+[ext_resource type="AudioStream" uid="uid://t1p52rnlm2ji" path="res://Art/Music/fantasy Dragon by Ansimuz.ogg" id="6_sg3dm"]
+
+[node name="BackgroundMusic" type="Node"]
+script = ExtResource("1_3qant")
+
+[node name="TheJourney" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_8m4xp")
+bus = &"Background"
+
+[node name="DefinitelyOurTown" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vja3a")
+bus = &"Background"
+
+[node name="WhereTheWindsRoam" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2vogh")
+bus = &"Background"
+
+[node name="BannersInTheWind" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_4r86j")
+bus = &"Background"
+
+[node name="FantasyDragon" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_sg3dm")
+bus = &"Background"

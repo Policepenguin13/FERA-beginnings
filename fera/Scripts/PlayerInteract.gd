@@ -9,15 +9,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("INTERACT"):
-		InteractPressed.emit()
-		# print("INTERACTABLE = " + str(interactable))
-		# await CheckForInteractables()
-		if interactable != null:
-			Globals.talking = true
-			Globals.CanMove = false
-			# print("INTERACTING")
-			interactable.Interact()
+	if !Globals.StoryMilestone == 6:
+		if Input.is_action_just_pressed("INTERACT"):
+			InteractPressed.emit()
+			# print("INTERACTABLE = " + str(interactable))
+			# await CheckForInteractables()
+			if interactable != null:
+				Globals.talking = true
+				Globals.CanMove = false
+				# print("INTERACTING")
+				interactable.Interact()
 
 func CheckForInteractables():
 	$Check.force_raycast_update()
@@ -31,7 +32,7 @@ func CheckForInteractables():
 		interactable = null
 
 func AutoInteract():
-	print("auto-interacting")
+	# print("auto-interacting")
 	await CheckForInteractables()
 	if interactable != null:
 		Globals.talking = true

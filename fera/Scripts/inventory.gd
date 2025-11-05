@@ -98,3 +98,6 @@ func UpdateUI():
 	if InventoryOrder.has("Water Bowl"):
 		if !Globals.FourGoals.has("Toy"):
 			Globals.FourGoals.append("Toy")
+	if InventoryOrder.has("Flower"):
+		if !Globals.FourGoals.has("Flower"):
+			Globals.FourGoals.append("Flower")

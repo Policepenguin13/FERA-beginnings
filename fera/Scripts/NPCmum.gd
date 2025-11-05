@@ -42,7 +42,7 @@ func end():
 				# print("MUM said oneBite, +1 story milestone")
 				Globals.StoryMilestone = 2
 		if %DialogueBox.RawWords == ThreeLikes:
-			print("+1 story milestone from mum")
+			# print("+1 story milestone from mum")
 			Globals.StoryMilestone += 1
 			%inventory.AddItem("Bowl")
 		if Globals.StoryMilestone == 5 and %DialogueBox.RawWords == FiveCanGo:

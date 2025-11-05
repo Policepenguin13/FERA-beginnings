@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://cm8t7pihrori"]
+[gd_scene load_steps=46 format=4 uid="uid://bfh52hjed4vii"]
 
 [ext_resource type="Script" uid="uid://b42030qkgrvfc" path="res://Scripts/player.gd" id="1_xkbrw"]
 [ext_resource type="Texture2D" uid="uid://dwi7av56nocrq" path="res://Art/PlayerIdle.png" id="2_axftp"]
@@ -521,7 +521,7 @@ position = Vector2(-128, 56)
 sprite_frames = SubResource("SpriteFrames_7swb2")
 animation = &"up"
 autoplay = "left"
-frame_progress = 0.440695
+frame_progress = 0.244084
 script = ExtResource("8_dwrto")
 
 [node name="Ray" type="RayCast2D" parent="Teto"]

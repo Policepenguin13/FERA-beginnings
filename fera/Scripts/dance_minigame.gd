@@ -19,6 +19,8 @@ extends Node2D
 var songs = [
 	["LEFT","DOWN","LEFT", "UP","RIGHT","UP", "DOWN","LEFT","DOWN", "RIGHT","UP","RIGHT"], 
 	["UP","DOWN","RIGHT","LEFT", "RIGHT","LEFT","DOWN","UP", "DOWN","UP","LEFT","RIGHT"],
+	["UP","RIGHT","DOWN","LEFT","UP","RIGHT","DOWN","LEFT","RIGHT","UP","LEFT","DOWN"],
+	["RIGHT","DOWN","RIGHT","LEFT","UP","LEFT","DOWN","RIGHT","DOWN","UP","LEFT","UP"]
 	# or randomize.
 	]
 var PotentialSteps = ["UP", "DOWN", "LEFT","RIGHT"]
@@ -30,9 +32,12 @@ var InstructorDancing = true
 var FirstTime = true
 var winning = false
 
+var fadeback = true
+
 signal DanceOver
 
 func _ready():
+	# RandomNewSong()
 	self.hide()
 	$Cam.enabled = false
 	self.process_mode = PROCESS_MODE_DISABLED
@@ -40,6 +45,7 @@ func _ready():
 func Ready():
 	process_mode = PROCESS_MODE_INHERIT
 	$Cam.enabled = true
+	fadeback = true
 	# RandomNewSong()
 	# sequence = songs.pick_random()
 	sequence = ["LEFT","DOWN","LEFT", "UP","RIGHT","UP", "DOWN","LEFT","DOWN", "RIGHT","UP","RIGHT"]
@@ -58,6 +64,7 @@ func Ready():
 	$OneSec.start()
 	await $OneSec.timeout
 	KimDance()
+	step = 0
 	
 
 func Restart():
@@ -190,7 +197,7 @@ func CutsceneInstructions(number: int):
 
 func YouWin():
 	winning = true
-	print("WOOO YOU WON LETS GOOOO")
+	# print("WOOO YOU WON LETS GOOOO")
 	$Cam/ui/fade.color = Color(1.0,1.0,1.0,1.0)
 	await Flash()
 	DanceOver.emit()
@@ -214,7 +221,20 @@ func Flash():
 	$Cam/ui/fade.hide()
 
 func RandomNewSong():
-	pass
+	# pass
+	var A = [["UP","DOWN","UP"],["UP","RIGHT","UP"],["UP","LEFT","UP"]]
+	var B = [["RIGHT","LEFT","RIGHT"],["RIGHT","UP","RIGHT"],["RIGHT","DOWN","RIGHT"]]
+	var C = [["LEFT","RIGHT","LEFT"],["LEFT","UP","LEFT"],["LEFT","DOWN","LEFT"]]
+	var D = [["DOWN","RIGHT","DOWN"],["DOWN","LEFT","DOWN"],["DOWN","UP","DOWN"]]
+	var BigList = [A, B, C, D]
+	
+	var NewSong: Array[String]
+	BigList.shuffle()
+	for quarter in BigList:
+		var Part = quarter.pick_random()
+		for doot in Part:
+			NewSong.append(doot)
+	# print(NewSong)
 	# var NewSong: Array[String]
 	# var UsableSteps = ["UP", "DOWN", "LEFT", "RIGHT"]
 	# var chosen = PotentialSteps.pick_random()

@@ -1,16 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccfown28gryj6"]
+[gd_scene load_steps=16 format=3 uid="uid://ccfown28gryj6"]
 
 [ext_resource type="Script" uid="uid://bk3b40h8kmi3q" path="res://Scripts/startOversight.gd" id="1_da5rh"]
 [ext_resource type="Script" uid="uid://dco6kxomhdvgs" path="res://Scripts/settings.gd" id="1_ra7ee"]
 [ext_resource type="Script" uid="uid://b630cs0j8g4tt" path="res://Scripts/StartMenu.gd" id="1_w2614"]
 [ext_resource type="Script" uid="uid://bhq5ve21t8aj2" path="res://Scripts/VolumeSlider.gd" id="2_8opm2"]
 [ext_resource type="FontFile" uid="uid://cik180oqc4f50" path="res://Art/UI stuff/Nudge Orb.ttf" id="2_s62a1"]
-[ext_resource type="StyleBox" uid="uid://c34tay75qipsy" path="res://Art/UI stuff/button_pressed_stylebox.tres" id="3_734s5"]
-[ext_resource type="StyleBox" uid="uid://tnghs0aaar6b" path="res://Art/UI stuff/button_disabled.tres" id="3_ob5tf"]
-[ext_resource type="StyleBox" uid="uid://bihd10fllgxtk" path="res://Art/UI stuff/button_not_pressed_stylebox.tres" id="4_ob5tf"]
-[ext_resource type="Script" uid="uid://cyiliyuq4bhu1" path="res://Scripts/start_menu_music.gd" id="9_8vrrs"]
-[ext_resource type="AudioStream" uid="uid://bwo412vc76xlf" path="res://Art/Music/Banners in the Wind by Alkakrab.wav" id="10_xegfj"]
-[ext_resource type="AudioStream" uid="uid://dygf7xou5wtn3" path="res://Art/Music/Where The Winds Roam by xDeviruchi.wav" id="11_fcctw"]
+[ext_resource type="StyleBox" uid="uid://vdvq151rlp63" path="res://Art/UI stuff/button_pressed_stylebox.tres" id="3_734s5"]
+[ext_resource type="StyleBox" uid="uid://mcckgatpjrbc" path="res://Art/UI stuff/button_disabled.tres" id="3_ob5tf"]
+[ext_resource type="Texture2D" uid="uid://cnxltmu5rgshs" path="res://Art/Cutscenes/StartBg.png" id="3_xegfj"]
+[ext_resource type="StyleBox" uid="uid://chfihsfu3wrut" path="res://Art/UI stuff/button_not_pressed_stylebox.tres" id="4_ob5tf"]
+[ext_resource type="StyleBox" uid="uid://cvjyk1d1pnywx" path="res://Art/UI stuff/button_focus.tres" id="5_fcctw"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ra7ee"]
 color = Color(1, 1, 1, 1)
@@ -108,28 +107,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w2614")
 
-[node name="bgPlaceholder" type="ColorRect" parent="StartMenuCam/Start Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="StartMenuCam/Start Menu/bgPlaceholder"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "
-
-start menu bg art"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="bgPlaceholder" type="Sprite2D" parent="StartMenuCam/Start Menu"]
+position = Vector2(184, 104)
+scale = Vector2(0.575, 0.577778)
+texture = ExtResource("3_xegfj")
 
 [node name="buttonContainer" type="HBoxContainer" parent="StartMenuCam/Start Menu"]
 layout_mode = 1
@@ -155,6 +136,7 @@ focus_next = NodePath("../settings")
 focus_previous = NodePath("../credits")
 theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("5_fcctw")
 theme_override_styles/disabled_mirrored = ExtResource("3_ob5tf")
 theme_override_styles/disabled = ExtResource("3_ob5tf")
 theme_override_styles/hover_pressed_mirrored = ExtResource("3_734s5")
@@ -175,6 +157,7 @@ focus_next = NodePath("../cont")
 focus_previous = NodePath("../credits")
 theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("5_fcctw")
 theme_override_styles/disabled_mirrored = ExtResource("3_ob5tf")
 theme_override_styles/disabled = ExtResource("3_ob5tf")
 theme_override_styles/hover_pressed_mirrored = ExtResource("3_734s5")
@@ -196,6 +179,7 @@ focus_next = NodePath("../cont")
 focus_previous = NodePath("../settings")
 theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("5_fcctw")
 theme_override_styles/disabled_mirrored = ExtResource("3_ob5tf")
 theme_override_styles/disabled = ExtResource("3_ob5tf")
 theme_override_styles/hover_pressed_mirrored = ExtResource("3_734s5")
@@ -217,7 +201,10 @@ offset_left = -86.0
 offset_right = 86.0
 offset_bottom = 99.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.501961, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 72
 text = "FERA"
@@ -237,7 +224,10 @@ offset_right = 126.5
 offset_bottom = 72.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.5, 1, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 32
 text = "beginnings"
@@ -245,7 +235,6 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Credits" type="Control" parent="StartMenuCam/Start Menu"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -260,23 +249,28 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -184.0
+offset_top = 8.0
 offset_right = 185.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.116667, 0, 1, 0.72549)
 theme_override_constants/line_spacing = 7
 theme_override_constants/paragraph_spacing = -3
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 8
 text = "CREDITS:
 Made in Godot v4.4.1
-Pixel art made using LibreSprite
+Pixel art made using LibreSprite and IbisPaint X
 Made for Programming (formerly Game Dev) Semester 2, 2025, taught by Andrew & Jim
 
 Nudge Orb font by Sysl on Itch.io
 Art includes modified assets by ErisEzra and O_Lobster on Itch.io
 
-other credits go here :D"
+\"Banners in the Wind\" song by Alkakrab on Itch.io
+\"Definitely Our Town\", \"Where The Winds Roam\" and \"The Journey\" songs by xDeviruchi on Itch.io
+\"fantasy Dragon\" song by Ansimuz "
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -285,11 +279,23 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -18.0
-offset_bottom = 31.0
+offset_left = -32.0
+offset_right = -4.0
+offset_bottom = 24.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("2_s62a1")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = ExtResource("5_fcctw")
+theme_override_styles/disabled_mirrored = ExtResource("3_ob5tf")
+theme_override_styles/disabled = ExtResource("3_ob5tf")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_734s5")
+theme_override_styles/hover_pressed = ExtResource("3_734s5")
+theme_override_styles/hover_mirrored = ExtResource("4_ob5tf")
+theme_override_styles/hover = ExtResource("4_ob5tf")
+theme_override_styles/pressed_mirrored = ExtResource("3_734s5")
+theme_override_styles/pressed = ExtResource("3_734s5")
+theme_override_styles/normal_mirrored = ExtResource("4_ob5tf")
+theme_override_styles/normal = ExtResource("4_ob5tf")
 text = "X"
 
 [node name="SavesMenu" type="Control" parent="StartMenuCam/Start Menu"]
@@ -526,17 +532,19 @@ text = "Main"
 horizontal_alignment = 1
 
 [node name="MasterBar" type="HSlider" parent="StartMenuCam/Start Menu/Settings/Panel/settings/volumes/master"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+min_value = 0.001
 max_value = 1.0
-step = 0.001
+step = 0.1
 value = 1.0
-rounded = true
 script = ExtResource("2_8opm2")
 bus_name = "Master"
 
 [node name="sfx" type="HBoxContainer" parent="StartMenuCam/Start Menu/Settings/Panel/settings/volumes"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 1
@@ -554,8 +562,10 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-value = 100.0
-rounded = true
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 1.0
 script = ExtResource("2_8opm2")
 bus_name = "SFX"
 
@@ -574,11 +584,14 @@ text = "Music"
 horizontal_alignment = 1
 
 [node name="bgBar" type="HSlider" parent="StartMenuCam/Start Menu/Settings/Panel/settings/volumes/bg"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-value = 100.0
-rounded = true
+min_value = 0.001
+max_value = 1.0
+step = 0.1
+value = 1.0
 script = ExtResource("2_8opm2")
 bus_name = "Background"
 
@@ -636,6 +649,7 @@ vertical_alignment = 2
 autowrap_mode = 3
 
 [node name="TransT" type="ColorRect" parent="StartMenuCam/Start Menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -647,6 +661,7 @@ grow_vertical = 2
 color = Color(0.101961, 0.101961, 0.101961, 1)
 
 [node name="TransB" type="ColorRect" parent="StartMenuCam/Start Menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -661,18 +676,6 @@ color = Color(0.1, 0.1, 0.1, 1)
 libraries = {
 &"": SubResource("AnimationLibrary_2en7b")
 }
-
-[node name="StartMenuMusic" type="Node" parent="."]
-script = ExtResource("9_8vrrs")
-
-[node name="BannersInTheWind" type="AudioStreamPlayer2D" parent="StartMenuMusic"]
-stream = ExtResource("10_xegfj")
-volume_db = -80.0
-bus = &"Background"
-
-[node name="WhereTheWindsRoam" type="AudioStreamPlayer2D" parent="StartMenuMusic"]
-stream = ExtResource("11_fcctw")
-bus = &"Background"
 
 [connection signal="pressed" from="StartMenuCam/Start Menu/buttonContainer/cont" to="StartMenuCam/Start Menu" method="to_save_menu"]
 [connection signal="pressed" from="StartMenuCam/Start Menu/buttonContainer/settings" to="StartMenuCam/Start Menu" method="_on_settings_pressed"]

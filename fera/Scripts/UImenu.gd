@@ -42,10 +42,11 @@ func SettingsClosed():
 	self.show()
 
 func _on_save_pressed():
-	print("save button pressed")
+	# print("save button pressed")
+	pass
 
 func _on_quit_pressed():
-	print("quit to main menu button pressed")
+	# print("quit to main menu button pressed")
 	QuitToMenu.emit()
 
 func _on_bag_toggled(toggled_on):

@@ -59,7 +59,7 @@ func Move(dir):
 		# print("SET MovingTo TO: " + str(Globals.MovingTo))
 		Moving.emit()
 		var tween = create_tween()
-		tween.tween_property(self, "position", position + inputs[dir] *    TileSize, 1.0/AnimeSpeed).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(self, "position", position + inputs[dir] *    TileSize, 0.75/AnimeSpeed).set_trans(Tween.TRANS_SINE)
 		moving = true
 		await tween.finished
 		moving = false

@@ -19,6 +19,7 @@ signal FlowerMini
 @export var DontWantToPlay: Array[String] = [] # if they say no overall
 @export var minigame: String = ""
 @export var questMilestone: int = 0
+@export var NotYet: Array[String] = []
 
 var AskedToPlay = null
 var YesToPlay = null
@@ -52,33 +53,40 @@ func end():
 
 func Interact():
 	$art.CheckDir()
-	if AskedToPlay == true:
-		# print(str(self) + " has asked if player would like to play")
-		if YesToPlay == true:
-			#print("player said they would like to play")
-			# print("TRIGGER " + minigame + " MINIGAME HERE")
-			if minigame == "DANCE":
-				DanceMini.emit()
-			elif minigame == "FLOWER":
-				if Globals.BagOrder.has("Flower"):
-					previous = Globals.BagAmounts["Flower"]
-				FlowerMini.emit()
-			# print(minigame + " minigame hasn't been coded yet, so have the reward anyway")
-			# if minigame == "DANCE":
-			# 	print("You dance with kim, hooray!")
-			# 	Globals.ThreeDanced = true
-			reset()
-		else: 
-			# print("player said no i wouldn't like to play")
-			# AmIAsking = true
-			%DialogueBox.choice = false
-			%DialogueBox.Say(DontWantToPlay, self)
-			# await dialogueEnded to reset
+	if minigame == "DANCE" and Globals.StoryMilestone < 3:
+		%DialogueBox.choice = false
+		%DialogueBox.Say(NotYet, self)
+		reset()
 	else:
-		# print(str(self) + " has NOT asked if player wants to play")
-		# AmIAsking = true
-		%DialogueBox.choice = true
-		%DialogueBox.Say(AskToPlay, self)
+		if AskedToPlay == true:
+			# print(str(self) + " has asked if player would like to play")
+			if YesToPlay == true:
+				#print("player said they would like to play")
+				# print("TRIGGER " + minigame + " MINIGAME HERE")
+				if minigame == "DANCE":
+					DanceMini.emit()
+				elif minigame == "FLOWER":
+					if Globals.BagOrder.has("Flower"):
+						previous = Globals.BagAmounts["Flower"]
+					FlowerMini.emit()
+					monitorable = false
+					monitoring = false
+				# print(minigame + " minigame hasn't been coded yet, so have the reward anyway")
+				# if minigame == "DANCE":
+				# 	print("You dance with kim, hooray!")
+				# 	Globals.ThreeDanced = true
+				reset()
+			else: 
+				# print("player said no i wouldn't like to play")
+				# AmIAsking = true
+				%DialogueBox.choice = false
+				%DialogueBox.Say(DontWantToPlay, self)
+				# await dialogueEnded to reset
+		else:
+			# print(str(self) + " has NOT asked if player wants to play")
+			# AmIAsking = true
+			%DialogueBox.choice = true
+			%DialogueBox.Say(AskToPlay, self)
 
 func _on_yes_pressed():
 	#print("said yes")
@@ -89,7 +97,12 @@ func _on_yes_pressed():
 		# print(str(self) + "is asking")
 		if YesToPlay == null:
 			YesToPlay = true
-	BothButtonPress()
+	if AskedToPlay == null:
+		AskedToPlay = true
+	$"../../Player/Cam/UI/Yes".hide()
+	$"../../Player/Cam/UI/No".hide()
+	%DialogueBox.EndDialogue()
+	Interact()
 
 func _on_no_pressed():
 	#print("said no")
@@ -100,13 +113,9 @@ func _on_no_pressed():
 		# print(str(self) + "is asking")
 		if YesToPlay == null:
 			YesToPlay = false
-	BothButtonPress()
-
-func BothButtonPress():
-	%DialogueBox.EndDialogue()
 	if AskedToPlay == null:
 		AskedToPlay = true
-	
-	Interact()
 	$"../../Player/Cam/UI/Yes".hide()
 	$"../../Player/Cam/UI/No".hide()
+	%DialogueBox.EndDialogue()
+	Interact()
