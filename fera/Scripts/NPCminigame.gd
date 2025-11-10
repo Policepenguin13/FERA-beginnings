@@ -44,11 +44,11 @@ func end():
 		# print("you aren't talking to " + str(self))
 		return
 	else:
-		# print("you are talking to " + str(self))
+		print("you are talking to " + str(self))
 		if AskedToPlay == true:
 			# it likes this structure
 			if YesToPlay == false:
-				# print("refusal dialogue over, resetting")
+				print("refusal dialogue over, resetting")
 				reset()
 
 func Interact():
@@ -77,7 +77,7 @@ func Interact():
 				# 	Globals.ThreeDanced = true
 				reset()
 			else: 
-				# print("player said no i wouldn't like to play")
+				print("player said no i wouldn't like to play")
 				# AmIAsking = true
 				%DialogueBox.choice = false
 				%DialogueBox.Say(DontWantToPlay, self)
@@ -105,17 +105,21 @@ func _on_yes_pressed():
 	Interact()
 
 func _on_no_pressed():
-	#print("said no")
+	print("said no")
 	if %DialogueBox.talker != self:
-		# print(str(self) + "is NOT asking")
+		print(str(self) + "is NOT asking")
 		return
 	else:
-		# print(str(self) + "is asking")
+		print(str(self) + "is asking")
 		if YesToPlay == null:
 			YesToPlay = false
 	if AskedToPlay == null:
 		AskedToPlay = true
 	$"../../Player/Cam/UI/Yes".hide()
 	$"../../Player/Cam/UI/No".hide()
-	%DialogueBox.EndDialogue()
-	Interact()
+	# %DialogueBox.choice = false
+	# %DialogueBox.Say(DontWantToPlay, self)
+	# %DialogueBox.EndDialogue()
+	# $"../../Player/interactStuff".AutoInteract()
+	
+	# Interact()
